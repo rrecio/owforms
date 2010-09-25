@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface NotesController : UIViewController <UITableViewDataSource> {
-	BabyNotesAppDelegate *appDelegate;
 	IBOutlet UITableView *tableView;
 	IBOutlet UITableViewCell *tableViewCell;
 	IBOutlet UITextView *textView;

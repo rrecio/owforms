@@ -8,18 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DateController : UIViewController <UITableViewDataSource> {
-	BabyNotesAppDelegate *appDelegate;
-	IBOutlet UITableView *tableView;
-	IBOutlet UIDatePicker *datePicker;
-	id objetoAtual;
-	NSDate *maximumDate;
+@class OWField;
+
+@interface DateController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+	UITableView *tableView;
+	UIDatePicker *datePicker;
+	NSDateFormatter *dateFormatter;
+	OWField *field;
 }
 
-@property (nonatomic, retain) id objetoAtual;
-@property (nonatomic, retain) NSDate *maximumDate;
+@property (nonatomic, retain) OWField *field;
 
-- (IBAction)dateAction:(id)sender;
-- (void)salvar;
+- (void)valueChanged:(id)sender;
+- (void)doneAction:(id)sender;
 
 @end

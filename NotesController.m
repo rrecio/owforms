@@ -14,9 +14,7 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	[super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-	
-	appDelegate = [[UIApplication sharedApplication] delegate];
-	
+		
 	UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 6)];
 	[imageView setImage:[UIImage imageNamed:@"kal_grid_shadow.png"]];
 	[imageView setAutoresizingMask:UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin];
@@ -77,10 +75,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
-	// Personalization
-	self.navigationController.navigationBar.tintColor = [appDelegate corParaBebe];
-	[tableView setBackgroundColor:[appDelegate backgroundParaBebe]];
 }
 
 - (void)didReceiveMemoryWarning {

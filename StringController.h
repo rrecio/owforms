@@ -1,23 +1,22 @@
 //
-//  EditStringViewController.h
-//  BabyNotes
+//  StringController.h
+//  OWForms
 //
-//  Created by Madson on 10/11/09.
+//  Created by Madson on 25/09/10.
 //  Copyright 2009 Owera. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "BabyNotesAppDelegate.h"
 
-@interface StringController : UIViewController <UITableViewDataSource> {
-	BabyNotesAppDelegate *appDelegate;
-	IBOutlet UITableView *tableView;
+@class OWField;
+
+@interface StringController : UITableViewController {
 	IBOutlet UITableViewCell *tableViewCell;
 	IBOutlet UITextField *textField;
-	NSMutableString *texto;
+	OWField *field;
 }
 
-@property (nonatomic, retain) NSMutableString *texto;
+@property (nonatomic, retain) OWField *field;
 
 - (void)doneAction:(id)sender;
 

@@ -7,24 +7,16 @@
 //
 
 #import "NumberController.h"
-#import "BabyNotesAppDelegate.h"
+#import "OWField.h"
 
 @implementation NumberController
 
-- (id)initWithObject:(id)aObject property:(SEL)aProperty decimalPlaces:(int)aDecimalPlaces{
-	self = [super init];
+@synthesize field;
+
+- (id)initWithDecimalPlaces:(int)aDecimalPlaces {
+	self = [super initWithNibName:@"NumberController" bundle:nil];
 	
-	appDelegate = [[UIApplication sharedApplication] delegate];
-	
-	currentObject = [aObject retain];
-	currentProperty = aProperty;
 	decimalPlaces = aDecimalPlaces;
-	
-	UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 6)];
-	[imageView setImage:[UIImage imageNamed:@"kal_grid_shadow.png"]];
-	[imageView setAutoresizingMask:UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin];
-	[self.view addSubview:imageView];	
-	[imageView release];
 	
 	// Title
 	self.navigationItem.title = NSLocalizedString(@"Editando", nil);
@@ -43,17 +35,10 @@
 	return self;
 }
 
-- (id)initWithObject:(id)aObject property:(SEL)aProperty {
-	return [self initWithObject:aObject property:aProperty decimalPlaces:0];
-}
-
 - (BOOL)textFieldShouldReturn:(UITextField *)tf {
 	[textField resignFirstResponder];
 	
 	[self doneAction:tf];
-	//NSLog(@"%@", [NSString stringWithFormat:@"set%@:", [NSStringFromSelector(currentProperty) capitalizedString]]);3
-	//SEL propriedade = NSSelectorFromString([NSString stringWithFormat:@"set%@:", [NSStringFromSelector(currentProperty) capitalizedString]]);
-	//[currentObject performSelector:propriedade withObject:[NSNumber numberWithFloat:[textField.text floatValue]]];
 
 	return YES;
 }
@@ -137,8 +122,7 @@
 	
 	//NSLog(@"Valor: %0.3f", [texto floatValue]);
 	
-	SEL propriedade = NSSelectorFromString([NSString stringWithFormat:@"set%@:", [NSStringFromSelector(currentProperty) capitalizedString]]);
-	[currentObject performSelector:propriedade withObject:[NSNumber numberWithFloat:[texto floatValue]]];
+	field.value = [NSNumber numberWithFloat:[texto floatValue]];
 
 	[self.navigationController popViewControllerAnimated:YES];
 }
@@ -161,17 +145,17 @@
 	[super viewWillAppear:animated];
 
 	//textField.text = @"0";
-	if (decimalPlaces > 0) {
-		while ([textField.text length] <= decimalPlaces + 1) {
-			if ([textField.text isEqualToString:@"0"]) {
-				textField.text = [textField.text stringByAppendingString:@","];
-			} else {
-				textField.text = [textField.text stringByAppendingString:@"0"];
-			}
-		}
-	}
+//	if (decimalPlaces > 0) {
+//		while ([textField.text length] <= decimalPlaces + 1) {
+//			if ([textField.text isEqualToString:@"0"]) {
+//				textField.text = [textField.text stringByAppendingString:@","];
+//			} else {
+//				textField.text = [textField.text stringByAppendingString:@"0"];
+//			}
+//		}
+//	}
 	
-	[tableView reloadData];
+	[self.tableView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -181,10 +165,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-	// Personalization
-	self.navigationController.navigationBar.tintColor = [appDelegate corParaBebe];
-	[tableView setBackgroundColor:[appDelegate backgroundParaBebe]];
 }
 
 - (void)didReceiveMemoryWarning {

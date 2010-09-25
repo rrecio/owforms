@@ -1,25 +1,25 @@
 //
-//  EditDataHoraViewController.h
-//  BabyNotes
+//  DatetimeController.h
+//  OWForms
 //
-//  Created by Madson on 10/11/09.
+//  Created by Madson on 25/09/10.
 //  Copyright 2009 Owera. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "Consulta.h"
-#import "BabyNotesAppDelegate.h"
 
-@interface DatetimeController : UIViewController <UITableViewDataSource> {
-	BabyNotesAppDelegate *appDelegate;
-	IBOutlet UITableView *tableView;
-	IBOutlet UIDatePicker *datePicker;
-	id objetoAtual;
+@class OWField;
+
+@interface DatetimeController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+	UITableView *tableView;
+	UIDatePicker *datePicker;
+	NSDateFormatter *dateFormatter;
+	OWField *field;
 }
 
-@property (nonatomic, retain) id objetoAtual;
+@property (nonatomic, retain) OWField *field;
 
-- (IBAction)dateAction:(id)sender;
-- (void)doneAction;
+- (void)valueChanged:(id)sender;
+- (void)doneAction:(id)sender;
 
 @end

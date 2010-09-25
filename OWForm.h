@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "OWField.h"
 
 @class OWSection;
+@class OWField;
+
 @interface OWForm : UITableViewController {
+
 }
 
 @property(nonatomic, retain) NSArray *formFields;

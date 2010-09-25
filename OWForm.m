@@ -9,6 +9,10 @@
 #import "OWForm.h"
 #import "OWField.h"
 #import "OWSection.h"
+#import "DateController.h"
+#import "DatetimeController.h"
+#import "StringController.h"
+#import "NumberController.h"
 
 @implementation OWForm
 
@@ -16,6 +20,7 @@
 
 #pragma mark -
 #pragma mark Initialization
+
 - (id)initWithTitle:(NSString *)aTitle andFields:(NSArray *)fieldsArray {
 	return [self initWithTitle:aTitle style:UITableViewStylePlain andFields:fieldsArray];
 }
@@ -69,6 +74,10 @@
 	return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	[self.tableView reloadData];
+}
 	
 #pragma mark -
 #pragma mark Table view data source
@@ -144,19 +153,37 @@
 	
 	//UIViewController *detailViewController = nil;
 	switch (field.style) {
-		case OWFieldStyleString:
-			//detailViewController = [[OWStringEditingController alloc] init];
+		case OWFieldStyleNumber: {
+			NumberController *detailViewController = [[NumberController alloc] initWithDecimalPlaces:2];
+			detailViewController.field = field;
+			[self.navigationController pushViewController:detailViewController animated:YES];
 			break;
-		case OWFieldStyleDate:
-			//detailViewController = [[OWDateSelectionController alloc] init];
+		}
+		case OWFieldStyleString: {
+			StringController *detailViewController = [[StringController alloc] initWithNibName:@"StringController" bundle:nil];
+			detailViewController.field = field;
+			[self.navigationController pushViewController:detailViewController animated:YES];
 			break;
+		}
+		case OWFieldStyleDate: {
+			DateController *detailViewController = [[DateController alloc] init];
+			detailViewController.field = field;
+			[self.navigationController pushViewController:detailViewController animated:YES];
+			break;
+		}
+		case OWFieldStyleDateTime: {
+			DatetimeController *detailViewController = [[DatetimeController alloc] init];
+			detailViewController.field = field;
+			[self.navigationController pushViewController:detailViewController animated:YES];
+			break;
+		}
 		case OWFieldStyleImage:
 			//detailViewController = [[OWImageSelectionController alloc] init];
 		default:
 			//detailViewController = [[OWNumberEditingController alloc] init];
 			break;
 	}
-	//[self.navigationController pushViewController:detailViewController animated:YES];
+
 	NSLog(@"Should call controller for field style %d", field.style);
 }
 
@@ -183,7 +210,6 @@
 - (void)dealloc {
     [super dealloc];
 }
-
 
 @end
 

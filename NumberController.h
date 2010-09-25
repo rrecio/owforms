@@ -8,19 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NumberController : UIViewController <UITableViewDataSource> {
-	BabyNotesAppDelegate *appDelegate;
-	IBOutlet UITableView *tableView;
+@class OWField;
+
+@interface NumberController : UITableViewController {
 	IBOutlet UITableViewCell *tableViewCell;
 	IBOutlet UITextField *textField;
 	
-	id currentObject;
-	SEL currentProperty;
 	int decimalPlaces;
+	
+	OWField *field;
 }
 
-- (id)initWithObject:(id)aObject property:(SEL)aProperty decimalPlaces:(int)aDecimalPlaces;
-- (id)initWithObject:(id)aObject property:(SEL)aProperty;
+@property (nonatomic, retain) OWField *field;
+
+- (id)initWithDecimalPlaces:(int)aDecimalPlaces;
 
 - (IBAction)valueChanged:(id)sender;
 - (void)doneAction:(id)sender;

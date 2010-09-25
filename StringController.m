@@ -1,44 +1,32 @@
 //
-//  EditStringViewController.m
-//  BabyNotes
+//  StringController.m
+//  OWForms
 //
-//  Created by Madson on 10/11/09.
+//  Created by Madson on 25/09/10.
 //  Copyright 2009 Owera. All rights reserved.
 //
 
 #import "StringController.h"
+#import "OWField.h"
 
 @implementation StringController
 
-@synthesize texto;
+@synthesize field;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-	[super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-	
-	// Shadow
-	UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 6)];
-	[imageView setImage:[UIImage imageNamed:@"kal_grid_shadow.png"]];
-	[imageView setAutoresizingMask:UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin];
-	[self.view addSubview:imageView];
-	[imageView release];
-	
-	// Delegate
-	appDelegate = [[UIApplication sharedApplication] delegate];
-	
-	[[self navigationItem] setTitle:NSLocalizedString(@"Editando", @"")];
+- (void)viewDidLoad {
+	[super viewDidLoad];
+	self.navigationItem.title = NSLocalizedString(@"Editando", nil);
 	
 	UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"OK", @"") style:UIBarButtonItemStyleDone target:self action:@selector(doneAction:)];
 	self.navigationItem.rightBarButtonItem = doneButton;
 	[doneButton release];
 	
 	self.navigationItem.hidesBackButton = YES;
-	
-	return self;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)tf {
 	[textField resignFirstResponder];
-	[texto setString:textField.text];
+	field.value = textField.text;
 	return YES;
 }
 
@@ -47,7 +35,7 @@
 }
 
 - (void)doneAction:(id)sender {
-	[texto setString:textField.text];
+	field.value = textField.text;
 	[self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -67,24 +55,15 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-	[textField setText:(NSString *)[self texto]];
+	[textField setText:(NSString *)field.value];
 	textField.placeholder = NSLocalizedString(@"Digite aqui", nil);
 	
-	// Personalization
-	self.view.backgroundColor = [appDelegate backgroundParaBebe];
-	tableView.backgroundColor = [UIColor clearColor];
-
-	[tableView reloadData];
+	[self.tableView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
 	[textField becomeFirstResponder];
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-
 }
 
 - (void)didReceiveMemoryWarning {
