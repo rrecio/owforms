@@ -9,11 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "OWField.h"
 
+@class OWSection;
 @interface OWForm : UITableViewController {
 }
 
-@property(nonatomic, retain) NSArray *fields;
+@property(nonatomic, retain) NSArray *formFields;
+@property(nonatomic, retain) NSMutableArray *sections;
 
-- (id)initWithFields:(NSArray *)fieldsArray;
+- (id)initWithTitle:(NSString *)aTitle andFields:(NSArray *)fieldsArray;
+- (id)initWithTitle:(NSString *)aTitle style:(UITableViewStyle)style andFields:(NSArray *)fieldsArray;
+- (id)initWithTitle:(NSString *)aTitle andSections:(OWSection *)firstSection, ... NS_REQUIRES_NIL_TERMINATION;
+- (id)initWithTitle:(NSString *)aTitle style:(UITableViewStyle)style andSections:(OWSection *)firstSection, ... NS_REQUIRES_NIL_TERMINATION;
 
 @end

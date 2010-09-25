@@ -8,173 +8,144 @@
 
 #import "OWForm.h"
 #import "OWField.h"
-
-@interface OWForm (PrivateMethods)
-
-- (NSString *)classStringForFieldAtIndexPath:(NSIndexPath *)indexPath;
-
-@end
+#import "OWSection.h"
 
 @implementation OWForm
 
-@synthesize fields;
+@synthesize formFields, sections;
 
 #pragma mark -
 #pragma mark Initialization
-
-- (id)initWithFields:(NSArray *)fieldsArray {
-	self = [self initWithStyle:UITableViewStylePlain];
+- (id)initWithTitle:(NSString *)aTitle andFields:(NSArray *)fieldsArray {
+	return [self initWithTitle:aTitle style:UITableViewStylePlain andFields:fieldsArray];
+}
+			
+- (id)initWithTitle:(NSString *)aTitle style:(UITableViewStyle)style andFields:(NSArray *)fieldsArray {
+	self.title = aTitle;
+	self = [self initWithStyle:style];					
 	if (self != nil) {
-		self.fields = fieldsArray;
+		self.formFields = fieldsArray;
 	}
 	return self;
 }
 
-/*
-- (id)initWithStyle:(UITableViewStyle)style {
-    // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-    if ((self = [super initWithStyle:style])) {
-    }
-    return self;
+- (id)initWithTitle:(NSString *)aTitle andSections:(OWSection *)firstSection, ... {
+	self.title = aTitle;
+	va_list args;
+	va_start(args, firstSection);
+	
+	self = [super initWithStyle:UITableViewStylePlain];
+	
+	sections = [[NSMutableArray alloc] init];
+	[sections addObject:firstSection];
+	
+	OWSection *s = va_arg(args, OWSection *);
+	while (s) {
+		[sections addObject:s];
+		s = va_arg(args, OWSection *);
+	}
+	
+	va_end(args);
+	return self;
 }
-*/
 
-
-#pragma mark -
-#pragma mark View lifecycle
-
-/*
-- (void)viewDidLoad {
-    [super viewDidLoad];
-
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+- (id)initWithTitle:(NSString *)aTitle style:(UITableViewStyle)style andSections:(OWSection *)firstSection, ... {
+	self.title = aTitle;
+	va_list args;
+	va_start(args, firstSection);
+	
+	self = [super initWithStyle:style];
+	
+	sections = [[NSMutableArray alloc] init];
+	[sections addObject:firstSection];
+	
+	OWSection *s = va_arg(args, OWSection *);
+	while (s) {
+		[sections addObject:s];
+		s = va_arg(args, OWSection *);
+	}
+	
+	va_end(args);
+	return self;
 }
-*/
 
-/*
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
-*/
-/*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-*/
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-}
-*/
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-}
-*/
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
-
-
+	
 #pragma mark -
 #pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return [self.fields count];
+    return [self.sections count];
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return [[self.fields objectAtIndex:section] count];
+    return [[[self.sections objectAtIndex:section] fields] count];
 }
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	
-	// Get field object
-	NSArray *section = [self.fields objectAtIndex:indexPath.section];
-	OWField *field = [section objectAtIndex:indexPath.row];
-	
-    //static NSString *CellIdentifier = @"Cell";
-	NSString *CellIdentifier = (field.style == OWFieldStyleImage) ? @"OWImageCell" : @"OWTextCell" ;
-    
+    static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-		//cell = (field.type == OWFieldStyleImage) ? [[OWImageCell alloc] init] : [[UITableViewCell alloc] 
-		//																		initWithStyle:UITableViewCellStyleValue1 
-		//																		reuseIdentifier:CellIdentifier];
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     }
 	
+	// Get field object
+	OWSection *section = (OWSection *)[self.sections objectAtIndex:indexPath.section];
+	OWField *field = (OWField *)[section.fields objectAtIndex:indexPath.row];
+	
     // Configure the cell...
 	cell.textLabel.text = field.label;
-	cell.detailTextLabel.text = field.value;
+	
+	switch (field.style) {
+		case OWFieldStyleString:
+			cell.detailTextLabel.text = field.value;
+			break;
+		case OWFieldStyleDate:
+		{
+			NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+			[formatter setDateStyle:NSDateFormatterShortStyle];
+			[formatter setTimeStyle:NSDateFormatterNoStyle];
+			cell.detailTextLabel.text = [formatter stringFromDate:field.value];
+			[formatter release];
+			break;
+		}
+		case OWFieldStyleDateTime:
+		{
+			NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+			[formatter setDateStyle:NSDateFormatterShortStyle];
+			[formatter setTimeStyle:NSDateFormatterShortStyle];
+			cell.detailTextLabel.text = [formatter stringFromDate:field.value];
+			[formatter release];
+			break;
+		}                       
+		case OWFieldStyleImage:
+			cell.imageView.image = field.value;
+		default:
+		{
+			cell.detailTextLabel.text = [field.value stringValue];
+			break;
+		}
+    }																																																										  
     
     return cell;
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark -
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	OWField *field = [[self.fields objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+	OWSection *section = [self.sections objectAtIndex:indexPath.section];
+    OWField *field = [[section fields] objectAtIndex:indexPath.row];
+	
 	//UIViewController *detailViewController = nil;
 	switch (field.style) {
 		case OWFieldStyleString:
 			//detailViewController = [[OWStringEditingController alloc] init];
-			break;
-		case OWFieldStyleNumber:
-			//detailViewController = [[OWNumberEditingController alloc] init];
-			break;
-		case OWFieldStyleDecimal:
-			//detailViewController = [[OWNumberEditingController alloc] init];
 			break;
 		case OWFieldStyleDate:
 			//detailViewController = [[OWDateSelectionController alloc] init];
@@ -182,12 +153,16 @@
 		case OWFieldStyleImage:
 			//detailViewController = [[OWImageSelectionController alloc] init];
 		default:
+			//detailViewController = [[OWNumberEditingController alloc] init];
 			break;
 	}
 	//[self.navigationController pushViewController:detailViewController animated:YES];
-	NSLog(@"Should call controller for field %@", field);
+	NSLog(@"Should call controller for field style %d", field.style);
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+       return [[self.sections objectAtIndex:section] title];
+}
 
 #pragma mark -
 #pragma mark Memory management
