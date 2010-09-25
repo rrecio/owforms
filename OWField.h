@@ -11,8 +11,8 @@
 typedef enum {
 	OWFieldStyleString,
 	OWFieldStyleNumber,
-	OWFieldStyleDecimal,
 	OWFieldStyleDate,
+	OWFieldStyleDateTime,
 	OWFieldStyleImage
 } OWFieldStyle;
 

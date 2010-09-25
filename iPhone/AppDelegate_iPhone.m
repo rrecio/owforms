@@ -8,6 +8,8 @@
 
 #import "AppDelegate_iPhone.h"
 #import "OWForm.h"
+#import "OWField.h"
+#import "OWSection.h"
 
 @implementation AppDelegate_iPhone
 
@@ -19,14 +21,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
 	OWField *field1 = [[OWField alloc] initWithStyle:OWFieldStyleString label:@"Hello" value:@"World!"];
-	OWField *field2 = [[OWField alloc] initWithStyle:OWFieldStyleString label:@"Hello2" value:@"World!2"];
-	OWField *field3 = [[OWField alloc] initWithStyle:OWFieldStyleString label:@"Hello3" value:@"World!3"];
-    // Override point for customization after application launch.
-    OWForm *form = [[OWForm alloc] initWithFields:[NSArray arrayWithObjects:
-												   [NSArray arrayWithObject:field1],
-												   [NSArray arrayWithObject:field2],
-												   [NSArray arrayWithObject:field3], nil]];
+	OWField *field2 = [[OWField alloc] initWithStyle:OWFieldStyleNumber label:@"Number" value:[NSNumber numberWithInt:235.12]];
+	OWField *field3 = [[OWField alloc] initWithStyle:OWFieldStyleDate label:@"Date" value:[NSDate date]];
+	OWField *field4 = [[OWField alloc] initWithStyle:OWFieldStyleDateTime label:@"DateTime" value:[NSDate date]];
 	
+	OWSection *section1 = [OWSection sectionWithFields:field1, field2, nil];
+    section1.title = @"Ki legau!!!";
+    OWSection *section2 = [OWSection sectionWithFields:field3, field4, nil];
+    section2.title = @"DIMAIXXX!";
+    NSLog(@"Quantidade de campos: %i", [section1.fields count]);
+               
+    OWForm *form = [[OWForm alloc] initWithTitle:@"AKKAKAK" style:UITableViewStyleGrouped andSections:section1, section2, nil];
+
 	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:form];
     [window addSubview:navController.view];
 	[window makeKeyAndVisible];
