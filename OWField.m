@@ -11,7 +11,7 @@
 
 @implementation OWField
 
-@synthesize style, label, value;
+@synthesize style, label, value, accessoryType, accessoryView;
 
 - (id)initWithStyle:(OWFieldStyle)aStyle label:(NSString *)aLabel value:(id)aValue {
 	self = [super init];
