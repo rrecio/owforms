@@ -20,13 +20,11 @@
 
 #pragma mark -
 #pragma mark Initialization
-
-- (id)initWithTitle:(NSString *)aTitle andFields:(NSArray *)fieldsArray {
-	return [self initWithTitle:aTitle style:UITableViewStylePlain andFields:fieldsArray];
+- (id)initWithFields:(NSArray *)fieldsArray {
+	return [self initWithStyle:UITableViewStylePlain andFields:fieldsArray];
 }
 			
-- (id)initWithTitle:(NSString *)aTitle style:(UITableViewStyle)style andFields:(NSArray *)fieldsArray {
-	self.title = aTitle;
+- (id)initWithStyle:(UITableViewStyle)style andFields:(NSArray *)fieldsArray {
 	self = [self initWithStyle:style];					
 	if (self != nil) {
 		self.formFields = fieldsArray;
@@ -34,8 +32,7 @@
 	return self;
 }
 
-- (id)initWithTitle:(NSString *)aTitle andSections:(OWSection *)firstSection, ... {
-	self.title = aTitle;
+- (id)initWithSections:(OWSection *)firstSection, ... {
 	va_list args;
 	va_start(args, firstSection);
 	
@@ -54,8 +51,7 @@
 	return self;
 }
 
-- (id)initWithTitle:(NSString *)aTitle style:(UITableViewStyle)style andSections:(OWSection *)firstSection, ... {
-	self.title = aTitle;
+- (id)initWithStyle:(UITableViewStyle)style andSections:(OWSection *)firstSection, ... {
 	va_list args;
 	va_start(args, firstSection);
 	
@@ -72,11 +68,6 @@
 	
 	va_end(args);
 	return self;
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:animated];
-	[self.tableView reloadData];
 }
 	
 #pragma mark -
@@ -109,6 +100,8 @@
 	
     // Configure the cell...
 	cell.textLabel.text = field.label;
+	cell.accessoryType = field.accessoryType;
+	cell.accessoryView = field.accessoryView;
 	
 	switch (field.style) {
 		case OWFieldStyleString:
@@ -183,12 +176,16 @@
 			//detailViewController = [[OWNumberEditingController alloc] init];
 			break;
 	}
-
+	//[self.navigationController pushViewController:detailViewController animated:YES];
 	NSLog(@"Should call controller for field style %d", field.style);
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-       return [[self.sections objectAtIndex:section] title];
+	return [[self.sections objectAtIndex:section] headerTitle];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+	return [[self.sections objectAtIndex:section] footerTitle];
 }
 
 #pragma mark -

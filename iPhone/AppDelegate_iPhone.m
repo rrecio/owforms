@@ -21,17 +21,28 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
 	OWField *field1 = [[OWField alloc] initWithStyle:OWFieldStyleString label:@"Hello" value:@"World!"];
+	field1.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+	//field1.acessoryView = aView;
+	
 	OWField *field2 = [[OWField alloc] initWithStyle:OWFieldStyleNumber label:@"Number" value:[NSNumber numberWithInt:235.12]];
+	field2.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+	
 	OWField *field3 = [[OWField alloc] initWithStyle:OWFieldStyleDate label:@"Date" value:[NSDate date]];
+	field3.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+	
 	OWField *field4 = [[OWField alloc] initWithStyle:OWFieldStyleDateTime label:@"DateTime" value:[NSDate date]];
+	field3.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	
 	OWSection *section1 = [OWSection sectionWithFields:field1, field2, nil];
-    section1.title = @"Ki legau!!!";
+    section1.headerTitle = @"Ki legau!!!";
+	section1.summary = @"Isto é um sumario";
+	section1.footerTitle = @"Isto eh um rodape";
     OWSection *section2 = [OWSection sectionWithFields:field3, field4, nil];
-    section2.title = @"DIMAIXXX!";
+    section2.headerTitle = @"DIMAIXXX!";
     NSLog(@"Quantidade de campos: %i", [section1.fields count]);
                
-    OWForm *form = [[OWForm alloc] initWithTitle:@"AKKAKAK" style:UITableViewStyleGrouped andSections:section1, section2, nil];
+    OWForm *form = [[OWForm alloc] initWithStyle:UITableViewStyleGrouped andSections:section1, section2, nil];
+	form.title = @"Form Title :)";
 
 	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:form];
     [window addSubview:navController.view];

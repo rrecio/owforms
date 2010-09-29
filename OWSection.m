@@ -11,7 +11,7 @@
 
 @implementation OWSection
 
-@synthesize title, summary, fields;
+@synthesize headerTitle, summary, fields, footerTitle;
 
 + (id)sectionWithField:(id)aField {
 	return self;

@@ -15,7 +15,8 @@
 }
 
 @property(nonatomic, retain) NSMutableArray *fields;
-@property(nonatomic, retain) NSString *title;
+@property(nonatomic, retain) NSString *headerTitle;
+@property(nonatomic, retain) NSString *footerTitle;
 @property(nonatomic, retain) NSString *summary;
 
 + (id)sectionWithField:(id)aField;
