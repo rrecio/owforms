@@ -17,7 +17,6 @@
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		5B3ACCC1124B1AF0006B4BCC /* OWForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3ACCC0124B1AF0006B4BCC /* OWForm.m */; };
 		5B3ACCC4124B1FE7006B4BCC /* OWField.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3ACCC3124B1FE7006B4BCC /* OWField.m */; };
-		5B7C6A3B124D736600833036 /* OWSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7C6A3A124D736600833036 /* OWSection.m */; };
 		F327C95C124EA5EF0097B24B /* NumberController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F327C95B124EA5EF0097B24B /* NumberController.xib */; };
 		F3E6185E124E7D2B0034F236 /* DatetimeController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E61854124E7D2B0034F236 /* DatetimeController.m */; };
 		F3E61861124E7D2B0034F236 /* NotesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E61859124E7D2B0034F236 /* NotesController.m */; };
@@ -45,8 +44,6 @@
 		5B3ACCC0124B1AF0006B4BCC /* OWForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWForm.m; sourceTree = "<group>"; };
 		5B3ACCC2124B1FE7006B4BCC /* OWField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWField.h; sourceTree = "<group>"; };
 		5B3ACCC3124B1FE7006B4BCC /* OWField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWField.m; sourceTree = "<group>"; };
-		5B7C6A39124D736600833036 /* OWSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWSection.h; sourceTree = "<group>"; };
-		5B7C6A3A124D736600833036 /* OWSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWSection.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* OWForms-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "OWForms-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		F327C95B124EA5EF0097B24B /* NumberController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NumberController.xib; sourceTree = "<group>"; };
 		F3E61853124E7D2B0034F236 /* DatetimeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatetimeController.h; sourceTree = "<group>"; };
@@ -121,8 +118,6 @@
 				F3E6185C124E7D2B0034F236 /* StringController.h */,
 				F3E6185D124E7D2B0034F236 /* StringController.m */,
 				F3E61A82124EA15D0034F236 /* StringController.xib */,
-				5B7C6A39124D736600833036 /* OWSection.h */,
-				5B7C6A3A124D736600833036 /* OWSection.m */,
 				8D1107310486CEB800E47090 /* OWForms-Info.plist */,
 				5B3ACCBF124B1AF0006B4BCC /* OWForm.h */,
 				5B3ACCC0124B1AF0006B4BCC /* OWForm.m */,
@@ -240,7 +235,6 @@
 				F3E61863124E7D2B0034F236 /* StringController.m in Sources */,
 				F3E61882124E80240034F236 /* OWSection.m in Sources */,
 				F3E61A64124EA0100034F236 /* DateController.m in Sources */,
-				5B7C6A3B124D736600833036 /* OWSection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

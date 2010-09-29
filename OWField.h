@@ -13,10 +13,10 @@ typedef enum {
 	OWFieldStyleNumber,
 	OWFieldStyleDate,
 	OWFieldStyleDateTime,
-	OWFieldStyleImage
+	OWFieldStyleImage,
 	OWFieldStyleToggle,			// implementar
 	OWFieldStyleNotes,			// implementar
-	OWFieldStylePicker,			// implementar
+	OWFieldStylePicker			// implementar
 } OWFieldStyle;
 
 @interface OWField : NSObject {
