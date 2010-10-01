@@ -25,12 +25,11 @@
 	datePicker.datePickerMode = UIDatePickerModeDate;
 	[datePicker addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
 
-	if ([field maximumDate] != nil)
-		datePicker.maximumDate = [field maximumDate];
+	if ([field startDate] != nil)
+		datePicker.minimumDate = [field startDate];
 	
-	if ([field minimumDate] != nil)
-		datePicker.minimumDate = [field minimumDate];
-	
+	if ([field endDate] != nil)
+		datePicker.maximumDate = [field endDate];
 	
 	dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setDateStyle:NSDateFormatterShortStyle];

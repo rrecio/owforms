@@ -140,6 +140,11 @@
 #pragma mark -
 #pragma mark Table view delegate
 
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	[self.tableView reloadData];
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	OWSection *section = [self.sections objectAtIndex:indexPath.section];
     OWField *field = [[section fields] objectAtIndex:indexPath.row];

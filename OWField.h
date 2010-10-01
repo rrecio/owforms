@@ -27,6 +27,8 @@ typedef enum {
 @property(nonatomic, retain) id value;
 @property(nonatomic) UITableViewCellAccessoryType accessoryType;
 @property(nonatomic, retain) UIView *accessoryView;
+@property(nonatomic, retain) NSDate *startDate;
+@property(nonatomic, retain) NSDate *endDate;
 
 - (id)initWithStyle:(OWFieldStyle)aStyle label:(NSString *)aLabel value:(id)aValue;
 
