@@ -16,7 +16,7 @@ typedef enum {
 	OWFieldStyleImage,
 	OWFieldStyleSwitch,			// implementar
 	OWFieldStyleNotes,			// implementar
-	OWFieldStylePicker,			// implementar
+	OWFieldStylePicker			// implementar
 } OWFieldStyle;
 
 @interface OWField : NSObject {

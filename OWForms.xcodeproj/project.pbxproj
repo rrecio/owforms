@@ -17,6 +17,14 @@
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		5B3ACCC1124B1AF0006B4BCC /* OWForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3ACCC0124B1AF0006B4BCC /* OWForm.m */; };
 		5B3ACCC4124B1FE7006B4BCC /* OWField.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3ACCC3124B1FE7006B4BCC /* OWField.m */; };
+		5B62B67312566B41003764A2 /* DateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B62B66712566B41003764A2 /* DateController.m */; };
+		5B62B67412566B41003764A2 /* DatetimeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B62B66912566B41003764A2 /* DatetimeController.m */; };
+		5B62B67512566B41003764A2 /* DatetimeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B62B66A12566B41003764A2 /* DatetimeController.xib */; };
+		5B62B67612566B41003764A2 /* NotesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B62B66C12566B41003764A2 /* NotesController.m */; };
+		5B62B67712566B41003764A2 /* NumberController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B62B66E12566B41003764A2 /* NumberController.m */; };
+		5B62B67812566B41003764A2 /* NumberController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B62B66F12566B41003764A2 /* NumberController.xib */; };
+		5B62B67912566B41003764A2 /* StringController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B62B67112566B41003764A2 /* StringController.m */; };
+		5B62B67A12566B41003764A2 /* StringController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B62B67212566B41003764A2 /* StringController.xib */; };
 		5B7B6B7A125184CE0003EE50 /* OWTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7B6B79125184CE0003EE50 /* OWTableViewCell.m */; };
 		5B7C6A3B124D736600833036 /* OWSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7C6A3A124D736600833036 /* OWSection.m */; };
 /* End PBXBuildFile section */
@@ -38,6 +46,19 @@
 		5B3ACCC0124B1AF0006B4BCC /* OWForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWForm.m; sourceTree = "<group>"; };
 		5B3ACCC2124B1FE7006B4BCC /* OWField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWField.h; sourceTree = "<group>"; };
 		5B3ACCC3124B1FE7006B4BCC /* OWField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWField.m; sourceTree = "<group>"; };
+		5B62B66612566B41003764A2 /* DateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateController.h; sourceTree = "<group>"; };
+		5B62B66712566B41003764A2 /* DateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateController.m; sourceTree = "<group>"; };
+		5B62B66812566B41003764A2 /* DatetimeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatetimeController.h; sourceTree = "<group>"; };
+		5B62B66912566B41003764A2 /* DatetimeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatetimeController.m; sourceTree = "<group>"; };
+		5B62B66A12566B41003764A2 /* DatetimeController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DatetimeController.xib; sourceTree = "<group>"; };
+		5B62B66B12566B41003764A2 /* NotesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesController.h; sourceTree = "<group>"; };
+		5B62B66C12566B41003764A2 /* NotesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesController.m; sourceTree = "<group>"; };
+		5B62B66D12566B41003764A2 /* NumberController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberController.h; sourceTree = "<group>"; };
+		5B62B66E12566B41003764A2 /* NumberController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberController.m; sourceTree = "<group>"; };
+		5B62B66F12566B41003764A2 /* NumberController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NumberController.xib; sourceTree = "<group>"; };
+		5B62B67012566B41003764A2 /* StringController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringController.h; sourceTree = "<group>"; };
+		5B62B67112566B41003764A2 /* StringController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringController.m; sourceTree = "<group>"; };
+		5B62B67212566B41003764A2 /* StringController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StringController.xib; sourceTree = "<group>"; };
 		5B7B6B78125184CE0003EE50 /* OWTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWTableViewCell.h; sourceTree = "<group>"; };
 		5B7B6B79125184CE0003EE50 /* OWTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWTableViewCell.m; sourceTree = "<group>"; };
 		5B7C6A39124D736600833036 /* OWSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWSection.h; sourceTree = "<group>"; };
@@ -90,6 +111,7 @@
 		28EEBF621118D79A00187D67 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				5B62B66012566B1A003764A2 /* DetailControllers */,
 				5B7C6A39124D736600833036 /* OWSection.h */,
 				5B7C6A3A124D736600833036 /* OWSection.m */,
 				8D1107310486CEB800E47090 /* OWForms-Info.plist */,
@@ -133,6 +155,26 @@
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5B62B66012566B1A003764A2 /* DetailControllers */ = {
+			isa = PBXGroup;
+			children = (
+				5B62B66612566B41003764A2 /* DateController.h */,
+				5B62B66712566B41003764A2 /* DateController.m */,
+				5B62B66812566B41003764A2 /* DatetimeController.h */,
+				5B62B66912566B41003764A2 /* DatetimeController.m */,
+				5B62B66A12566B41003764A2 /* DatetimeController.xib */,
+				5B62B66B12566B41003764A2 /* NotesController.h */,
+				5B62B66C12566B41003764A2 /* NotesController.m */,
+				5B62B66D12566B41003764A2 /* NumberController.h */,
+				5B62B66E12566B41003764A2 /* NumberController.m */,
+				5B62B66F12566B41003764A2 /* NumberController.xib */,
+				5B62B67012566B41003764A2 /* StringController.h */,
+				5B62B67112566B41003764A2 /* StringController.m */,
+				5B62B67212566B41003764A2 /* StringController.xib */,
+			);
+			name = DetailControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,6 +228,9 @@
 			files = (
 				2860E329111B887F00E27156 /* MainWindow_iPhone.xib in Resources */,
 				2860E32F111B888700E27156 /* MainWindow_iPad.xib in Resources */,
+				5B62B67512566B41003764A2 /* DatetimeController.xib in Resources */,
+				5B62B67812566B41003764A2 /* NumberController.xib in Resources */,
+				5B62B67A12566B41003764A2 /* StringController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,6 +248,11 @@
 				5B3ACCC4124B1FE7006B4BCC /* OWField.m in Sources */,
 				5B7C6A3B124D736600833036 /* OWSection.m in Sources */,
 				5B7B6B7A125184CE0003EE50 /* OWTableViewCell.m in Sources */,
+				5B62B67312566B41003764A2 /* DateController.m in Sources */,
+				5B62B67412566B41003764A2 /* DatetimeController.m in Sources */,
+				5B62B67612566B41003764A2 /* NotesController.m in Sources */,
+				5B62B67712566B41003764A2 /* NumberController.m in Sources */,
+				5B62B67912566B41003764A2 /* StringController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
