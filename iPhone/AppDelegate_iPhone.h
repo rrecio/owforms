@@ -10,8 +10,10 @@
 
 @interface AppDelegate_iPhone : NSObject <UIApplicationDelegate> {
     UIWindow *window;
+	NSNumber *boolean;
 }
 
+@property(nonatomic, retain) NSNumber *boolean;
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 
 @end

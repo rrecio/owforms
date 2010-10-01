@@ -9,6 +9,7 @@
 #import "OWForm.h"
 #import "OWField.h"
 #import "OWSection.h"
+#import "OWTableViewCell.h"
 
 @implementation OWForm
 
@@ -86,9 +87,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    OWTableViewCell *cell = (OWTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+		cell = [[OWTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     }
 	
 	// Get field object
@@ -124,6 +125,11 @@
 		}                       
 		case OWFieldStyleImage:
 			cell.imageView.image = field.value;
+			break;
+		case OWFieldStyleSwitch:
+			[cell showSwitch:YES];
+			cell.switchView.on = [field.value boolValue];
+			break;
 		default:
 		{
 			cell.detailTextLabel.text = [field.value stringValue];

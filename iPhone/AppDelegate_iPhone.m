@@ -13,7 +13,7 @@
 
 @implementation AppDelegate_iPhone
 
-@synthesize window;
+@synthesize window, boolean;
 
 
 #pragma mark -
@@ -33,11 +33,15 @@
 	OWField *field4 = [[OWField alloc] initWithStyle:OWFieldStyleDateTime label:@"DateTime" value:[NSDate date]];
 	field3.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	
+	boolean = [NSNumber numberWithBool:FALSE];
+	OWField *field5 = [[OWField alloc] initWithStyle:OWFieldStyleSwitch label:@"Switch" value:boolean];
+	
+	
 	OWSection *section1 = [OWSection sectionWithFields:field1, field2, nil];
     section1.headerTitle = @"Ki legau!!!";
 	section1.summary = @"Isto é um sumario";
 	section1.footerTitle = @"Isto eh um rodape";
-    OWSection *section2 = [OWSection sectionWithFields:field3, field4, nil];
+    OWSection *section2 = [OWSection sectionWithFields:field3, field4, field5, nil];
     section2.headerTitle = @"DIMAIXXX!";
     NSLog(@"Quantidade de campos: %i", [section1.fields count]);
                
