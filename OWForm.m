@@ -13,6 +13,7 @@
 #import "DatetimeController.h"
 #import "StringController.h"
 #import "NumberController.h"
+#import "ImageController.h"
 #import "AppDelegate_iPhone.h"
 
 @implementation OWForm
@@ -21,11 +22,6 @@
 
 #pragma mark -
 #pragma mark Initialization
-
-- (void)viewDidLoad {
-	[super viewDidLoad];
-	appDelegate = (AppDelegate_iPhone *)[[UIApplication sharedApplication] delegate];
-}
 
 - (id)initWithFields:(NSArray *)fieldsArray {
 	return [self initWithStyle:UITableViewStylePlain andFields:fieldsArray];
@@ -149,6 +145,9 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
+	
+	self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+
 	[self.tableView reloadData];
 }
 
@@ -156,51 +155,41 @@
 	OWSection *section = [self.sections objectAtIndex:indexPath.section];
     currentField = [[section fields] objectAtIndex:indexPath.row];
 	
-	//UIViewController *detailViewController = nil;
 	switch (currentField.style) {
 		case OWFieldStyleNumber: {
-			NumberController *detailViewController = [[NumberController alloc] initWithDecimalPlaces:2];
-			detailViewController.field = currentField;
-			[self.navigationController pushViewController:detailViewController animated:YES];
+			NumberController *detailView = [[NumberController alloc] initWithDecimalPlaces:2];
+			detailView.field = currentField;
+			[self.navigationController pushViewController:detailView animated:YES];
 			break;
 		}
 		case OWFieldStyleString: {
-			StringController *detailViewController = [[StringController alloc] initWithNibName:@"StringController" bundle:nil];
-			detailViewController.field = currentField;
-			[self.navigationController pushViewController:detailViewController animated:YES];
+			StringController *detailView = [[StringController alloc] initWithNibName:@"StringController" bundle:nil];
+			detailView.field = currentField;
+			[self.navigationController pushViewController:detailView animated:YES];
 			break;
 		}
 		case OWFieldStyleDate: {
-			DateController *detailViewController = [[DateController alloc] init];
-			detailViewController.field = currentField;
-			[self.navigationController pushViewController:detailViewController animated:YES];
+			DateController *detailView = [[DateController alloc] init];
+			detailView.field = currentField;
+			[self.navigationController pushViewController:detailView animated:YES];
 			break;
 		}
 		case OWFieldStyleDateTime: {
-			DatetimeController *detailViewController = [[DatetimeController alloc] init];
-			detailViewController.field = currentField;
-			[self.navigationController pushViewController:detailViewController animated:YES];
+			DatetimeController *detailView = [[DatetimeController alloc] init];
+			detailView.field = currentField;
+			[self.navigationController pushViewController:detailView animated:YES];
 			break;
 		}
 		case OWFieldStyleImage: {
-			
-			if (!imagePickerController) {
-				imagePickerController = [[UIImagePickerController alloc] init];
-				[imagePickerController setAllowsEditing:YES];
-				//[imagePickerController setAllowsImageEditing:YES];
-				[imagePickerController setDelegate:self];		
-			}
-			
-			[self owFieldStyleImageTapped];
-			
+			ImageController *detailView = [[ImageController alloc] init];
+			detailView.field = currentField;
+			[self.navigationController pushViewController:detailView animated:YES];
 			break;
 		}
 		default:
 			//detailViewController = [[OWNumberEditingController alloc] init];
 			break;
 	}
-	//[self.navigationController pushViewController:detailViewController animated:YES];
-	NSLog(@"Should call controller for field style %d", currentField.style);
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -211,129 +200,19 @@
 	return [[self.sections objectAtIndex:section] footerTitle];
 }
 
-#pragma mark -
-#pragma mark UIImagePickerController delegate
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-	// Gera ID
-	CFUUIDRef newUniqueID = CFUUIDCreate (kCFAllocatorDefault);
-	CFStringRef newUniqueIDString = CFUUIDCreateString (kCFAllocatorDefault, newUniqueID);
-	
-	currentField.value = (NSString *)newUniqueIDString;
-	
-	// Libera o ID gerado
-	CFRelease(newUniqueID);
-	CFRelease(newUniqueIDString);
-	
-	// Pega a imagem
-	UIImage *thumbnail = [info objectForKey:@"UIImagePickerControllerEditedImage"];
-	
-	// Adiciona a imagem ao cache
-	[appDelegate.imageCache setObject:thumbnail forKey:currentField.value];
-	//[headerController setUpPhotoButton];	
-	
-	// Salva a imagem do bebe
-	NSString *thumbnailPath = pathInDocumentDirectory(currentField.value);
-	[UIImageJPEGRepresentation(thumbnail, 1.0) writeToFile:thumbnailPath atomically:YES];
-	
-	// Fecha a view do ImagePicker
-	[self dismissModalViewControllerAnimated:YES];	
-}
-
-#pragma mark -
-#pragma mark UIActionSheet delegate
-
-- (void)owFieldStyleImageTapped {
-	NSString *lastOption;
-	
-	if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
-		lastOption = @"Da câmera";
-	else
-		lastOption = nil;
-	
-	if (currentField.value == nil) {
-		if (!sheetImage)
-		sheetImage = [[UIActionSheet alloc] initWithTitle:@"Nova imagem"
-												 delegate:self
-										cancelButtonTitle:@"Cancelar"
-								   destructiveButtonTitle:nil
-										otherButtonTitles:@"Da biblioteca", lastOption, nil];
-		[sheetImage showInView:self.view];
-	} else {
-		if (!sheetImageDelete)
-		sheetImageDelete = [[UIActionSheet alloc] initWithTitle:@"Nova imagem"
-													   delegate:self
-											  cancelButtonTitle:@"Cancelar"
-										 destructiveButtonTitle:@"Remover imagem"
-											  otherButtonTitles:@"Da biblioteca", lastOption, nil];
-		[sheetImageDelete showInView:self.view];		
-	}
-}
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (sheetImage == actionSheet) {
-		switch (buttonIndex) {
-			case 0:
-				[imagePickerController setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-				[self presentModalViewController:imagePickerController animated:YES];
-				break;
-			case 1:
-			{
-				if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
-				{
-					[imagePickerController setSourceType:UIImagePickerControllerSourceTypeCamera];
-					[self presentModalViewController:imagePickerController animated:YES];
-					break;
-				}
-			}
-			default:
-				break;
-		}
-	} else {
-		switch (buttonIndex) {
-			case 0:
-				currentField.value = nil;
-				break;
-			case 1:
-				[imagePickerController setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-				[self presentModalViewController:imagePickerController animated:YES];
-				break;
-			case 2:
-			{
-				if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
-				{
-					[imagePickerController setSourceType:UIImagePickerControllerSourceTypeCamera];
-					[self presentModalViewController:imagePickerController animated:YES];
-					break;
-				}
-			}
-			default:
-				break;
-		}
-	}
-	
-	[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-}
 
 #pragma mark -
 #pragma mark Memory management
 
 - (void)didReceiveMemoryWarning {
-    // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
-    // Relinquish ownership any cached data, images, etc that aren't in use.
 }
 
 - (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
 }
-
 
 - (void)dealloc {
     [super dealloc];
 }
 
 @end
-
