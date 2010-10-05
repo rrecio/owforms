@@ -10,10 +10,16 @@
 
 @class OWSection;
 @class OWField;
-
 @class OWSection;
-@interface OWForm : UITableViewController {
+@class AppDelegate_iPhone;
 
+@interface OWForm : UITableViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
+	UIImagePickerController *imagePickerController;
+	UIActionSheet *sheetImage;
+	UIActionSheet *sheetImageDelete;
+
+	AppDelegate_iPhone *appDelegate;
+	OWField *currentField;
 }
 
 @property(nonatomic, retain) NSArray *formFields;
@@ -23,5 +29,7 @@
 - (id)initWithStyle:(UITableViewStyle)style andFields:(NSArray *)fieldsArray;
 - (id)initWithSections:(OWSection *)firstSection, ... NS_REQUIRES_NIL_TERMINATION;
 - (id)initWithStyle:(UITableViewStyle)style andSections:(OWSection *)firstSection, ... NS_REQUIRES_NIL_TERMINATION;
+
+- (void)owFieldStyleImageTapped;
 
 @end

@@ -15,11 +15,10 @@
 
 @synthesize window;
 
-
 #pragma mark -
 #pragma mark Application lifecycle
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	OWField *field1 = [[OWField alloc] initWithStyle:OWFieldStyleString label:@"Hello" value:@"World!"];
 	field1.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	//field1.acessoryView = aView;
@@ -31,17 +30,22 @@
 	field3.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	
 	OWField *field4 = [[OWField alloc] initWithStyle:OWFieldStyleDateTime label:@"DateTime" value:[NSDate date]];
-	field3.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+	field4.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	
+	OWField *field5 = [[OWField alloc] initWithStyle:OWFieldStyleImage label:@"Image" value:nil];
+	field5.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
 	OWSection *section1 = [OWSection sectionWithFields:field1, field2, nil];
     section1.headerTitle = @"Ki legau!!!";
 	section1.summary = @"Isto é um sumario";
 	section1.footerTitle = @"Isto eh um rodape";
     OWSection *section2 = [OWSection sectionWithFields:field3, field4, nil];
     section2.headerTitle = @"DIMAIXXX!";
+    OWSection *section3 = [OWSection sectionWithFields:field5, nil];
+    section3.headerTitle = @"Madson";
     NSLog(@"Quantidade de campos: %i", [section1.fields count]);
                
-    OWForm *form = [[OWForm alloc] initWithStyle:UITableViewStyleGrouped andSections:section1, section2, nil];
+    OWForm *form = [[OWForm alloc] initWithStyle:UITableViewStyleGrouped andSections:section1, section2, section3, nil];
 	form.title = @"Form Title :)";
 
 	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:form];
