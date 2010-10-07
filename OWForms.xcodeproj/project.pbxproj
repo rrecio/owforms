@@ -19,7 +19,6 @@
 		5B3ACCC4124B1FE7006B4BCC /* OWField.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3ACCC3124B1FE7006B4BCC /* OWField.m */; };
 		F31E044C125BC16600A96758 /* AppDelegate_Shared.m in Sources */ = {isa = PBXBuildFile; fileRef = F31E044B125BC16600A96758 /* AppDelegate_Shared.m */; };
 		F31E04D6125BCB1100A96758 /* ImageController.m in Sources */ = {isa = PBXBuildFile; fileRef = F31E04D4125BCB1100A96758 /* ImageController.m */; };
-		F31E04D7125BCB1100A96758 /* ImageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F31E04D5125BCB1100A96758 /* ImageController.xib */; };
 		F327C95C124EA5EF0097B24B /* NumberController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F327C95B124EA5EF0097B24B /* NumberController.xib */; };
 		F3E6185E124E7D2B0034F236 /* DatetimeController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E61854124E7D2B0034F236 /* DatetimeController.m */; };
 		F3E61861124E7D2B0034F236 /* NotesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E61859124E7D2B0034F236 /* NotesController.m */; };
@@ -52,7 +51,6 @@
 		F31E044B125BC16600A96758 /* AppDelegate_Shared.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate_Shared.m; sourceTree = "<group>"; };
 		F31E04D3125BCB1100A96758 /* ImageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageController.h; sourceTree = "<group>"; };
 		F31E04D4125BCB1100A96758 /* ImageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageController.m; sourceTree = "<group>"; };
-		F31E04D5125BCB1100A96758 /* ImageController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageController.xib; sourceTree = "<group>"; };
 		F327C95B124EA5EF0097B24B /* NumberController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NumberController.xib; sourceTree = "<group>"; };
 		F3E61853124E7D2B0034F236 /* DatetimeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatetimeController.h; sourceTree = "<group>"; };
 		F3E61854124E7D2B0034F236 /* DatetimeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatetimeController.m; sourceTree = "<group>"; };
@@ -137,7 +135,6 @@
 				F3E61881124E80240034F236 /* OWSection.m */,
 				F31E04D3125BCB1100A96758 /* ImageController.h */,
 				F31E04D4125BCB1100A96758 /* ImageController.m */,
-				F31E04D5125BCB1100A96758 /* ImageController.xib */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -227,7 +224,6 @@
 				2860E32F111B888700E27156 /* MainWindow_iPad.xib in Resources */,
 				F3E61A83124EA15D0034F236 /* StringController.xib in Resources */,
 				F327C95C124EA5EF0097B24B /* NumberController.xib in Resources */,
-				F31E04D7125BCB1100A96758 /* ImageController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -128,11 +128,11 @@
 			[formatter release];
 			break;
 		}                       
-		case OWFieldStyleImage:
-			cell.imageView.image = field.value;
-		default:
-		{
-			cell.detailTextLabel.text = [field.value stringValue];
+		case OWFieldStyleImage: {
+			//cell.imageView.image = field.value;
+		}
+		default: {
+			//cell.detailTextLabel.text = (NSString *)field.value;
 			break;
 		}
     }																																																										  
@@ -146,8 +146,6 @@
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	
-	self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
-
 	[self.tableView reloadData];
 }
 

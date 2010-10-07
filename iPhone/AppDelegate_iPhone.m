@@ -43,7 +43,6 @@
     section2.headerTitle = @"DIMAIXXX!";
     OWSection *section3 = [OWSection sectionWithFields:field5, nil];
     section3.headerTitle = @"Madson";
-    NSLog(@"Quantidade de campos: %i", [section1.fields count]);
                
     OWForm *form = [[OWForm alloc] initWithStyle:UITableViewStyleGrouped andSections:section1, section2, section3, nil];
 	form.title = @"Form Title :)";

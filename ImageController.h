@@ -11,27 +11,32 @@
 @class AppDelegate_iPhone;
 @class OWField;
 
-@interface ImageController : UIViewController <UIImagePickerControllerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate> {
-	UIImagePickerController *imagePickerController;
+@interface ImageController : UIViewController <UIImagePickerControllerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIScrollViewDelegate> {
+	UIImage *image;
 	UIImageView *imageView;
-	UIButton *imageButton;
+	UIScrollView *scrollView;
+	
+	UIButton *button;
 	UIBarButtonItem *actionButton;
-
-	UIActionSheet *sheetImage;
-	UIActionSheet *sheetImageDelete;
+	UIImagePickerController *imagePickerController;
+	
+	UIActionSheet *actionSheetImage;
+	UIActionSheet *actionSheetImageDelete;
+	
+	NSFileManager *fileManager;
 	
 	AppDelegate_iPhone *appDelegate;
 	OWField *field;
 }
 
-@property (nonatomic, retain) IBOutlet UIImageView *imageView;
-@property (nonatomic, retain) IBOutlet UIButton *imageButton;
-@property (nonatomic, retain) IBOutlet UIBarButtonItem *actionButton;
+@property (nonatomic, retain) UIImageView *imageView;
+@property (nonatomic, retain) UIScrollView *scrollView;
+
+@property (nonatomic, retain) UIButton *button;
+@property (nonatomic, retain) UIBarButtonItem *actionButton;
 @property (nonatomic, retain) OWField *field;
 
-- (IBAction)takePicture:(id)sender;
-- (UIImage *)imagemForField;
+- (void)takePicture:(id)sender;
 - (void)setupImage;
-- (void)fazCacheDeImagem;
 
 @end
