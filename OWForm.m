@@ -18,7 +18,13 @@
 
 @implementation OWForm
 
-@synthesize formFields, sections;
+@synthesize formFields;
+@synthesize sections;
+@synthesize delegate;
+@synthesize showSaveButton;
+@synthesize showCancelButton;
+@synthesize saveButtonTitle;
+@synthesize cancelButtonTitle;
 
 #pragma mark -
 #pragma mark Initialization
@@ -72,7 +78,43 @@
 	va_end(args);
 	return self;
 }
+
+#pragma mark -
+#pragma mark UIViewController lifecicle
+
+- (void)viewDidLoad {
+	[super viewDidLoad];
 	
+	if (showSaveButton) {
+		if (!saveButtonTitle) saveButtonTitle = @"Save";
+		UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:saveButtonTitle
+																	   style:UIBarButtonItemStyleDone
+																	  target:self
+																	  action:@selector(doSaveAction)];
+		self.navigationItem.rightBarButtonItem = saveButton;
+		[saveButton release];
+	}
+
+	if (showCancelButton) {
+		if (!cancelButtonTitle) cancelButtonTitle = @"Cancel";
+		UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:cancelButtonTitle
+																	   style:UIBarButtonItemStyleBordered
+																	  target:self
+																	  action:@selector(doCancelAction)];
+		self.navigationItem.leftBarButtonItem = cancelButton;
+		[cancelButton release];
+	}
+	
+}
+
+- (void)doSaveAction {
+	[delegate saveAction:self];
+}
+	
+- (void)doCancelAction {
+	[delegate cancelAction];
+}
+
 #pragma mark -
 #pragma mark Table view data source
 
@@ -109,6 +151,9 @@
 	switch (field.style) {
 		case OWFieldStyleString:
 			cell.detailTextLabel.text = field.value;
+			break;
+		case OWFieldStyleNumber:
+			cell.detailTextLabel.text = [(NSNumber *)field.value stringValue];
 			break;
 		case OWFieldStyleDate:
 		{

@@ -120,7 +120,7 @@
 	if (range.location != NSNotFound)
 		texto = [texto stringByReplacingCharactersInRange:range withString:@"."];
 	
-	//NSLog(@"Valor: %0.3f", [texto floatValue]);
+	NSLog(@"Numero Valor: %0.3f", [texto floatValue]);
 	
 	field.value = [NSNumber numberWithFloat:[texto floatValue]];
 

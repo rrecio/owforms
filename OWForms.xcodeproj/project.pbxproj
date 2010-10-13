@@ -17,6 +17,8 @@
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		5B3ACCC1124B1AF0006B4BCC /* OWForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3ACCC0124B1AF0006B4BCC /* OWForm.m */; };
 		5B3ACCC4124B1FE7006B4BCC /* OWField.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3ACCC3124B1FE7006B4BCC /* OWField.m */; };
+		F310899A126621CD005E0807 /* RootController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3108998126621CD005E0807 /* RootController.m */; };
+		F310899B126621CD005E0807 /* RootController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3108999126621CD005E0807 /* RootController.xib */; };
 		F31E044C125BC16600A96758 /* AppDelegate_Shared.m in Sources */ = {isa = PBXBuildFile; fileRef = F31E044B125BC16600A96758 /* AppDelegate_Shared.m */; };
 		F31E04D6125BCB1100A96758 /* ImageController.m in Sources */ = {isa = PBXBuildFile; fileRef = F31E04D4125BCB1100A96758 /* ImageController.m */; };
 		F327C95C124EA5EF0097B24B /* NumberController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F327C95B124EA5EF0097B24B /* NumberController.xib */; };
@@ -47,6 +49,9 @@
 		5B3ACCC2124B1FE7006B4BCC /* OWField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWField.h; sourceTree = "<group>"; };
 		5B3ACCC3124B1FE7006B4BCC /* OWField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWField.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* OWForms-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "OWForms-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		F3108997126621CD005E0807 /* RootController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootController.h; sourceTree = "<group>"; };
+		F3108998126621CD005E0807 /* RootController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootController.m; sourceTree = "<group>"; };
+		F3108999126621CD005E0807 /* RootController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootController.xib; sourceTree = "<group>"; };
 		F31E044A125BC16600A96758 /* AppDelegate_Shared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate_Shared.h; sourceTree = "<group>"; };
 		F31E044B125BC16600A96758 /* AppDelegate_Shared.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate_Shared.m; sourceTree = "<group>"; };
 		F31E04D3125BCB1100A96758 /* ImageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageController.h; sourceTree = "<group>"; };
@@ -135,6 +140,9 @@
 				F3E61881124E80240034F236 /* OWSection.m */,
 				F31E04D3125BCB1100A96758 /* ImageController.h */,
 				F31E04D4125BCB1100A96758 /* ImageController.m */,
+				F3108997126621CD005E0807 /* RootController.h */,
+				F3108998126621CD005E0807 /* RootController.m */,
+				F3108999126621CD005E0807 /* RootController.xib */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -224,6 +232,7 @@
 				2860E32F111B888700E27156 /* MainWindow_iPad.xib in Resources */,
 				F3E61A83124EA15D0034F236 /* StringController.xib in Resources */,
 				F327C95C124EA5EF0097B24B /* NumberController.xib in Resources */,
+				F310899B126621CD005E0807 /* RootController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,6 +256,7 @@
 				F3E61A64124EA0100034F236 /* DateController.m in Sources */,
 				F31E044C125BC16600A96758 /* AppDelegate_Shared.m in Sources */,
 				F31E04D6125BCB1100A96758 /* ImageController.m in Sources */,
+				F310899A126621CD005E0807 /* RootController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
