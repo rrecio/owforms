@@ -9,6 +9,7 @@
 #import "OWForm.h"
 #import "OWField.h"
 #import "OWSection.h"
+#import "OWTableViewCell.h"
 #import "DateController.h"
 #import "DatetimeController.h"
 #import "StringController.h"
@@ -28,7 +29,6 @@
 
 #pragma mark -
 #pragma mark Initialization
-
 - (id)initWithFields:(NSArray *)fieldsArray {
 	return [self initWithStyle:UITableViewStylePlain andFields:fieldsArray];
 }
@@ -134,9 +134,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+
+    OWTableViewCell *cell = (OWTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+		cell = [[OWTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     }
 	
 	// Get field object
@@ -175,10 +176,16 @@
 		}                       
 		case OWFieldStyleImage: {
 			//cell.imageView.image = field.value;
+			break;
+		}
+		case OWFieldStyleSwitch:{
+			[cell showSwitch:YES];
+			cell.switchView.on = [field.value boolValue];
+			cell.selectionStyle = UITableViewCellSelectionStyleNone;
+			break;
 		}
 		default: {
 			//cell.detailTextLabel.text = (NSString *)field.value;
-			break;
 		}
     }																																																										  
     
@@ -190,7 +197,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-	
 	[self.tableView reloadData];
 }
 
@@ -233,6 +239,7 @@
 			//detailViewController = [[OWNumberEditingController alloc] init];
 			break;
 	}
+	//[self.navigationController pushViewController:detailViewController animated:YES];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {

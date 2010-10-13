@@ -17,6 +17,7 @@
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		5B3ACCC1124B1AF0006B4BCC /* OWForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3ACCC0124B1AF0006B4BCC /* OWForm.m */; };
 		5B3ACCC4124B1FE7006B4BCC /* OWField.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3ACCC3124B1FE7006B4BCC /* OWField.m */; };
+		5B7B6B7A125184CE0003EE50 /* OWTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7B6B79125184CE0003EE50 /* OWTableViewCell.m */; };
 		F310899A126621CD005E0807 /* RootController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3108998126621CD005E0807 /* RootController.m */; };
 		F310899B126621CD005E0807 /* RootController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3108999126621CD005E0807 /* RootController.xib */; };
 		F31E044C125BC16600A96758 /* AppDelegate_Shared.m in Sources */ = {isa = PBXBuildFile; fileRef = F31E044B125BC16600A96758 /* AppDelegate_Shared.m */; };
@@ -48,6 +49,8 @@
 		5B3ACCC0124B1AF0006B4BCC /* OWForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWForm.m; sourceTree = "<group>"; };
 		5B3ACCC2124B1FE7006B4BCC /* OWField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWField.h; sourceTree = "<group>"; };
 		5B3ACCC3124B1FE7006B4BCC /* OWField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWField.m; sourceTree = "<group>"; };
+		5B7B6B78125184CE0003EE50 /* OWTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWTableViewCell.h; sourceTree = "<group>"; };
+		5B7B6B79125184CE0003EE50 /* OWTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWTableViewCell.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* OWForms-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "OWForms-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		F3108997126621CD005E0807 /* RootController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootController.h; sourceTree = "<group>"; };
 		F3108998126621CD005E0807 /* RootController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootController.m; sourceTree = "<group>"; };
@@ -131,6 +134,7 @@
 				F3E6185C124E7D2B0034F236 /* StringController.h */,
 				F3E6185D124E7D2B0034F236 /* StringController.m */,
 				F3E61A82124EA15D0034F236 /* StringController.xib */,
+				5B62B66012566B1A003764A2 /* DetailControllers */,
 				8D1107310486CEB800E47090 /* OWForms-Info.plist */,
 				5B3ACCBF124B1AF0006B4BCC /* OWForm.h */,
 				5B3ACCC0124B1AF0006B4BCC /* OWForm.m */,
@@ -143,6 +147,8 @@
 				F3108997126621CD005E0807 /* RootController.h */,
 				F3108998126621CD005E0807 /* RootController.m */,
 				F3108999126621CD005E0807 /* RootController.xib */,
+				5B7B6B78125184CE0003EE50 /* OWTableViewCell.h */,
+				5B7B6B79125184CE0003EE50 /* OWTableViewCell.m */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -177,6 +183,13 @@
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5B62B66012566B1A003764A2 /* DetailControllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = DetailControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,6 +270,7 @@
 				F31E044C125BC16600A96758 /* AppDelegate_Shared.m in Sources */,
 				F31E04D6125BCB1100A96758 /* ImageController.m in Sources */,
 				F310899A126621CD005E0807 /* RootController.m in Sources */,
+				5B7B6B7A125184CE0003EE50 /* OWTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,6 +12,7 @@
 
 @synthesize window;
 @synthesize navigationController;
+@synthesize boolean;
 
 #pragma mark -
 #pragma mark Application lifecycle
