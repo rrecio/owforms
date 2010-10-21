@@ -178,10 +178,15 @@
 			//cell.imageView.image = field.value;
 			break;
 		}
-		case OWFieldStyleSwitch:{
+		case OWFieldStyleSwitch: {
 			[cell showSwitch:YES];
 			cell.switchView.on = [field.value boolValue];
 			cell.selectionStyle = UITableViewCellSelectionStyleNone;
+			break;
+		}
+		case OWFieldStyleForm: {
+			OWForm *form = (OWForm *)field.value;
+			cell.textLabel.text = form.title;
 			break;
 		}
 		default: {
@@ -232,6 +237,11 @@
 		case OWFieldStyleImage: {
 			ImageController *detailView = [[ImageController alloc] init];
 			detailView.field = currentField;
+			[self.navigationController pushViewController:detailView animated:YES];
+			break;
+		}
+		case OWFieldStyleForm: {
+			OWForm *detailView = (OWForm *)currentField.value;
 			[self.navigationController pushViewController:detailView animated:YES];
 			break;
 		}

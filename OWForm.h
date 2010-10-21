@@ -10,7 +10,6 @@
 
 @class OWSection;
 @class OWField;
-@class OWSection;
 
 @protocol OWFormDataSourceDelegate;
 

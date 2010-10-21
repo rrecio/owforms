@@ -14,6 +14,7 @@ typedef enum {
 	OWFieldStyleDate,
 	OWFieldStyleDateTime,
 	OWFieldStyleImage,
+	OWFieldStyleForm,
 	OWFieldStyleSwitch,			// implementar
 	OWFieldStyleNotes,			// implementar
 	OWFieldStylePicker			// implementar

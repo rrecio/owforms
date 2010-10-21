@@ -31,7 +31,10 @@
 	OWField *field5 = [[OWField alloc] initWithStyle:OWFieldStyleImage label:@"Image" value:nil];
 	field5.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	
-	OWSection *section1 = [OWSection sectionWithFields:field1, field2, nil];
+	OWField *field6 = [[OWField alloc] initWithStyle:OWFieldStyleForm label:@"Form2" value:[self form2]];
+	field6.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+	
+	OWSection *section1 = [OWSection sectionWithFields:field1, field2, field6, nil];
     section1.headerTitle = @"Ki legau!!!";
 	section1.summary = @"Isto é um sumario";
 	section1.footerTitle = @"Isto eh um rodape";
@@ -93,6 +96,20 @@
 		}
 	[textView setText:texto];
 	[self.navigationController popViewControllerAnimated:YES];
+}
+
+- (OWForm *)form2 {
+	OWField *field1 = [[OWField alloc] initWithStyle:OWFieldStyleString label:@"Nome" value:@"Nada"];
+	OWField *field2 = [[OWField alloc] initWithStyle:OWFieldStyleString label:@"Sobrenome" value:@"Dinovo"];
+	
+	OWSection *section1 = [[OWSection alloc] init];
+	section1.fields = [NSArray arrayWithObjects:field1, field2, nil];
+	
+	OWForm *form = [[OWForm alloc] init];
+	form.title = @"Novo form";
+	form.sections = [NSArray arrayWithObjects:section1, nil];
+	
+	return form;
 }
 
 - (void)cancelAction {

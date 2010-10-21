@@ -16,5 +16,6 @@
 @property (nonatomic, retain) IBOutlet UITextView *textView;
 
 - (IBAction)chamaForm1:(id)sender;
+- (OWForm *)form2;
 
 @end
