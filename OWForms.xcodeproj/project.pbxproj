@@ -20,6 +20,7 @@
 		5B7B6B7A125184CE0003EE50 /* OWTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7B6B79125184CE0003EE50 /* OWTableViewCell.m */; };
 		F310899A126621CD005E0807 /* RootController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3108998126621CD005E0807 /* RootController.m */; };
 		F310899B126621CD005E0807 /* RootController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3108999126621CD005E0807 /* RootController.xib */; };
+		F31C275E129C61C4009705D2 /* ListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F31C275D129C61C4009705D2 /* ListController.m */; };
 		F31E044C125BC16600A96758 /* AppDelegate_Shared.m in Sources */ = {isa = PBXBuildFile; fileRef = F31E044B125BC16600A96758 /* AppDelegate_Shared.m */; };
 		F31E04D6125BCB1100A96758 /* ImageController.m in Sources */ = {isa = PBXBuildFile; fileRef = F31E04D4125BCB1100A96758 /* ImageController.m */; };
 		F327C95C124EA5EF0097B24B /* NumberController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F327C95B124EA5EF0097B24B /* NumberController.xib */; };
@@ -55,6 +56,8 @@
 		F3108997126621CD005E0807 /* RootController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootController.h; sourceTree = "<group>"; };
 		F3108998126621CD005E0807 /* RootController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootController.m; sourceTree = "<group>"; };
 		F3108999126621CD005E0807 /* RootController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootController.xib; sourceTree = "<group>"; };
+		F31C275C129C61C4009705D2 /* ListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListController.h; sourceTree = "<group>"; };
+		F31C275D129C61C4009705D2 /* ListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListController.m; sourceTree = "<group>"; };
 		F31E044A125BC16600A96758 /* AppDelegate_Shared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate_Shared.h; sourceTree = "<group>"; };
 		F31E044B125BC16600A96758 /* AppDelegate_Shared.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate_Shared.m; sourceTree = "<group>"; };
 		F31E04D3125BCB1100A96758 /* ImageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageController.h; sourceTree = "<group>"; };
@@ -188,6 +191,8 @@
 				F3E61859124E7D2B0034F236 /* NotesController.m */,
 				F31E04D3125BCB1100A96758 /* ImageController.h */,
 				F31E04D4125BCB1100A96758 /* ImageController.m */,
+				F31C275C129C61C4009705D2 /* ListController.h */,
+				F31C275D129C61C4009705D2 /* ListController.m */,
 			);
 			name = DetailControllers;
 			sourceTree = "<group>";
@@ -271,6 +276,7 @@
 				F31E04D6125BCB1100A96758 /* ImageController.m in Sources */,
 				F310899A126621CD005E0807 /* RootController.m in Sources */,
 				5B7B6B7A125184CE0003EE50 /* OWTableViewCell.m in Sources */,
+				F31C275E129C61C4009705D2 /* ListController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

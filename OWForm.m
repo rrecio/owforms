@@ -15,6 +15,7 @@
 #import "StringController.h"
 #import "NumberController.h"
 #import "ImageController.h"
+#import "ListController.h"
 #import "AppDelegate_iPhone.h"
 
 @interface OWSwitch : UISwitch {
@@ -199,12 +200,22 @@
 			[cell setSwitchView:switchView];
 			[cell addSubview:switchView];
 			[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-			[cell.switchView addTarget:self action:@selector(changeSwitch:) forControlEvents:UIControlEventValueChanged];
+			[[cell switchView] addTarget:self action:@selector(changeSwitch:) forControlEvents:UIControlEventValueChanged];
 			break;
 		}
 		case OWFieldStyleForm: {
 			OWForm *form = (OWForm *)field.value;
 			cell.textLabel.text = form.title;
+			break;
+		}
+		case OWFieldStyleList: {
+			cell.textLabel.text = [field label];
+			
+			if ([field.value intValue] >= 0)
+				cell.detailTextLabel.text = [field.list objectAtIndex:[field.value intValue]];
+			else
+				cell.detailTextLabel.text = @"Selecione";
+			
 			break;
 		}
 		default: {
@@ -268,6 +279,11 @@
 		}
 		case OWFieldStyleForm: {
 			OWForm *detailView = (OWForm *)currentField.value;
+			[self.navigationController pushViewController:detailView animated:YES];
+			break;
+		}
+		case OWFieldStyleList: {
+			ListController *detailView = [[ListController alloc] initWithField:currentField];
 			[self.navigationController pushViewController:detailView animated:YES];
 			break;
 		}
