@@ -192,7 +192,7 @@
 		}
 		case OWFieldStyleSwitch: {
 			OWSwitch *switchView = nil;
-			switchView = [[OWSwitch alloc] initWithFrame:CGRectMake(195, 8, 95, 8)];
+			switchView = [[OWSwitch alloc] initWithFrame:CGRectMake(208, 8, 95, 8)];
 			switchView.on = [field.value boolValue];
 			switchView.field = field;
 
