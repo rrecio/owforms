@@ -14,6 +14,7 @@
 @synthesize style, label, value, accessoryType, accessoryView;
 @synthesize startDate;
 @synthesize endDate;
+@synthesize aSwitch;
 
 - (id)initWithStyle:(OWFieldStyle)aStyle label:(NSString *)aLabel value:(id)aValue {
 	self = [super init];

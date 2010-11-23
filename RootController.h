@@ -11,6 +11,7 @@
 
 @interface RootController : UIViewController <OWFormDataSourceDelegate> {
 	UITextView *textView;
+	OWForm *form;
 }
 
 @property (nonatomic, retain) IBOutlet UITextView *textView;

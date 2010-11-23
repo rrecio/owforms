@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class OWField;
+
 @interface OWTableViewCell : UITableViewCell {
 }
 

@@ -17,6 +17,18 @@
 #import "ImageController.h"
 #import "AppDelegate_iPhone.h"
 
+@interface OWSwitch : UISwitch {
+	OWField *field;
+}
+@property (nonatomic, retain) OWField *field;
+@end
+
+@implementation OWSwitch : UISwitch
+	@synthesize field;
+@end
+
+
+
 @implementation OWForm
 
 @synthesize formFields;
@@ -179,9 +191,15 @@
 			break;
 		}
 		case OWFieldStyleSwitch: {
-			[cell showSwitch:YES];
-			cell.switchView.on = [field.value boolValue];
-			cell.selectionStyle = UITableViewCellSelectionStyleNone;
+			OWSwitch *switchView = nil;
+			switchView = [[OWSwitch alloc] initWithFrame:CGRectMake(195, 8, 95, 8)];
+			switchView.on = [field.value boolValue];
+			switchView.field = field;
+
+			[cell setSwitchView:switchView];
+			[cell addSubview:switchView];
+			[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+			[cell.switchView addTarget:self action:@selector(changeSwitch:) forControlEvents:UIControlEventValueChanged];
 			break;
 		}
 		case OWFieldStyleForm: {
@@ -195,6 +213,14 @@
     }																																																										  
     
     return cell;
+}
+
+- (void)changeSwitch:(id)sender {
+	OWSwitch *obj = (OWSwitch *)sender;
+	if (obj.on)
+		obj.field.value = [NSNumber numberWithBool:YES];
+	else
+		obj.field.value = [NSNumber numberWithBool:NO];
 }
 
 #pragma mark -

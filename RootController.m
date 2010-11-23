@@ -15,39 +15,43 @@
 @synthesize textView;
 
 - (IBAction)chamaForm1:(id)sender {
-	OWField *field1 = [[OWField alloc] initWithStyle:OWFieldStyleString label:@"Hello" value:@"World!"];
-	field1.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	//field1.acessoryView = aView;
-	
-	OWField *field2 = [[OWField alloc] initWithStyle:OWFieldStyleNumber label:@"Number" value:[NSNumber numberWithInt:235.12]];
-	field2.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	
-	OWField *field3 = [[OWField alloc] initWithStyle:OWFieldStyleDate label:@"Date" value:[NSDate date]];
-	field3.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	
-	OWField *field4 = [[OWField alloc] initWithStyle:OWFieldStyleDateTime label:@"DateTime" value:[NSDate date]];
-	field4.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	
-	OWField *field5 = [[OWField alloc] initWithStyle:OWFieldStyleImage label:@"Image" value:nil];
-	field5.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	
-	OWField *field6 = [[OWField alloc] initWithStyle:OWFieldStyleForm label:@"Form2" value:[self form2]];
-	field6.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	
-	OWSection *section1 = [OWSection sectionWithFields:field1, field2, field6, nil];
-    section1.headerTitle = @"Ki legau!!!";
-	section1.summary = @"Isto é um sumario";
-	section1.footerTitle = @"Isto eh um rodape";
-    OWSection *section2 = [OWSection sectionWithFields:field3, field4, nil];
-    section2.headerTitle = @"DIMAIXXX!";
-    OWSection *section3 = [OWSection sectionWithFields:field5, nil];
-    section3.headerTitle = @"Madson";
-	
-    OWForm *form = [[OWForm alloc] initWithStyle:UITableViewStyleGrouped andSections:section1, section2, section3, nil];
-	form.title = @"Form Title :)";
-	form.delegate = self;
-	[form setShowSaveButton:YES];
-	[form setShowCancelButton:YES];
+	if (!form) {
+		OWField *field1 = [[OWField alloc] initWithStyle:OWFieldStyleString label:@"Hello" value:@"World!"];
+		field1.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		//field1.acessoryView = aView;
+		
+		OWField *field2 = [[OWField alloc] initWithStyle:OWFieldStyleNumber label:@"Number" value:[NSNumber numberWithInt:235.12]];
+		field2.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		
+		OWField *field3 = [[OWField alloc] initWithStyle:OWFieldStyleDate label:@"Date" value:[NSDate date]];
+		field3.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		
+		OWField *field4 = [[OWField alloc] initWithStyle:OWFieldStyleDateTime label:@"DateTime" value:[NSDate date]];
+		field4.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		
+		OWField *field5 = [[OWField alloc] initWithStyle:OWFieldStyleImage label:@"Image" value:nil];
+		field5.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		
+		OWField *field6 = [[OWField alloc] initWithStyle:OWFieldStyleForm label:@"Form2" value:[self form2]];
+		field6.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		
+		OWField *field7 = [[OWField alloc] initWithStyle:OWFieldStyleSwitch label:@"É ou não?" value:[NSNumber numberWithBool:NO]];
+		
+		OWSection *section1 = [OWSection sectionWithFields:field1, field2, field6, field7, nil];
+		section1.headerTitle = @"Ki legau!!!";
+		section1.summary = @"Isto é um sumario";
+		section1.footerTitle = @"Isto eh um rodape";
+		OWSection *section2 = [OWSection sectionWithFields:field3, field4, nil];
+		section2.headerTitle = @"DIMAIXXX!";
+		OWSection *section3 = [OWSection sectionWithFields:field5, nil];
+		section3.headerTitle = @"Madson";
+		
+		form = [[OWForm alloc] initWithStyle:UITableViewStyleGrouped andSections:section1, section2, section3, nil];
+		form.title = @"Form Title :)";
+		form.delegate = self;
+		[form setShowSaveButton:YES];
+		[form setShowCancelButton:YES];
+	}
 	
 	[self.navigationController pushViewController:form animated:YES];
 }
@@ -55,11 +59,10 @@
 #pragma mark -
 #pragma mark OWForm delegates
 
-- (void)saveAction:(OWForm *)form {	
+- (void)saveAction:(OWForm *)f {	
 	NSString *texto = [[NSString alloc] init];
 	
-	NSLog(@"Save action!");
-	for (OWSection *s in form.sections)
+	for (OWSection *s in f.sections)
 		for (OWField *f in s.fields) {
 			switch (f.style) {
 				case OWFieldStyleNumber: {
@@ -90,6 +93,10 @@
 					texto = [texto stringByAppendingFormat:@"\n%@", (NSString *)f.value];
 					break;
 				}
+				case OWFieldStyleSwitch: {
+					texto = [texto stringByAppendingFormat:@"\nSwitch: %@", f.value];
+					break;
+				}
 				default:
 					break;
 			}
@@ -105,15 +112,14 @@
 	OWSection *section1 = [[OWSection alloc] init];
 	section1.fields = [NSArray arrayWithObjects:field1, field2, nil];
 	
-	OWForm *form = [[OWForm alloc] init];
-	form.title = @"Novo form";
-	form.sections = [NSArray arrayWithObjects:section1, nil];
+	OWForm *form2 = [[OWForm alloc] init];
+	form2.title = @"Novo form";
+	form2.sections = [NSArray arrayWithObjects:section1, nil];
 	
-	return form;
+	return form2;
 }
 
 - (void)cancelAction {
-	NSLog(@"Cancel action!");
 	[self.navigationController popViewControllerAnimated:YES];
 }
 
