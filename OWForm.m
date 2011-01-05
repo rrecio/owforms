@@ -14,10 +14,30 @@
 #import "DatetimeController.h"
 #import "StringController.h"
 #import "NumberController.h"
+#import "ImageController.h"
+#import "AppDelegate_iPhone.h"
+
+@interface OWSwitch : UISwitch {
+	OWField *field;
+}
+@property (nonatomic, retain) OWField *field;
+@end
+
+@implementation OWSwitch : UISwitch
+	@synthesize field;
+@end
+
+
 
 @implementation OWForm
 
-@synthesize formFields, sections;
+@synthesize formFields;
+@synthesize sections;
+@synthesize delegate;
+@synthesize showSaveButton;
+@synthesize showCancelButton;
+@synthesize saveButtonTitle;
+@synthesize cancelButtonTitle;
 
 #pragma mark -
 #pragma mark Initialization
@@ -71,7 +91,42 @@
 	return self;
 }
 
+#pragma mark -
+#pragma mark UIViewController lifecicle
+
+- (void)viewDidLoad {
+	[super viewDidLoad];
 	
+	if (showSaveButton) {
+		if (!saveButtonTitle) saveButtonTitle = @"Save";
+		UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:saveButtonTitle
+																	   style:UIBarButtonItemStyleDone
+																	  target:self
+																	  action:@selector(doSaveAction)];
+		self.navigationItem.rightBarButtonItem = saveButton;
+		[saveButton release];
+	}
+
+	if (showCancelButton) {
+		if (!cancelButtonTitle) cancelButtonTitle = @"Cancel";
+		UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:cancelButtonTitle
+																	   style:UIBarButtonItemStyleBordered
+																	  target:self
+																	  action:@selector(doCancelAction)];
+		self.navigationItem.leftBarButtonItem = cancelButton;
+		[cancelButton release];
+	}
+	
+}
+
+- (void)doSaveAction {
+	[delegate saveAction:self];
+}
+	
+- (void)doCancelAction {
+	[delegate cancelAction];
+}
+
 #pragma mark -
 #pragma mark Table view data source
 
@@ -110,6 +165,9 @@
 		case OWFieldStyleString:
 			cell.detailTextLabel.text = field.value;
 			break;
+		case OWFieldStyleNumber:
+			cell.detailTextLabel.text = [(NSNumber *)field.value stringValue];
+			break;
 		case OWFieldStyleDate:
 		{
 			NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -128,69 +186,96 @@
 			[formatter release];
 			break;
 		}                       
-		case OWFieldStyleImage:
-			cell.imageView.image = field.value;
+		case OWFieldStyleImage: {
+			//cell.imageView.image = field.value;
 			break;
-		case OWFieldStyleSwitch:
-			[cell showSwitch:YES];
-			cell.switchView.on = [field.value boolValue];
-			cell.selectionStyle = UITableViewCellSelectionStyleNone;
+		}
+		case OWFieldStyleSwitch: {
+			OWSwitch *switchView = nil;
+			switchView = [[OWSwitch alloc] initWithFrame:CGRectMake(208, 8, 95, 8)];
+			switchView.on = [field.value boolValue];
+			switchView.field = field;
+
+			[cell setSwitchView:switchView];
+			[cell addSubview:switchView];
+			[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+			[cell.switchView addTarget:self action:@selector(changeSwitch:) forControlEvents:UIControlEventValueChanged];
 			break;
-		default:
-		{
-			cell.detailTextLabel.text = [field.value stringValue];
+		}
+		case OWFieldStyleForm: {
+			OWForm *form = (OWForm *)field.value;
+			cell.textLabel.text = form.title;
 			break;
+		}
+		default: {
+			//cell.detailTextLabel.text = (NSString *)field.value;
 		}
     }																																																										  
     
     return cell;
 }
 
+- (void)changeSwitch:(id)sender {
+	OWSwitch *obj = (OWSwitch *)sender;
+	if (obj.on)
+		obj.field.value = [NSNumber numberWithBool:YES];
+	else
+		obj.field.value = [NSNumber numberWithBool:NO];
+}
+
 #pragma mark -
 #pragma mark Table view delegate
 
 - (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
 	[self.tableView reloadData];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	OWSection *section = [self.sections objectAtIndex:indexPath.section];
-    OWField *field = [[section fields] objectAtIndex:indexPath.row];
+    currentField = [[section fields] objectAtIndex:indexPath.row];
 	
-	//UIViewController *detailViewController = nil;
-	switch (field.style) {
+	switch (currentField.style) {
 		case OWFieldStyleNumber: {
-			NumberController *detailViewController = [[NumberController alloc] initWithDecimalPlaces:2];
-			detailViewController.field = field;
-			[self.navigationController pushViewController:detailViewController animated:YES];
+			NumberController *detailView = [[NumberController alloc] initWithDecimalPlaces:2];
+			detailView.field = currentField;
+			[self.navigationController pushViewController:detailView animated:YES];
 			break;
 		}
 		case OWFieldStyleString: {
-			StringController *detailViewController = [[StringController alloc] initWithNibName:@"StringController" bundle:nil];
-			detailViewController.field = field;
-			[self.navigationController pushViewController:detailViewController animated:YES];
+			StringController *detailView = [[StringController alloc] initWithNibName:@"StringController" bundle:nil];
+			detailView.field = currentField;
+			[self.navigationController pushViewController:detailView animated:YES];
 			break;
 		}
 		case OWFieldStyleDate: {
-			DateController *detailViewController = [[DateController alloc] init];
-			detailViewController.field = field;
-			[self.navigationController pushViewController:detailViewController animated:YES];
+			DateController *detailView = [[DateController alloc] init];
+			detailView.field = currentField;
+			[self.navigationController pushViewController:detailView animated:YES];
 			break;
 		}
 		case OWFieldStyleDateTime: {
-			DatetimeController *detailViewController = [[DatetimeController alloc] init];
-			detailViewController.field = field;
-			[self.navigationController pushViewController:detailViewController animated:YES];
+			DatetimeController *detailView = [[DatetimeController alloc] init];
+			detailView.field = currentField;
+			[self.navigationController pushViewController:detailView animated:YES];
 			break;
 		}
-		case OWFieldStyleImage:
-			//detailViewController = [[OWImageSelectionController alloc] init];
+		case OWFieldStyleImage: {
+			ImageController *detailView = [[ImageController alloc] init];
+			detailView.field = currentField;
+			[self.navigationController pushViewController:detailView animated:YES];
+			break;
+		}
+		case OWFieldStyleForm: {
+			OWForm *detailView = (OWForm *)currentField.value;
+			[self.navigationController pushViewController:detailView animated:YES];
+			break;
+		}
 		default:
 			//detailViewController = [[OWNumberEditingController alloc] init];
 			break;
 	}
 	//[self.navigationController pushViewController:detailViewController animated:YES];
-	NSLog(@"Should call controller for field style %d", field.style);
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -201,25 +286,19 @@
 	return [[self.sections objectAtIndex:section] footerTitle];
 }
 
+
 #pragma mark -
 #pragma mark Memory management
 
 - (void)didReceiveMemoryWarning {
-    // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
-    // Relinquish ownership any cached data, images, etc that aren't in use.
 }
 
 - (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
 }
-
 
 - (void)dealloc {
     [super dealloc];
 }
 
 @end
-

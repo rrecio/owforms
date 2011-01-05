@@ -7,14 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate_Shared.h"
 
-@interface AppDelegate_iPhone : NSObject <UIApplicationDelegate> {
+@interface AppDelegate_iPhone : AppDelegate_Shared {
     UIWindow *window;
+	UINavigationController *navigationController;
 	NSNumber *boolean;
 }
 
 @property(nonatomic, retain) NSNumber *boolean;
 @property (nonatomic, retain) IBOutlet UIWindow *window;
+@property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 
 @end
 

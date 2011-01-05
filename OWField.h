@@ -14,6 +14,7 @@ typedef enum {
 	OWFieldStyleDate,
 	OWFieldStyleDateTime,
 	OWFieldStyleImage,
+	OWFieldStyleForm,
 	OWFieldStyleSwitch,			// implementar
 	OWFieldStyleNotes,			// implementar
 	OWFieldStylePicker			// implementar
@@ -27,6 +28,9 @@ typedef enum {
 @property(nonatomic, retain) id value;
 @property(nonatomic) UITableViewCellAccessoryType accessoryType;
 @property(nonatomic, retain) UIView *accessoryView;
+@property(nonatomic, retain) NSDate *startDate;
+@property(nonatomic, retain) NSDate *endDate;
+@property(nonatomic, retain) UISwitch *aSwitch;
 
 - (id)initWithStyle:(OWFieldStyle)aStyle label:(NSString *)aLabel value:(id)aValue;
 

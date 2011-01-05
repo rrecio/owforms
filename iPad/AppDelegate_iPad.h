@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate_Shared.h"
 
-@interface AppDelegate_iPad : NSObject <UIApplicationDelegate> {
+@interface AppDelegate_iPad : AppDelegate_Shared {
     UIWindow *window;
 }
 

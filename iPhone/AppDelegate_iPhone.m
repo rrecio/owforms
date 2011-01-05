@@ -7,51 +7,21 @@
 //
 
 #import "AppDelegate_iPhone.h"
-#import "OWForm.h"
-#import "OWField.h"
-#import "OWSection.h"
 
 @implementation AppDelegate_iPhone
 
-@synthesize window, boolean;
-
+@synthesize window;
+@synthesize navigationController;
+@synthesize boolean;
 
 #pragma mark -
 #pragma mark Application lifecycle
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-	OWField *field1 = [[OWField alloc] initWithStyle:OWFieldStyleString label:@"Hello" value:@"World!"];
-	field1.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	//field1.acessoryView = aView;
-	
-	OWField *field2 = [[OWField alloc] initWithStyle:OWFieldStyleNumber label:@"Number" value:[NSNumber numberWithInt:235.12]];
-	field2.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	
-	OWField *field3 = [[OWField alloc] initWithStyle:OWFieldStyleDate label:@"Date" value:[NSDate date]];
-	field3.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	
-	OWField *field4 = [[OWField alloc] initWithStyle:OWFieldStyleDateTime label:@"DateTime" value:[NSDate date]];
-	field3.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	
-	boolean = [NSNumber numberWithBool:FALSE];
-	OWField *field5 = [[OWField alloc] initWithStyle:OWFieldStyleSwitch label:@"Switch" value:boolean];
-	
-	
-	OWSection *section1 = [OWSection sectionWithFields:field1, field2, nil];
-    section1.headerTitle = @"Ki legau!!!";
-	section1.summary = @"Isto é um sumario";
-	section1.footerTitle = @"Isto eh um rodape";
-    OWSection *section2 = [OWSection sectionWithFields:field3, field4, field5, nil];
-    section2.headerTitle = @"DIMAIXXX!";
-    NSLog(@"Quantidade de campos: %i", [section1.fields count]);
-               
-    OWForm *form = [[OWForm alloc] initWithStyle:UITableViewStyleGrouped andSections:section1, section2, nil];
-	form.title = @"Form Title :)";
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:form];
-    [window addSubview:navController.view];
+    [window addSubview:navigationController.view];
 	[window makeKeyAndVisible];
-//	[navController release];
+
     return YES;
 }
 
