@@ -11,10 +11,14 @@
 
 @implementation OWField
 
-@synthesize style, label, value, accessoryType, accessoryView;
+@synthesize style;
+@synthesize label;
+@synthesize value;
+@synthesize accessoryType;
+@synthesize accessoryView;
 @synthesize startDate;
 @synthesize endDate;
-@synthesize aSwitch;
+@synthesize list;
 
 - (id)initWithStyle:(OWFieldStyle)aStyle label:(NSString *)aLabel value:(id)aValue {
 	self = [super init];

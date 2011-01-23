@@ -37,7 +37,10 @@
 		
 		OWField *field7 = [[OWField alloc] initWithStyle:OWFieldStyleSwitch label:@"É ou não?" value:[NSNumber numberWithBool:NO]];
 		
-		OWSection *section1 = [OWSection sectionWithFields:field1, field2, field6, field7, nil];
+		OWField *field8 = [[OWField alloc] initWithStyle:OWFieldStyleList label:@"Unidade de medida" value:[NSNumber numberWithInt:1]];
+		field8.list = [NSArray arrayWithObjects:@"kg", @"lb", @"oz", nil];
+		
+		OWSection *section1 = [OWSection sectionWithFields:field1, field2, field6, field7, field8, nil];
 		section1.headerTitle = @"Ki legau!!!";
 		section1.summary = @"Isto é um sumario";
 		section1.footerTitle = @"Isto eh um rodape";
@@ -107,12 +110,15 @@
 
 - (OWForm *)form2 {
 	OWField *field1 = [[OWField alloc] initWithStyle:OWFieldStyleString label:@"Nome" value:@"Nada"];
+	[field1 setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+
 	OWField *field2 = [[OWField alloc] initWithStyle:OWFieldStyleString label:@"Sobrenome" value:@"Dinovo"];
+	[field2 setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 	
 	OWSection *section1 = [[OWSection alloc] init];
 	section1.fields = [NSArray arrayWithObjects:field1, field2, nil];
 	
-	OWForm *form2 = [[OWForm alloc] init];
+	OWForm *form2 = [[OWForm alloc] initWithStyle:UITableViewStyleGrouped];
 	form2.title = @"Novo form";
 	form2.sections = [NSArray arrayWithObjects:section1, nil];
 	
