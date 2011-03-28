@@ -17,7 +17,7 @@
 - (IBAction)chamaForm1:(id)sender {
 	if (!form) {
 		OWField *field1 = [[OWField alloc] initWithStyle:OWFieldStyleString label:@"Hello" value:@"World!"];
-		field1.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		¡
 		//field1.acessoryView = aView;
 		
 		OWField *field2 = [[OWField alloc] initWithStyle:OWFieldStyleNumber label:@"Number" value:[NSNumber numberWithInt:235.12]];
@@ -25,6 +25,7 @@
 		
 		OWField *field3 = [[OWField alloc] initWithStyle:OWFieldStyleDate label:@"Date" value:[NSDate date]];
 		field3.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		field3.selectable = NO;
 		
 		OWField *field4 = [[OWField alloc] initWithStyle:OWFieldStyleDateTime label:@"DateTime" value:[NSDate date]];
 		field4.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

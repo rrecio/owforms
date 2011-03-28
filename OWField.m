@@ -19,6 +19,7 @@
 @synthesize startDate;
 @synthesize endDate;
 @synthesize list;
+@synthesize selectable;
 
 - (id)initWithStyle:(OWFieldStyle)aStyle label:(NSString *)aLabel value:(id)aValue {
 	self = [super init];
@@ -27,6 +28,7 @@
 		self.style = aStyle;
 		self.label = aLabel;
 		self.value = aValue;
+		self.selectable = YES;
 	}
 	
 	return self;

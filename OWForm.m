@@ -7,8 +7,6 @@
 //
 
 #import "OWForm.h"
-#import "OWField.h"
-#import "OWSection.h"
 #import "OWTableViewCell.h"
 #import "DateController.h"
 #import "DatetimeController.h"
@@ -16,7 +14,9 @@
 #import "NumberController.h"
 #import "ImageController.h"
 #import "ListController.h"
-#import "AppDelegate_iPhone.h"
+#import "NotesController.h"
+
+static NSMutableDictionary *_imageCache;
 
 @interface OWSwitch : UISwitch {
 	OWField *field;
@@ -40,6 +40,11 @@
 @synthesize saveButtonTitle;
 @synthesize cancelButtonTitle;
 
++ (NSMutableDictionary *)imageCache {
+	if (_imageCache == nil) _imageCache = [[NSMutableDictionary alloc] init];
+	return _imageCache;
+}
+
 #pragma mark -
 #pragma mark Initialization
 - (id)initWithFields:(NSArray *)fieldsArray {
@@ -49,7 +54,8 @@
 - (id)initWithStyle:(UITableViewStyle)style andFields:(NSArray *)fieldsArray {
 	self = [self initWithStyle:style];					
 	if (self != nil) {
-		self.formFields = fieldsArray;
+		self.sections = [[NSMutableArray alloc] init];
+		[self.sections addObject:[OWSection sectionWithArrayOfFields:fieldsArray]];
 	}
 	return self;
 }
@@ -145,27 +151,47 @@
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	
-    static NSString *CellIdentifier = @"Cell";
-
-    OWTableViewCell *cell = (OWTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-		cell = [[OWTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
-    }
-	
 	// Get field object
 	OWSection *section = (OWSection *)[self.sections objectAtIndex:indexPath.section];
-	OWField *field = (OWField *)[section.fields objectAtIndex:indexPath.row];
+	OWField *field = (OWField *)[section.fields objectAtIndex:indexPath.row];	
 	
+    NSString *CellIdentifier = (field.style == OWFieldStyleNotes) ? @"Notes" : @"Cell";
+
+    OWTableViewCell *cell = (OWTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+
+    if (cell == nil) {
+		if (field.style == OWFieldStyleNotes) {
+			cell = [[OWTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+			cell.textLabel.numberOfLines = 1000;
+			cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:16];
+		} else {
+			cell = [[OWTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+		}
+    }
+		
     // Configure the cell...
 	cell.textLabel.text = field.label;
-	cell.accessoryType = field.accessoryType;
-	cell.accessoryView = field.accessoryView;
-	
+	if (!field.selectable) {
+		cell.selectionStyle = UITableViewCellSelectionStyleNone;
+		cell.accessoryType = UITableViewCellAccessoryNone;
+	} else {
+		cell.accessoryType = field.accessoryType;
+		cell.accessoryView = field.accessoryView;
+	}
 	switch (field.style) {
 		case OWFieldStyleString:
+			NSLog(@"name cell identifier: %@, setting detail to: %@", CellIdentifier, field.value);
 			cell.detailTextLabel.text = field.value;
 			break;
+		case OWFieldStyleNotes:
+			if (field.value == nil || [field.value isEqualToString:@""]) {
+				cell.textLabel.textColor = [UIColor grayColor];
+				cell.textLabel.text = NSLocalizedString(@"Description", @"");
+			} else {
+				cell.textLabel.textColor = [UIColor colorWithRed:0.22 green:0.33 blue:0.53 alpha:1];
+				cell.textLabel.text = field.value;
+			}
+		break;
 		case OWFieldStyleNumber:
 			cell.detailTextLabel.text = [(NSNumber *)field.value stringValue];
 			break;
@@ -234,8 +260,37 @@
 		obj.field.value = [NSNumber numberWithBool:NO];
 }
 
+#pragma mark Helper methods
+
+- (CGFloat)specialRowHeightForString:(NSString *)aString {
+	CGSize maximumLabelSize = CGSizeMake(270, 1000);
+	UIFont *font = [UIFont fontWithName:@"Helvetica" size:16];
+	CGSize size = [aString sizeWithFont:font
+				   constrainedToSize:maximumLabelSize
+					   lineBreakMode:UILineBreakModeWordWrap];
+	return size.height;
+}
+
 #pragma mark -
 #pragma mark Table view delegate
+
+- (CGFloat)tableView:(UITableView *)aTableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	CGFloat altura;
+	OWSection *section = [self.sections objectAtIndex:indexPath.section];
+    currentField = [[section fields] objectAtIndex:indexPath.row];
+	
+    if (currentField.style == OWFieldStyleNotes) {
+		altura = [self specialRowHeightForString:(NSString *)currentField.value] + 20;
+    } else {
+        altura = 44;
+    }
+	
+	if (altura < 44) {
+		altura = 44;
+	}
+	
+	return altura;
+}
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
@@ -245,7 +300,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	OWSection *section = [self.sections objectAtIndex:indexPath.section];
     currentField = [[section fields] objectAtIndex:indexPath.row];
-	
+	if (!currentField.selectable) return;
 	switch (currentField.style) {
 		case OWFieldStyleNumber: {
 			NumberController *detailView = [[NumberController alloc] initWithDecimalPlaces:2];
@@ -257,6 +312,13 @@
 			StringController *detailView = [[StringController alloc] initWithNibName:@"StringController" bundle:nil];
 			detailView.field = currentField;
 			[self.navigationController pushViewController:detailView animated:YES];
+			break;
+		}
+		case OWFieldStyleNotes: {
+			NotesController *notesController = [[NotesController alloc] initWithNibName:@"NotesController" bundle:nil];
+			notesController.field = currentField;
+			[self.navigationController pushViewController:notesController animated:YES];
+			[notesController release];
 			break;
 		}
 		case OWFieldStyleDate: {
@@ -314,6 +376,7 @@
 }
 
 - (void)dealloc {
+	[_imageCache release];
     [super dealloc];
 }
 

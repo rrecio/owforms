@@ -7,10 +7,11 @@
 //
 
 #import "NotesController.h"
+#import "OWField.h"
 
 @implementation NotesController
 
-@synthesize texto;
+@synthesize texto, field;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	[super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -37,7 +38,7 @@
 }
 
 - (void)doneAction:(id)sender {
-	[texto setString:textView.text];
+	[self.field setValue:textView.text];
 	
 	[self.navigationController popViewControllerAnimated:YES];
 }
@@ -64,7 +65,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-	[textView setText:(NSString *)[self texto]];
+	[textView setText:(NSString *)[self.field value]];
 	[tableView reloadData];
 }
 

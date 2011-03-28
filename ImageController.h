@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@class AppDelegate_iPhone;
 @class OWField;
 
 @interface ImageController : UIViewController <UIImagePickerControllerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIScrollViewDelegate> {
@@ -25,7 +24,6 @@
 	
 	NSFileManager *fileManager;
 	
-	AppDelegate_iPhone *appDelegate;
 	OWField *field;
 }
 
@@ -40,3 +38,5 @@
 - (void)setupImage;
 
 @end
+
+NSString *pathInDocumentDirectory(NSString *fileName);

@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@class OWSection;
-@class OWField;
+#import "OWField.h"
+#import "OWSection.h"
 
 @protocol OWFormDataSourceDelegate;
 
@@ -34,9 +34,10 @@
 - (id)initWithStyle:(UITableViewStyle)style andFields:(NSArray *)fieldsArray;
 - (id)initWithSections:(OWSection *)firstSection, ... NS_REQUIRES_NIL_TERMINATION;
 - (id)initWithStyle:(UITableViewStyle)style andSections:(OWSection *)firstSection, ... NS_REQUIRES_NIL_TERMINATION;
-
+- (CGFloat)specialRowHeightForString:(NSString *)aString;
 - (void)doSaveAction;
 - (void)doCancelAction;
++ (NSMutableDictionary *)imageCache;
 
 @end
 

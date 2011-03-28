@@ -7,8 +7,8 @@
 //
 
 #import "ImageController.h"
-#import "AppDelegate_iPhone.h"
 #import "OWField.h"
+#import "OWForm.h"
 
 @implementation ImageController
 
@@ -24,13 +24,13 @@
 - (void)setupImage {
 	image = nil;
 	
-	image = [appDelegate.imageCache objectForKey:(NSString *)field.value];
+	image = [[OWForm imageCache] objectForKey:(NSString *)field.value];
 	
 	if (!image) {
 		image = [UIImage imageWithContentsOfFile:pathInDocumentDirectory((NSString *)field.value)];
 		if (image) {
-			[appDelegate.imageCache setObject:image forKey:(NSString *)field.value];
-			image = [appDelegate.imageCache objectForKey:(NSString *)field.value];
+			[[OWForm imageCache] setObject:image forKey:(NSString *)field.value];
+			image = [[OWForm imageCache] objectForKey:(NSString *)field.value];
 		}
 	}
 	
@@ -196,7 +196,7 @@
 	image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
 	
 	// Adiciona a imagem ao cache
-	[appDelegate.imageCache setObject:image forKey:(NSString *)field.value];
+	[[OWForm imageCache] setObject:image forKey:(NSString *)field.value];
 	
 	// Exibe a imagem
 	[self setupImage];	
@@ -213,8 +213,6 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-	
-	appDelegate = (AppDelegate_iPhone *)[[UIApplication sharedApplication] delegate];
 	
 	fileManager = [[NSFileManager alloc] init];
 
@@ -290,3 +288,9 @@
 }
 
 @end
+
+NSString *pathInDocumentDirectory(NSString *fileName) {
+	NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *documentDirectory = [documentDirectories objectAtIndex:0];
+	return [documentDirectory stringByAppendingPathComponent:fileName];
+}

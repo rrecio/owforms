@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+@class OWField;
 @interface NotesController : UIViewController <UITableViewDataSource> {
 	IBOutlet UITableView *tableView;
 	IBOutlet UITableViewCell *tableViewCell;
@@ -16,6 +17,7 @@
 }
 
 @property (nonatomic, retain) NSMutableString *texto;
+@property (nonatomic, retain) OWField *field;
 
 - (void)doneAction:(id)sender;
 

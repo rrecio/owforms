@@ -28,6 +28,13 @@
 	return s;
 }
 
++ (id)sectionWithArrayOfFields:(NSArray *)fieldsArray {
+	id s = [[[self alloc] init] autorelease];
+	[s setFields:[fieldsArray mutableCopy]];
+	return s;
+}
+
+
 - (id)initWithFields:(OWField *)field vaList:(va_list)params
 {
 	if (self = [super init]) {

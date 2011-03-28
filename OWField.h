@@ -29,6 +29,7 @@ typedef enum {
 @property(nonatomic, retain) id value;
 @property(nonatomic) UITableViewCellAccessoryType accessoryType;
 @property(nonatomic, retain) UIView *accessoryView;
+@property(nonatomic) BOOL selectable;
 @property(nonatomic, retain) NSDate *startDate;
 @property(nonatomic, retain) NSDate *endDate;
 @property(nonatomic, retain) NSArray *list;
