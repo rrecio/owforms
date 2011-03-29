@@ -16,5 +16,3 @@
 @property (nonatomic, retain) NSMutableDictionary *imageCache;
 
 @end
-
-NSString *pathInDocumentDirectory(NSString *fileName);

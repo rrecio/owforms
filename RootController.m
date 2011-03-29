@@ -17,7 +17,7 @@
 - (IBAction)chamaForm1:(id)sender {
 	if (!form) {
 		OWField *field1 = [[OWField alloc] initWithStyle:OWFieldStyleString label:@"Hello" value:@"World!"];
-		¡
+    
 		//field1.acessoryView = aView;
 		
 		OWField *field2 = [[OWField alloc] initWithStyle:OWFieldStyleNumber label:@"Number" value:[NSNumber numberWithInt:235.12]];

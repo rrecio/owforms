@@ -294,6 +294,7 @@
 				GCC_PREFIX_HEADER = OWForms_Prefix.pch;
 				INFOPLIST_FILE = "OWForms-Info.plist";
 				PRODUCT_NAME = OWForms;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -306,6 +307,7 @@
 				GCC_PREFIX_HEADER = OWForms_Prefix.pch;
 				INFOPLIST_FILE = "OWForms-Info.plist";
 				PRODUCT_NAME = OWForms;
+				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
