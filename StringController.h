@@ -11,12 +11,14 @@
 @class OWField;
 
 @interface StringController : UITableViewController {
-	IBOutlet UITableViewCell *tableViewCell;
-	IBOutlet UITextField *textField;
+	UITableViewCell *tableViewCell;
+	UITextField *textField;
 	OWField *field;
 }
 
 @property (nonatomic, retain) OWField *field;
+@property (nonatomic, retain) IBOutlet UITextField *textField;
+@property (nonatomic, retain) IBOutlet UITableViewCell *tableViewCell;
 
 - (void)doneAction:(id)sender;
 

@@ -28,7 +28,10 @@
 		self.style = aStyle;
 		self.label = aLabel;
 		self.value = aValue;
-		self.selectable = YES;
+		self.selectable = (aStyle != OWFieldStyleSwitch);
+        
+        if (aStyle == OWFieldStyleString || aStyle == OWFieldStyleList || aStyle == OWFieldStyleForm)
+            self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	}
 	
 	return self;

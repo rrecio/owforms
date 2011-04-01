@@ -19,6 +19,7 @@
 	BOOL showCancelButton;
 	NSString *saveButtonTitle;
 	NSString *cancelButtonTitle;
+    UIPopoverController *currentPopover;
 	id <OWFormDataSourceDelegate>delegate;
 }
 

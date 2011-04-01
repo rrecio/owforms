@@ -12,10 +12,12 @@
 @implementation StringController
 
 @synthesize field;
+@synthesize textField;
+@synthesize tableViewCell;
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	self.navigationItem.title = NSLocalizedString(@"Editando", nil);
+	self.navigationItem.title = field.label;
 	
 	UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"OK", @"") style:UIBarButtonItemStyleDone target:self action:@selector(doneAction:)];
 	self.navigationItem.rightBarButtonItem = doneButton;
@@ -35,6 +37,7 @@
 }
 
 - (void)doneAction:(id)sender {
+    NSLog(@"doneAction");
 	field.value = textField.text;
 	[self.navigationController popViewControllerAnimated:YES];
 }
@@ -51,6 +54,12 @@
 		cell = tableViewCell;
 	
 	return cell;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    NSLog(@"viewWillDisappear");
+    [textField resignFirstResponder];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

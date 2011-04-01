@@ -47,6 +47,14 @@ static NSMutableDictionary *_imageCache;
 
 #pragma mark -
 #pragma mark Initialization
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    return YES;
+}
+
+#pragma mark -
+#pragma mark Initialization
+
 - (id)initWithFields:(NSArray *)fieldsArray {
 	return [self initWithStyle:UITableViewStylePlain andFields:fieldsArray];
 }
@@ -171,14 +179,16 @@ static NSMutableDictionary *_imageCache;
 		
     // Configure the cell...
 	cell.textLabel.text = field.label;
-	if (!field.selectable) {
+
+	if (field.selectable) {
+		cell.accessoryType = (field.accessoryType) ? field.accessoryType : UITableViewCellAccessoryNone;
+		cell.accessoryView = field.accessoryView;
+	} else {
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 		cell.accessoryType = UITableViewCellAccessoryNone;
-	} else {
-		cell.accessoryType = field.accessoryType;
-		cell.accessoryView = field.accessoryView;
 	}
-	switch (field.style) {
+	
+    switch (field.style) {
 		case OWFieldStyleString:
 			NSLog(@"name cell identifier: %@, setting detail to: %@", CellIdentifier, field.value);
 			cell.detailTextLabel.text = field.value;
@@ -222,6 +232,7 @@ static NSMutableDictionary *_imageCache;
 			switchView = [[OWSwitch alloc] initWithFrame:CGRectMake(208, 8, 95, 8)];
 			switchView.on = [field.value boolValue];
 			switchView.field = field;
+            switchView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
 
 			[cell setSwitchView:switchView];
 			[cell addSubview:switchView];
@@ -230,8 +241,7 @@ static NSMutableDictionary *_imageCache;
 			break;
 		}
 		case OWFieldStyleForm: {
-			OWForm *form = (OWForm *)field.value;
-			cell.textLabel.text = form.title;
+			cell.textLabel.text = field.label;
 			break;
 		}
 		case OWFieldStyleList: {
@@ -322,9 +332,30 @@ static NSMutableDictionary *_imageCache;
 			break;
 		}
 		case OWFieldStyleDate: {
+            /*
 			DateController *detailView = [[DateController alloc] init];
 			detailView.field = currentField;
 			[self.navigationController pushViewController:detailView animated:YES];
+             */
+            CGRect pickerFrame = CGRectMake(0, 0, 300, 180);
+            UIViewController *tempDateViewController = [[UIViewController alloc] init];
+            UIDatePicker *datePicker = [[UIDatePicker alloc] initWithFrame:pickerFrame];
+            [datePicker addTarget:self action:@selector(pickerChanged:) forControlEvents:UIControlEventValueChanged];
+            [tempDateViewController.view addSubview:datePicker];
+            tempDateViewController.contentSizeForViewInPopover = CGSizeMake(300, 180);
+
+            if(!currentPopover)
+            {
+                currentPopover = [[UIPopoverController alloc] initWithContentViewController:tempDateViewController];
+            } else {
+                [currentPopover setContentViewController:tempDateViewController animated:YES];
+            }
+            
+            [datePicker release];
+            [tempDateViewController release];
+            CGRect cellRect = [tableView rectForRowAtIndexPath:indexPath];
+            [currentPopover presentPopoverFromRect:cellRect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionDown|UIPopoverArrowDirectionUp animated:YES];
+            [tableView deselectRowAtIndexPath:indexPath animated:YES];
 			break;
 		}
 		case OWFieldStyleDateTime: {

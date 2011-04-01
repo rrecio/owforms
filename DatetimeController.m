@@ -37,7 +37,7 @@
 	[dateFormatter setTimeStyle:NSDateFormatterShortStyle];
 	
 	// Title
-	self.navigationItem.title = NSLocalizedString(@"Data", @"");
+	self.navigationItem.title = field.label;
 	
 	// Save Button
 	UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"OK", nil) style:UIBarButtonItemStyleDone target:self action:@selector(doneAction:)];

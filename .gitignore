@@ -9,3 +9,11 @@ build/*
 profile
 *.perspective
 *.perspectivev3
+project.xcworkspace/*
+xcuserdata/*
+*.xcworkspacedata
+contents.xcworkspacedata
+*.xcworkspace
+*.xcuserdatad
+*.xcscheme
+xcschemes/*
