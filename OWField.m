@@ -7,7 +7,7 @@
 //
 
 #import "OWField.h"
-
+#import "OWForm.h"
 
 @implementation OWField
 
@@ -19,22 +19,33 @@
 @synthesize startDate;
 @synthesize endDate;
 @synthesize list;
-@synthesize selectable;
 
-- (id)initWithStyle:(OWFieldStyle)aStyle label:(NSString *)aLabel value:(id)aValue {
-	self = [super init];
-	
-	if (self != nil) {
-		self.style = aStyle;
-		self.label = aLabel;
-		self.value = aValue;
-		self.selectable = (aStyle != OWFieldStyleSwitch);
-        
-        if (aStyle == OWFieldStyleString || aStyle == OWFieldStyleList || aStyle == OWFieldStyleForm)
-            self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	}
-	
-	return self;
+- (id)initWithLabel:(NSString *)aLabel andValue:(NSObject *)aValue {
+    self = [super init];
+    if (self != nil) {
+        self.label = aLabel;
+        self.value = aValue;
+    }
+    return self;
 }
+
+- (UIViewController *)actionController {
+    // subclass must implement this
+    return nil;
+}
+
+- (OWTableViewCell *)customizedCell:(OWTableViewCell *)cell {
+    cell.textLabel.text = self.label;
+
+    cell.accessoryType = (self.accessoryType) ? self.accessoryType : UITableViewCellAccessoryDisclosureIndicator;
+    cell.accessoryView = self.accessoryView;
+
+    return cell;
+}
+
+- (void)dealloc {
+    [super dealloc];
+}
+
 
 @end

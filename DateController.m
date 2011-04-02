@@ -24,9 +24,6 @@
 	datePicker = [[UIDatePicker alloc] init];
 	datePicker.datePickerMode = UIDatePickerModeDate;
 	[datePicker addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
-    CGSize pickerSize = [datePicker sizeThatFits:CGSizeZero];
-    datePicker.frame = CGRectMake(100, 100, pickerSize.width, pickerSize.height);
-    [self.view addSubview: datePicker];
 
 	if ([field startDate] != nil)
 		datePicker.minimumDate = [field startDate];
@@ -37,9 +34,6 @@
 	dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setDateStyle:NSDateFormatterShortStyle];
 	[dateFormatter setTimeStyle:NSDateFormatterNoStyle];
-	
-	// Title
-	self.navigationItem.title = field.label;
 	
 	// Save Button
 	UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"OK", nil) style:UIBarButtonItemStyleDone target:self action:@selector(doneAction:)];
@@ -89,9 +83,16 @@
 
 #pragma mark UIView methods
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+    // Title
+	self.navigationItem.title = field.label;
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    return;
+
 	NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
 	UITableViewCell *targetCell = [tableView cellForRowAtIndexPath:indexPath];
 	datePicker.date = [dateFormatter dateFromString:targetCell.detailTextLabel.text];

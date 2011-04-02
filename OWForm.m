@@ -16,19 +16,8 @@
 #import "ListController.h"
 #import "NotesController.h"
 
+
 static NSMutableDictionary *_imageCache;
-
-@interface OWSwitch : UISwitch {
-	OWField *field;
-}
-@property (nonatomic, retain) OWField *field;
-@end
-
-@implementation OWSwitch : UISwitch
-	@synthesize field;
-@end
-
-
 
 @implementation OWForm
 
@@ -163,111 +152,34 @@ static NSMutableDictionary *_imageCache;
 	OWSection *section = (OWSection *)[self.sections objectAtIndex:indexPath.section];
 	OWField *field = (OWField *)[section.fields objectAtIndex:indexPath.row];	
 	
-    NSString *CellIdentifier = (field.style == OWFieldStyleNotes) ? @"Notes" : @"Cell";
+    NSString *CellIdentifier;
+    
+    if (field.style == OWFieldStyleNotes)
+        CellIdentifier = @"Notes";
+    else if (field.style == OWFieldStyleSwitch)
+        CellIdentifier = @"CellSwitch";
+    else
+        CellIdentifier = @"Cell";
 
     OWTableViewCell *cell = (OWTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
-    if (cell == nil) {
-		if (field.style == OWFieldStyleNotes) {
+    if (cell == nil)
+    {
+		if ([field isKindOfClass:[OWFieldNotes class]])
+        {
 			cell = [[OWTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
 			cell.textLabel.numberOfLines = 1000;
 			cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:16];
-		} else {
+		}
+        else
+        {
 			cell = [[OWTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
 		}
     }
 		
     // Configure the cell...
-	cell.textLabel.text = field.label;
 
-	if (field.selectable) {
-		cell.accessoryType = (field.accessoryType) ? field.accessoryType : UITableViewCellAccessoryNone;
-		cell.accessoryView = field.accessoryView;
-	} else {
-		cell.selectionStyle = UITableViewCellSelectionStyleNone;
-		cell.accessoryType = UITableViewCellAccessoryNone;
-	}
-	
-    switch (field.style) {
-		case OWFieldStyleString:
-			NSLog(@"name cell identifier: %@, setting detail to: %@", CellIdentifier, field.value);
-			cell.detailTextLabel.text = field.value;
-			break;
-		case OWFieldStyleNotes:
-			if (field.value == nil || [field.value isEqualToString:@""]) {
-				cell.textLabel.textColor = [UIColor grayColor];
-				cell.textLabel.text = NSLocalizedString(@"Description", @"");
-			} else {
-				cell.textLabel.textColor = [UIColor colorWithRed:0.22 green:0.33 blue:0.53 alpha:1];
-				cell.textLabel.text = field.value;
-			}
-		break;
-		case OWFieldStyleNumber:
-			cell.detailTextLabel.text = [(NSNumber *)field.value stringValue];
-			break;
-		case OWFieldStyleDate:
-		{
-			NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-			[formatter setDateStyle:NSDateFormatterShortStyle];
-			[formatter setTimeStyle:NSDateFormatterNoStyle];
-			cell.detailTextLabel.text = [formatter stringFromDate:field.value];
-			[formatter release];
-			break;
-		}
-		case OWFieldStyleDateTime:
-		{
-			NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-			[formatter setDateStyle:NSDateFormatterShortStyle];
-			[formatter setTimeStyle:NSDateFormatterShortStyle];
-			cell.detailTextLabel.text = [formatter stringFromDate:field.value];
-			[formatter release];
-			break;
-		}                       
-		case OWFieldStyleImage: {
-			//cell.imageView.image = field.value;
-			break;
-		}
-		case OWFieldStyleSwitch: {
-			OWSwitch *switchView = nil;
-			switchView = [[OWSwitch alloc] initWithFrame:CGRectMake(208, 8, 95, 8)];
-			switchView.on = [field.value boolValue];
-			switchView.field = field;
-            switchView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
-
-			[cell setSwitchView:switchView];
-			[cell addSubview:switchView];
-			[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-			[[cell switchView] addTarget:self action:@selector(changeSwitch:) forControlEvents:UIControlEventValueChanged];
-			break;
-		}
-		case OWFieldStyleForm: {
-			cell.textLabel.text = field.label;
-			break;
-		}
-		case OWFieldStyleList: {
-			cell.textLabel.text = [field label];
-			
-			if ([field.value intValue] >= 0)
-				cell.detailTextLabel.text = [field.list objectAtIndex:[field.value intValue]];
-			else
-				cell.detailTextLabel.text = @"Selecione";
-			
-			break;
-		}
-		default: {
-			//cell.detailTextLabel.text = (NSString *)field.value;
-		}
-    }																																																										  
-    
-    return cell;
-}
-
-- (void)changeSwitch:(id)sender {
-	OWSwitch *obj = (OWSwitch *)sender;
-	if (obj.on)
-		obj.field.value = [NSNumber numberWithBool:YES];
-	else
-		obj.field.value = [NSNumber numberWithBool:NO];
+    return [field customizedCell:cell];
 }
 
 #pragma mark Helper methods
@@ -310,81 +222,7 @@ static NSMutableDictionary *_imageCache;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	OWSection *section = [self.sections objectAtIndex:indexPath.section];
     currentField = [[section fields] objectAtIndex:indexPath.row];
-	if (!currentField.selectable) return;
-	switch (currentField.style) {
-		case OWFieldStyleNumber: {
-			NumberController *detailView = [[NumberController alloc] initWithDecimalPlaces:2];
-			detailView.field = currentField;
-			[self.navigationController pushViewController:detailView animated:YES];
-			break;
-		}
-		case OWFieldStyleString: {
-			StringController *detailView = [[StringController alloc] initWithNibName:@"StringController" bundle:nil];
-			detailView.field = currentField;
-			[self.navigationController pushViewController:detailView animated:YES];
-			break;
-		}
-		case OWFieldStyleNotes: {
-			NotesController *notesController = [[NotesController alloc] initWithNibName:@"NotesController" bundle:nil];
-			notesController.field = currentField;
-			[self.navigationController pushViewController:notesController animated:YES];
-			[notesController release];
-			break;
-		}
-		case OWFieldStyleDate: {
-            /*
-			DateController *detailView = [[DateController alloc] init];
-			detailView.field = currentField;
-			[self.navigationController pushViewController:detailView animated:YES];
-             */
-            CGRect pickerFrame = CGRectMake(0, 0, 300, 180);
-            UIViewController *tempDateViewController = [[UIViewController alloc] init];
-            UIDatePicker *datePicker = [[UIDatePicker alloc] initWithFrame:pickerFrame];
-            [datePicker addTarget:self action:@selector(pickerChanged:) forControlEvents:UIControlEventValueChanged];
-            [tempDateViewController.view addSubview:datePicker];
-            tempDateViewController.contentSizeForViewInPopover = CGSizeMake(300, 180);
-
-            if(!currentPopover)
-            {
-                currentPopover = [[UIPopoverController alloc] initWithContentViewController:tempDateViewController];
-            } else {
-                [currentPopover setContentViewController:tempDateViewController animated:YES];
-            }
-            
-            [datePicker release];
-            [tempDateViewController release];
-            CGRect cellRect = [tableView rectForRowAtIndexPath:indexPath];
-            [currentPopover presentPopoverFromRect:cellRect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionDown|UIPopoverArrowDirectionUp animated:YES];
-            [tableView deselectRowAtIndexPath:indexPath animated:YES];
-			break;
-		}
-		case OWFieldStyleDateTime: {
-			DatetimeController *detailView = [[DatetimeController alloc] init];
-			detailView.field = currentField;
-			[self.navigationController pushViewController:detailView animated:YES];
-			break;
-		}
-		case OWFieldStyleImage: {
-			ImageController *detailView = [[ImageController alloc] init];
-			detailView.field = currentField;
-			[self.navigationController pushViewController:detailView animated:YES];
-			break;
-		}
-		case OWFieldStyleForm: {
-			OWForm *detailView = (OWForm *)currentField.value;
-			[self.navigationController pushViewController:detailView animated:YES];
-			break;
-		}
-		case OWFieldStyleList: {
-			ListController *detailView = [[ListController alloc] initWithField:currentField];
-			[self.navigationController pushViewController:detailView animated:YES];
-			break;
-		}
-		default:
-			//detailViewController = [[OWNumberEditingController alloc] init];
-			break;
-	}
-	//[self.navigationController pushViewController:detailViewController animated:YES];
+    [self.navigationController pushViewController:[currentField actionController] animated:YES];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {

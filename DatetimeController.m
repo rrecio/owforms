@@ -36,9 +36,6 @@
 	[dateFormatter setDateStyle:NSDateFormatterShortStyle];
 	[dateFormatter setTimeStyle:NSDateFormatterShortStyle];
 	
-	// Title
-	self.navigationItem.title = field.label;
-	
 	// Save Button
 	UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"OK", nil) style:UIBarButtonItemStyleDone target:self action:@selector(doneAction:)];
 	self.navigationItem.rightBarButtonItem = doneButton;
@@ -86,6 +83,13 @@
 }
 
 #pragma mark UIView methods
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    // Title
+	self.navigationItem.title = field.label;
+}
 
 - (void)viewDidAppear:(BOOL)animated {
 	NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];

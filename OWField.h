@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OWTableViewCell.h"
 
 typedef enum {
 	OWFieldStyleString,
@@ -29,11 +30,12 @@ typedef enum {
 @property(nonatomic, retain) id value;
 @property(nonatomic) UITableViewCellAccessoryType accessoryType;
 @property(nonatomic, retain) UIView *accessoryView;
-@property(nonatomic) BOOL selectable;
 @property(nonatomic, retain) NSDate *startDate;
 @property(nonatomic, retain) NSDate *endDate;
 @property(nonatomic, retain) NSArray *list;
 
-- (id)initWithStyle:(OWFieldStyle)aStyle label:(NSString *)aLabel value:(id)aValue;
+- (id)initWithLabel:(NSString *)aLabel andValue:(NSObject *)numberValue;
+- (UIViewController *)actionController;
+- (OWTableViewCell *)customizedCell:(OWTableViewCell *)cell;
 
 @end

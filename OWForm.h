@@ -10,6 +10,14 @@
 
 #import "OWField.h"
 #import "OWSection.h"
+#import "OWFieldText.h"
+#import "OWFieldNumber.h"
+#import "OWFieldDate.h"
+#import "OWFieldDateTime.h"
+#import "OWFieldImage.h"
+#import "OWFieldList.h"
+#import "OWFieldForm.h"
+#import "OWFieldNotes.h"
 
 @protocol OWFormDataSourceDelegate;
 

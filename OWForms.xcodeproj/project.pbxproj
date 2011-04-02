@@ -24,6 +24,15 @@
 		F31E044C125BC16600A96758 /* AppDelegate_Shared.m in Sources */ = {isa = PBXBuildFile; fileRef = F31E044B125BC16600A96758 /* AppDelegate_Shared.m */; };
 		F31E04D6125BCB1100A96758 /* ImageController.m in Sources */ = {isa = PBXBuildFile; fileRef = F31E04D4125BCB1100A96758 /* ImageController.m */; };
 		F327C95C124EA5EF0097B24B /* NumberController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F327C95B124EA5EF0097B24B /* NumberController.xib */; };
+		F33EB95A1347A30B00CD4196 /* OWFieldText.m in Sources */ = {isa = PBXBuildFile; fileRef = F33EB9591347A30B00CD4196 /* OWFieldText.m */; };
+		F33EB95D1347B23D00CD4196 /* OWFieldNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = F33EB95C1347B23D00CD4196 /* OWFieldNumber.m */; };
+		F33EB9601347BB6300CD4196 /* OWFieldNotes.m in Sources */ = {isa = PBXBuildFile; fileRef = F33EB95F1347BB6300CD4196 /* OWFieldNotes.m */; };
+		F33EB9641347BE1D00CD4196 /* OWFieldDate.m in Sources */ = {isa = PBXBuildFile; fileRef = F33EB9631347BE1D00CD4196 /* OWFieldDate.m */; };
+		F33EB9671347BEA600CD4196 /* OWFieldDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = F33EB9661347BEA600CD4196 /* OWFieldDateTime.m */; };
+		F33EB96A1347BF2200CD4196 /* OWFieldImage.m in Sources */ = {isa = PBXBuildFile; fileRef = F33EB9691347BF2200CD4196 /* OWFieldImage.m */; };
+		F33EB96D1347BFAD00CD4196 /* OWFieldForm.m in Sources */ = {isa = PBXBuildFile; fileRef = F33EB96C1347BFAD00CD4196 /* OWFieldForm.m */; };
+		F33EB9701347BFFB00CD4196 /* OWFieldList.m in Sources */ = {isa = PBXBuildFile; fileRef = F33EB96F1347BFFB00CD4196 /* OWFieldList.m */; };
+		F33EB9731347D72D00CD4196 /* OWFieldSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = F33EB9721347D72C00CD4196 /* OWFieldSwitch.m */; };
 		F3E6185E124E7D2B0034F236 /* DatetimeController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E61854124E7D2B0034F236 /* DatetimeController.m */; };
 		F3E61861124E7D2B0034F236 /* NotesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E61859124E7D2B0034F236 /* NotesController.m */; };
 		F3E61862124E7D2B0034F236 /* NumberController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E6185B124E7D2B0034F236 /* NumberController.m */; };
@@ -63,6 +72,24 @@
 		F31E04D3125BCB1100A96758 /* ImageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageController.h; sourceTree = "<group>"; };
 		F31E04D4125BCB1100A96758 /* ImageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageController.m; sourceTree = "<group>"; };
 		F327C95B124EA5EF0097B24B /* NumberController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NumberController.xib; sourceTree = "<group>"; };
+		F33EB9581347A30B00CD4196 /* OWFieldText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWFieldText.h; sourceTree = "<group>"; };
+		F33EB9591347A30B00CD4196 /* OWFieldText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWFieldText.m; sourceTree = "<group>"; };
+		F33EB95B1347B23D00CD4196 /* OWFieldNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWFieldNumber.h; sourceTree = "<group>"; };
+		F33EB95C1347B23D00CD4196 /* OWFieldNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWFieldNumber.m; sourceTree = "<group>"; };
+		F33EB95E1347BB6300CD4196 /* OWFieldNotes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWFieldNotes.h; sourceTree = "<group>"; };
+		F33EB95F1347BB6300CD4196 /* OWFieldNotes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWFieldNotes.m; sourceTree = "<group>"; };
+		F33EB9621347BE1D00CD4196 /* OWFieldDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWFieldDate.h; sourceTree = "<group>"; };
+		F33EB9631347BE1D00CD4196 /* OWFieldDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWFieldDate.m; sourceTree = "<group>"; };
+		F33EB9651347BEA600CD4196 /* OWFieldDateTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWFieldDateTime.h; sourceTree = "<group>"; };
+		F33EB9661347BEA600CD4196 /* OWFieldDateTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWFieldDateTime.m; sourceTree = "<group>"; };
+		F33EB9681347BF2200CD4196 /* OWFieldImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWFieldImage.h; sourceTree = "<group>"; };
+		F33EB9691347BF2200CD4196 /* OWFieldImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWFieldImage.m; sourceTree = "<group>"; };
+		F33EB96B1347BFAC00CD4196 /* OWFieldForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWFieldForm.h; sourceTree = "<group>"; };
+		F33EB96C1347BFAD00CD4196 /* OWFieldForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWFieldForm.m; sourceTree = "<group>"; };
+		F33EB96E1347BFFA00CD4196 /* OWFieldList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWFieldList.h; sourceTree = "<group>"; };
+		F33EB96F1347BFFB00CD4196 /* OWFieldList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWFieldList.m; sourceTree = "<group>"; };
+		F33EB9711347D72C00CD4196 /* OWFieldSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWFieldSwitch.h; sourceTree = "<group>"; };
+		F33EB9721347D72C00CD4196 /* OWFieldSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWFieldSwitch.m; sourceTree = "<group>"; };
 		F3E61853124E7D2B0034F236 /* DatetimeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatetimeController.h; sourceTree = "<group>"; };
 		F3E61854124E7D2B0034F236 /* DatetimeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatetimeController.m; sourceTree = "<group>"; };
 		F3E61858124E7D2B0034F236 /* NotesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesController.h; sourceTree = "<group>"; };
@@ -127,12 +154,11 @@
 				F3108998126621CD005E0807 /* RootController.m */,
 				5B3ACCBF124B1AF0006B4BCC /* OWForm.h */,
 				5B3ACCC0124B1AF0006B4BCC /* OWForm.m */,
-				5B3ACCC2124B1FE7006B4BCC /* OWField.h */,
-				5B3ACCC3124B1FE7006B4BCC /* OWField.m */,
 				F3E61880124E80240034F236 /* OWSection.h */,
 				F3E61881124E80240034F236 /* OWSection.m */,
 				5B7B6B78125184CE0003EE50 /* OWTableViewCell.h */,
 				5B7B6B79125184CE0003EE50 /* OWTableViewCell.m */,
+				F33EB9611347BDC600CD4196 /* Fields */,
 				5B62B66012566B1A003764A2 /* DetailControllers */,
 			);
 			name = Shared;
@@ -195,6 +221,33 @@
 				F31C275D129C61C4009705D2 /* ListController.m */,
 			);
 			name = DetailControllers;
+			sourceTree = "<group>";
+		};
+		F33EB9611347BDC600CD4196 /* Fields */ = {
+			isa = PBXGroup;
+			children = (
+				5B3ACCC2124B1FE7006B4BCC /* OWField.h */,
+				5B3ACCC3124B1FE7006B4BCC /* OWField.m */,
+				F33EB95E1347BB6300CD4196 /* OWFieldNotes.h */,
+				F33EB95F1347BB6300CD4196 /* OWFieldNotes.m */,
+				F33EB95B1347B23D00CD4196 /* OWFieldNumber.h */,
+				F33EB95C1347B23D00CD4196 /* OWFieldNumber.m */,
+				F33EB9581347A30B00CD4196 /* OWFieldText.h */,
+				F33EB9591347A30B00CD4196 /* OWFieldText.m */,
+				F33EB9621347BE1D00CD4196 /* OWFieldDate.h */,
+				F33EB9631347BE1D00CD4196 /* OWFieldDate.m */,
+				F33EB9651347BEA600CD4196 /* OWFieldDateTime.h */,
+				F33EB9661347BEA600CD4196 /* OWFieldDateTime.m */,
+				F33EB9681347BF2200CD4196 /* OWFieldImage.h */,
+				F33EB9691347BF2200CD4196 /* OWFieldImage.m */,
+				F33EB96B1347BFAC00CD4196 /* OWFieldForm.h */,
+				F33EB96C1347BFAD00CD4196 /* OWFieldForm.m */,
+				F33EB96E1347BFFA00CD4196 /* OWFieldList.h */,
+				F33EB96F1347BFFB00CD4196 /* OWFieldList.m */,
+				F33EB9711347D72C00CD4196 /* OWFieldSwitch.h */,
+				F33EB9721347D72C00CD4196 /* OWFieldSwitch.m */,
+			);
+			name = Fields;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,6 +330,15 @@
 				F310899A126621CD005E0807 /* RootController.m in Sources */,
 				5B7B6B7A125184CE0003EE50 /* OWTableViewCell.m in Sources */,
 				F31C275E129C61C4009705D2 /* ListController.m in Sources */,
+				F33EB95A1347A30B00CD4196 /* OWFieldText.m in Sources */,
+				F33EB95D1347B23D00CD4196 /* OWFieldNumber.m in Sources */,
+				F33EB9601347BB6300CD4196 /* OWFieldNotes.m in Sources */,
+				F33EB9641347BE1D00CD4196 /* OWFieldDate.m in Sources */,
+				F33EB9671347BEA600CD4196 /* OWFieldDateTime.m in Sources */,
+				F33EB96A1347BF2200CD4196 /* OWFieldImage.m in Sources */,
+				F33EB96D1347BFAD00CD4196 /* OWFieldForm.m in Sources */,
+				F33EB9701347BFFB00CD4196 /* OWFieldList.m in Sources */,
+				F33EB9731347D72D00CD4196 /* OWFieldSwitch.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

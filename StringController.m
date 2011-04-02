@@ -26,16 +26,6 @@
 	self.navigationItem.hidesBackButton = YES;
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)tf {
-	[textField resignFirstResponder];
-	field.value = textField.text;
-	return YES;
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)tf {
-	[self.navigationController popViewControllerAnimated:YES];
-}
-
 - (void)doneAction:(id)sender {
     NSLog(@"doneAction");
 	field.value = textField.text;
@@ -58,8 +48,9 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    field.value = textField.text;
     NSLog(@"viewWillDisappear");
-    [textField resignFirstResponder];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {

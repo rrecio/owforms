@@ -9,6 +9,14 @@
 #import "RootController.h"
 #import "OWField.h"
 #import "OWSection.h"
+#import "OWFieldText.h"
+#import "OWFieldNumber.h"
+#import "OWFieldDate.h"
+#import "OWFieldDateTime.h"
+#import "OWFieldImage.h"
+#import "OWFieldList.h"
+#import "OWFieldForm.h"
+#import "OWFieldSwitch.h"
 
 @implementation RootController
 
@@ -16,29 +24,28 @@
 
 - (IBAction)chamaForm1:(id)sender {
 	if (!form) {
-		OWField *field1 = [[OWField alloc] initWithStyle:OWFieldStyleString label:@"Hello" value:@"World!"];
-    
+
+        OWFieldText *field1 = [[OWFieldText alloc] initWithLabel:@"Hello" andValue:@"World!"];
 		//field1.acessoryView = aView;
 		
-		OWField *field2 = [[OWField alloc] initWithStyle:OWFieldStyleNumber label:@"Number" value:[NSNumber numberWithInt:235.12]];
+        OWFieldNumber *field2 = [[OWFieldNumber alloc] initWithLabel:@"Number" andValue:[NSNumber numberWithInt:234.0]];
 		field2.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		
-		OWField *field3 = [[OWField alloc] initWithStyle:OWFieldStyleDate label:@"Date" value:[NSDate date]];
+        OWFieldDate *field3 = [[OWFieldDate alloc] initWithLabel:@"Date" andValue:[NSDate date]];
 		field3.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-		field3.selectable = NO;
 		
-		OWField *field4 = [[OWField alloc] initWithStyle:OWFieldStyleDateTime label:@"DateTime" value:[NSDate date]];
+        OWFieldDateTime *field4 = [[OWFieldDateTime alloc] initWithLabel:@"DateTime" andValue:[NSDate date]];
 		field4.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		
-		OWField *field5 = [[OWField alloc] initWithStyle:OWFieldStyleImage label:@"Image" value:nil];
+        OWFieldImage *field5 = [[OWFieldImage alloc] initWithLabel:@"Image" andValue:nil];
 		field5.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		
-		OWField *field6 = [[OWField alloc] initWithStyle:OWFieldStyleForm label:@"Form2" value:[self form2]];
+        OWFieldForm *field6 = [[OWFieldForm alloc] initWithLabel:@"Form2" andValue:[self form2]];
 		field6.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		
-		OWField *field7 = [[OWField alloc] initWithStyle:OWFieldStyleSwitch label:@"É ou não?" value:[NSNumber numberWithBool:NO]];
+		OWFieldSwitch *field7 = [[OWFieldSwitch alloc] initWithLabel:@"É ou não?" andValue:[NSNumber numberWithBool:NO]];
 		
-		OWField *field8 = [[OWField alloc] initWithStyle:OWFieldStyleList label:@"Unidade de medida" value:[NSNumber numberWithInt:1]];
+        OWFieldList *field8 = [[OWFieldList alloc] initWithLabel:@"Unidade" andValue:[NSNumber numberWithInt:1]];
 		field8.list = [NSArray arrayWithObjects:@"kg", @"lb", @"oz", nil];
 		
 		OWSection *section1 = [OWSection sectionWithFields:field1, field2, field6, field7, field8, nil];
@@ -110,10 +117,10 @@
 }
 
 - (OWForm *)form2 {
-	OWField *field1 = [[OWField alloc] initWithStyle:OWFieldStyleString label:@"Nome" value:@"Nada"];
+    OWFieldText *field1 = [[OWFieldText alloc] initWithLabel:@"Nome" andValue:@"Nada"];
 	[field1 setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 
-	OWField *field2 = [[OWField alloc] initWithStyle:OWFieldStyleString label:@"Sobrenome" value:@"Dinovo"];
+    OWFieldText *field2 = [[OWFieldText alloc] initWithLabel:@"Sobrenome" andValue:@"Dinovo"];
 	[field2 setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 	
 	OWSection *section1 = [[OWSection alloc] init];
