@@ -14,7 +14,7 @@
 @synthesize headerTitle, summary, fields, footerTitle;
 
 + (id)sectionWithField:(id)aField {
-	return self;
+	return [self sectionWithArrayOfFields:[NSArray arrayWithObject:aField]];
 }
 
 
@@ -37,7 +37,7 @@
 
 - (id)initWithFields:(OWField *)field vaList:(va_list)params
 {
-	if (self = [super init]) {
+	if (self == [super init]) {
 		fields = [[NSMutableArray alloc] init];
 		[fields addObject:field];
 

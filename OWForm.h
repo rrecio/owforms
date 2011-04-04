@@ -18,6 +18,7 @@
 #import "OWFieldList.h"
 #import "OWFieldForm.h"
 #import "OWFieldNotes.h"
+#import "OWFieldSwitch.h"
 
 @protocol OWFormDataSourceDelegate;
 
@@ -39,6 +40,9 @@
 @property(nonatomic, retain) NSString *cancelButtonTitle;
 @property(nonatomic, assign) id <OWFormDataSourceDelegate>delegate;
 
+- (void)addField:(OWField *)aField;
+- (void)addField:(OWField *)aField atIndexPath:(NSIndexPath *)indexPath;
+- (void)removeFieldAtIndexPath:(NSIndexPath *)indexPath;
 - (id)initWithFields:(NSArray *)fieldsArray;
 - (id)initWithStyle:(UITableViewStyle)style andFields:(NSArray *)fieldsArray;
 - (id)initWithSections:(OWSection *)firstSection, ... NS_REQUIRES_NIL_TERMINATION;

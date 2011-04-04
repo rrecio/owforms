@@ -34,15 +34,70 @@ static NSMutableDictionary *_imageCache;
 	return _imageCache;
 }
 
-#pragma mark -
-#pragma mark Initialization
+#pragma mark - 
+#pragma mark Fields management
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-    return YES;
+- (void)addField:(OWField *)aField {
+    OWSection *lastSection = [self.sections lastObject];
+    [self addField:aField atIndexPath:[NSIndexPath indexPathForRow:[lastSection.fields count] inSection:[self.sections count]-1]];
+}
+
+- (void)addField:(OWField *)aField atIndexPath:(NSIndexPath *)indexPath {
+    if (self.sections == nil) {
+        self.sections = [[NSMutableArray alloc] init];
+        [self.sections addObject:[OWSection sectionWithField:aField]];
+    } else {
+        if (indexPath.section < [self.sections count]) {
+            OWSection *section = [self.sections objectAtIndex:indexPath.section];
+            [section.fields addObject:aField];
+        } else {
+            [self.sections addObject:[OWSection sectionWithField:aField]];
+        }
+    }
+    [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationRight];
+}
+
+- (void)removeFieldAtIndexPath:(NSIndexPath *)indexPath {
+    OWSection *section = [self.sections objectAtIndex:indexPath.section];
+    if ([section.fields count] != 0) {
+        [section.fields removeObjectAtIndex:indexPath.row];
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+    }
+}
+
+- (OWField *)fieldForLabel:(NSString *)aLabel {
+    for (OWSection *section in self.sections) {
+        for (OWField *field in section.fields) {
+            if ([field.label isEqualToString:aLabel]) return field;
+        }
+    }
+    return nil;
+}
+
+- (OWField *)fieldAtIndexPath:(NSIndexPath *)indexPath {
+    OWField *field = nil;
+    if ([self.sections count] > indexPath.section) {
+        OWSection *section = [self.sections objectAtIndex:indexPath.section];
+        if ([section.fields count] > indexPath.row) {
+            field = [section.fields objectAtIndex:indexPath.row];
+        }
+    }
+    return field;
 }
 
 #pragma mark -
-#pragma mark Initialization
+#pragma mark View actions
+
+- (void)doSaveAction {
+	[delegate saveAction:self];
+}
+
+- (void)doCancelAction {
+	[delegate cancelAction];
+}
+
+#pragma mark -
+#pragma mark Initializers
 
 - (id)initWithFields:(NSArray *)fieldsArray {
 	return [self initWithStyle:UITableViewStylePlain andFields:fieldsArray];
@@ -96,7 +151,7 @@ static NSMutableDictionary *_imageCache;
 }
 
 #pragma mark -
-#pragma mark UIViewController lifecicle
+#pragma mark UIView lifecycle
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -123,12 +178,13 @@ static NSMutableDictionary *_imageCache;
 	
 }
 
-- (void)doSaveAction {
-	[delegate saveAction:self];
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	[self.tableView reloadData];
 }
-	
-- (void)doCancelAction {
-	[delegate cancelAction];
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    return YES;
 }
 
 #pragma mark -
@@ -154,9 +210,9 @@ static NSMutableDictionary *_imageCache;
 	
     NSString *CellIdentifier;
     
-    if (field.style == OWFieldStyleNotes)
+    if ([field isKindOfClass:[OWFieldNotes class]])
         CellIdentifier = @"Notes";
-    else if (field.style == OWFieldStyleSwitch)
+    else if ([field isKindOfClass:[OWFieldSwitch class]])
         CellIdentifier = @"CellSwitch";
     else
         CellIdentifier = @"Cell";
@@ -182,6 +238,7 @@ static NSMutableDictionary *_imageCache;
     return [field customizedCell:cell];
 }
 
+#pragma mark -
 #pragma mark Helper methods
 
 - (CGFloat)specialRowHeightForString:(NSString *)aString {
@@ -214,15 +271,13 @@ static NSMutableDictionary *_imageCache;
 	return altura;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:animated];
-	[self.tableView reloadData];
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	OWSection *section = [self.sections objectAtIndex:indexPath.section];
     currentField = [[section fields] objectAtIndex:indexPath.row];
-    [self.navigationController pushViewController:[currentField actionController] animated:YES];
+    UIViewController *controller = [currentField actionController];
+    if (controller != nil) {
+        [self.navigationController pushViewController:controller animated:YES];
+    }
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -239,9 +294,6 @@ static NSMutableDictionary *_imageCache;
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-}
-
-- (void)viewDidUnload {
 }
 
 - (void)dealloc {

@@ -24,6 +24,11 @@
 
 - (IBAction)chamaForm1:(id)sender {
 	if (!form) {
+        form = [[OWForm alloc] initWithStyle:UITableViewStyleGrouped];
+        form.title = @"Form Title :)";
+		form.delegate = self;
+		[form setShowSaveButton:YES];
+		[form setShowCancelButton:YES];
 
         OWFieldText *field1 = [[OWFieldText alloc] initWithLabel:@"Hello" andValue:@"World!"];
 		//field1.acessoryView = aView;
@@ -47,22 +52,21 @@
 		
         OWFieldList *field8 = [[OWFieldList alloc] initWithLabel:@"Unidade" andValue:[NSNumber numberWithInt:1]];
 		field8.list = [NSArray arrayWithObjects:@"kg", @"lb", @"oz", nil];
-		
-		OWSection *section1 = [OWSection sectionWithFields:field1, field2, field6, field7, field8, nil];
+		        
+        [form addField:field1];
+        [form addField:field2];
+        [form addField:field3];
+        [form addField:field4];
+        [form addField:field5];
+        [form addField:field6];
+        [form addField:field7];
+        [form addField:field8];
+        
+        OWSection *section1 = [form.sections lastObject];
 		section1.headerTitle = @"Ki legau!!!";
 		section1.summary = @"Isto é um sumario";
 		section1.footerTitle = @"Isto eh um rodape";
-		OWSection *section2 = [OWSection sectionWithFields:field3, field4, nil];
-		section2.headerTitle = @"DIMAIXXX!";
-		OWSection *section3 = [OWSection sectionWithFields:field5, nil];
-		section3.headerTitle = @"Madson";
-		
-		form = [[OWForm alloc] initWithStyle:UITableViewStyleGrouped andSections:section1, section2, section3, nil];
-		form.title = @"Form Title :)";
-		form.delegate = self;
-		[form setShowSaveButton:YES];
-		[form setShowCancelButton:YES];
-	}
+    }
 	
 	[self.navigationController pushViewController:form animated:YES];
 }
