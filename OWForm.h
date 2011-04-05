@@ -32,13 +32,13 @@
 	id <OWFormDataSourceDelegate>delegate;
 }
 
-@property(nonatomic, retain) NSArray *formFields;
-@property(nonatomic, retain) NSMutableArray *sections;
-@property(nonatomic) BOOL showSaveButton;
-@property(nonatomic) BOOL showCancelButton;
-@property(nonatomic, retain) NSString *saveButtonTitle;
-@property(nonatomic, retain) NSString *cancelButtonTitle;
-@property(nonatomic, assign) id <OWFormDataSourceDelegate>delegate;
+@property(nonatomic, retain)    NSArray *formFields;
+@property(nonatomic, retain)    NSMutableArray *sections;
+@property(nonatomic)            BOOL showSaveButton;
+@property(nonatomic)            BOOL showCancelButton;
+@property(nonatomic, retain)    NSString *saveButtonTitle;
+@property(nonatomic, retain)    NSString *cancelButtonTitle;
+@property(nonatomic, assign)    id <OWFormDataSourceDelegate>delegate;
 
 - (void)addField:(OWField *)aField;
 - (void)addField:(OWField *)aField atIndexPath:(NSIndexPath *)indexPath;

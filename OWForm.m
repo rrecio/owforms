@@ -223,13 +223,13 @@ static NSMutableDictionary *_imageCache;
     {
 		if ([field isKindOfClass:[OWFieldNotes class]])
         {
-			cell = [[OWTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+			cell = [[[OWTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
 			cell.textLabel.numberOfLines = 1000;
 			cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:16];
 		}
         else
         {
-			cell = [[OWTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+            cell = [[[OWTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
 		}
     }
 		
@@ -254,21 +254,21 @@ static NSMutableDictionary *_imageCache;
 #pragma mark Table view delegate
 
 - (CGFloat)tableView:(UITableView *)aTableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	CGFloat altura;
+	CGFloat height;
 	OWSection *section = [self.sections objectAtIndex:indexPath.section];
     currentField = [[section fields] objectAtIndex:indexPath.row];
 	
-    if (currentField.style == OWFieldStyleNotes) {
-		altura = [self specialRowHeightForString:(NSString *)currentField.value] + 20;
+    if ([currentField isKindOfClass:[OWFieldNotes class]]) {
+		height = [self specialRowHeightForString:(NSString *)currentField.value] + 20;
     } else {
-        altura = 44;
+        height = 44;
     }
 	
-	if (altura < 44) {
-		altura = 44;
+	if (height < 44) {
+		height = 44;
 	}
 	
-	return altura;
+	return height;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

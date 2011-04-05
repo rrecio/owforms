@@ -11,7 +11,6 @@
 
 @implementation OWField
 
-@synthesize style;
 @synthesize label;
 @synthesize value;
 @synthesize accessoryType;
@@ -19,12 +18,14 @@
 @synthesize startDate;
 @synthesize endDate;
 @synthesize list;
+@synthesize required;
 
 - (id)initWithLabel:(NSString *)aLabel andValue:(NSObject *)aValue {
     self = [super init];
     if (self != nil) {
         self.label = aLabel;
         self.value = aValue;
+        self.required = NO;
     }
     return self;
 }
@@ -41,6 +42,14 @@
     cell.accessoryView = self.accessoryView;
 
     return cell;
+}
+
+- (BOOL)isEmpty {
+    if (self.value != nil && [self.value isKindOfClass:[NSString class]]) {
+        NSString *aValue = [self.value stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        return (aValue == nil || [aValue isEqualToString:@""]);
+    }
+    return self.value == nil;
 }
 
 - (void)dealloc {

@@ -7,6 +7,7 @@
 //
 
 #import "OWFieldForm.h"
+#import "OWForm.h"
 
 @implementation OWFieldForm
 
@@ -18,6 +19,17 @@
     cell = [super customizedCell:cell];
     
     return cell;
+}
+
+- (BOOL)isEmpty {
+    BOOL result = NO;
+    OWForm *form = self.value;
+    for (OWSection *section in form.sections) {
+        for (OWField *field in section.fields) {
+            if ([field isEmpty]) result = YES;
+        }
+    }
+    return result;
 }
 
 @end

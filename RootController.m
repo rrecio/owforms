@@ -66,6 +66,15 @@
 		section1.headerTitle = @"Ki legau!!!";
 		section1.summary = @"Isto é um sumario";
 		section1.footerTitle = @"Isto eh um rodape";
+        
+        [field1 release];
+        [field2 release];
+        [field3 release];
+        [field4 release];
+        [field5 release];
+        [field6 release];
+        [field7 release];
+        [field8 release];
     }
 	
 	[self.navigationController pushViewController:form animated:YES];
@@ -75,62 +84,27 @@
 #pragma mark OWForm delegates
 
 - (void)saveAction:(OWForm *)f {	
-	NSString *texto = [[NSString alloc] init];
+	NSString *texto = @"";
 	
 	for (OWSection *s in f.sections)
 		for (OWField *f in s.fields) {
-			switch (f.style) {
-				case OWFieldStyleNumber: {
-					texto = [texto stringByAppendingFormat:@"\n%@", [(NSNumber *)f.value stringValue]];
-					break;
-				}
-				case OWFieldStyleDate: {
-					NSDateFormatter *df = [[NSDateFormatter alloc] init];
-					[df setDateStyle:NSDateFormatterShortStyle];
-					[df setTimeStyle:NSDateFormatterNoStyle];
-					texto = [texto stringByAppendingFormat:@"\n%@", [df stringFromDate:(NSDate *)f.value]];
-					[df release];
-					break;
-				}
-				case OWFieldStyleDateTime: {
-					NSDateFormatter *df = [[NSDateFormatter alloc] init];
-					[df setDateStyle:NSDateFormatterShortStyle];
-					[df setTimeStyle:NSDateFormatterShortStyle];
-					texto = [texto stringByAppendingFormat:@"\n%@", [df stringFromDate:(NSDate *)f.value]];
-					[df release];
-					break;
-				}
-				case OWFieldStyleString: {
-					texto = [texto stringByAppendingFormat:@"\n%@", (NSString *)f.value];
-					break;
-				}
-				case OWFieldStyleImage: {
-					texto = [texto stringByAppendingFormat:@"\n%@", (NSString *)f.value];
-					break;
-				}
-				case OWFieldStyleSwitch: {
-					texto = [texto stringByAppendingFormat:@"\nSwitch: %@", f.value];
-					break;
-				}
-				default:
-					break;
-			}
+            texto = [texto stringByAppendingFormat:@"%@ \n", [f.value description]];
 		}
 	[textView setText:texto];
 	[self.navigationController popViewControllerAnimated:YES];
 }
 
 - (OWForm *)form2 {
-    OWFieldText *field1 = [[OWFieldText alloc] initWithLabel:@"Nome" andValue:@"Nada"];
+    OWFieldText *field1 = [[[OWFieldText alloc] initWithLabel:@"Nome" andValue:@"Nada"] autorelease];
 	[field1 setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 
-    OWFieldText *field2 = [[OWFieldText alloc] initWithLabel:@"Sobrenome" andValue:@"Dinovo"];
+    OWFieldText *field2 = [[[OWFieldText alloc] initWithLabel:@"Sobrenome" andValue:@"Dinovo"] autorelease];
 	[field2 setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 	
-	OWSection *section1 = [[OWSection alloc] init];
+	OWSection *section1 = [[[OWSection alloc] init] autorelease];
 	section1.fields = [NSArray arrayWithObjects:field1, field2, nil];
 	
-	OWForm *form2 = [[OWForm alloc] initWithStyle:UITableViewStyleGrouped];
+	OWForm *form2 = [[[OWForm alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
 	form2.title = @"Novo form";
 	form2.sections = [NSArray arrayWithObjects:section1, nil];
 	

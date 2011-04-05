@@ -30,6 +30,7 @@
         
         [cell setSwitchView:switchView];
         [cell addSubview:switchView];
+        [switchView release];
     }
 
     return cell;

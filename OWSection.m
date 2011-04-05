@@ -29,9 +29,9 @@
 }
 
 + (id)sectionWithArrayOfFields:(NSArray *)fieldsArray {
-	id s = [[[self alloc] init] autorelease];
-	[s setFields:[fieldsArray mutableCopy]];
-	return s;
+	id s = [[self alloc] init];
+	[s setFields:[[fieldsArray mutableCopy] autorelease]];
+	return [s autorelease];
 }
 
 

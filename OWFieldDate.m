@@ -19,13 +19,11 @@
 
 - (OWTableViewCell *)customizedCell:(OWTableViewCell *)cell {
     cell = [super customizedCell:cell];
-    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterShortStyle];
     [formatter setTimeStyle:NSDateFormatterNoStyle];
     cell.detailTextLabel.text = [formatter stringFromDate:self.value];
     [formatter release];
-    
     return cell;
 }
 
