@@ -458,6 +458,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BASE_PRODUCT_NAME = OWForms;
 				DSTROOT = /tmp/OWForms.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -466,9 +467,16 @@
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				HEADERS_FOLDER_PATH = /../owforms/;
+				HEADER_SEARCH_PATHS = (
+					/usr/include,
+					"\"$(CONFIGURATION_BUILD_DIR)/../owforms\"",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_LDFLAGS = "-ObjC";
+				PRIVATE_HEADERS_FOLDER_PATH = "$(HEADERS_FOLDER_PATH)$(BASE_PRODUCT_NAME)private";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(HEADERS_FOLDER_PATH)$(BASE_PRODUCT_NAME)";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -477,14 +485,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BASE_PRODUCT_NAME = OWForms;
 				DSTROOT = /tmp/OWForms.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OWForms/OWForms-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				HEADERS_FOLDER_PATH = /../owforms/;
+				HEADER_SEARCH_PATHS = (
+					/usr/include,
+					"\"$(CONFIGURATION_BUILD_DIR)/../owforms\"",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_LDFLAGS = "-ObjC";
+				PRIVATE_HEADERS_FOLDER_PATH = "$(HEADERS_FOLDER_PATH)$(BASE_PRODUCT_NAME)private";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(HEADERS_FOLDER_PATH)$(BASE_PRODUCT_NAME)";
 				SDKROOT = iphoneos;
 			};
 			name = Release;
