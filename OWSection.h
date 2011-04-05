@@ -6,8 +6,6 @@
 //  Copyright 2010 Owera Studio. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 @class OWField;
 
 @interface OWSection : NSObject {

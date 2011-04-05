@@ -6,8 +6,6 @@
 //  Copyright 2010 Owera Studio. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 #import "OWField.h"
 #import "OWSection.h"
 #import "OWFieldText.h"
