@@ -11,4 +11,6 @@
 @interface OWFieldText : OWField {
 }
 
+@property (nonatomic) BOOL isPassword;
+
 @end

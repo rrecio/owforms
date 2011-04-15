@@ -7,7 +7,7 @@
 //
 
 #import "StringController.h"
-#import "OWField.h"
+#import "OWFieldText.h"
 
 @implementation StringController
 
@@ -57,7 +57,7 @@
 	[super viewWillAppear:animated];
 	[textField setText:(NSString *)field.value];
 	textField.placeholder = NSLocalizedString(@"Digite aqui", nil);
-	
+	if (field.isPassword) textField.secureTextEntry = YES;
 	[self.tableView reloadData];
 }
 

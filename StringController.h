@@ -8,15 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@class OWField;
+@class OWFieldText;
 
 @interface StringController : UITableViewController {
 	UITableViewCell *tableViewCell;
 	UITextField *textField;
-	OWField *field;
+	OWFieldText *field;
 }
 
-@property (nonatomic, retain) OWField *field;
+@property (nonatomic, retain) OWFieldText *field;
 @property (nonatomic, retain) IBOutlet UITextField *textField;
 @property (nonatomic, retain) IBOutlet UITableViewCell *tableViewCell;
 

@@ -11,6 +11,8 @@
 
 @implementation OWFieldText
 
+@synthesize isPassword;
+
 - (UIViewController *)actionController {
     StringController *controller = [[StringController alloc] initWithNibName:@"StringController" bundle:nil];
     controller.field = self;
@@ -21,7 +23,7 @@
     cell = [super customizedCell:cell];
 
     cell.detailTextLabel.text = self.value;
-    
+
     return cell;
 }
 
