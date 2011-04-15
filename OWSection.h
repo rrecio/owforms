@@ -17,9 +17,11 @@
 @property(nonatomic, retain) NSString *footerTitle;
 @property(nonatomic, retain) NSString *summary;
 
++ (id)section;
 + (id)sectionWithField:(id)aField;
 + (id)sectionWithFields:(id)firstField, ... NS_REQUIRES_NIL_TERMINATION;
 + (id)sectionWithArrayOfFields:(NSArray *)fieldsArray;
 - (id)initWithFields:(OWField *)field vaList:(va_list)params;
+- (void)addField:(OWField *)aField;
 
 @end

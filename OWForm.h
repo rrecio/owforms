@@ -49,7 +49,7 @@
 - (void)doSaveAction;
 - (void)doCancelAction;
 + (NSMutableDictionary *)imageCache;
-
+- (OWField *)fieldForLabel:(NSString *)aLabel;
 @end
 
 

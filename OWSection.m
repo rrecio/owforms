@@ -13,6 +13,10 @@
 
 @synthesize headerTitle, summary, fields, footerTitle;
 
++ (id)section {
+    return [[[self alloc] init] autorelease];
+}
+
 + (id)sectionWithField:(id)aField {
 	return [self sectionWithArrayOfFields:[NSArray arrayWithObject:aField]];
 }
@@ -48,6 +52,11 @@
 		}
 	}
 	return self;
+}
+
+- (void)addField:(OWField *)aField {
+    if (self.fields == nil) self.fields = [NSMutableArray array];
+    [self.fields addObject:aField];
 }
 
 @end

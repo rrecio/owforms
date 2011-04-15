@@ -20,6 +20,14 @@
 @synthesize list;
 @synthesize required;
 
++ (id)fieldWithLabel:(NSString *)aLabel {
+    return [self fieldWithLabel:aLabel andValue:nil];
+}
+
++ (id)fieldWithLabel:(NSString *)aLabel andValue:(NSObject *)aValue {
+    return [[[self alloc] initWithLabel:aLabel andValue:aValue] autorelease];
+}
+
 - (id)initWithLabel:(NSString *)aLabel andValue:(NSObject *)aValue {
     self = [super init];
     if (self != nil) {

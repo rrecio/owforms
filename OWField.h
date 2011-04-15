@@ -21,6 +21,8 @@
 @property(nonatomic, retain)    NSArray *list;
 @property(nonatomic)            BOOL required;
 
++ (id)fieldWithLabel:(NSString *)aLabel;
++ (id)fieldWithLabel:(NSString *)aLabel andValue:(NSObject *)aValue;
 - (id)initWithLabel:(NSString *)aLabel andValue:(NSObject *)numberValue;
 - (UIViewController *)actionController;
 - (OWTableViewCell *)customizedCell:(OWTableViewCell *)cell;
