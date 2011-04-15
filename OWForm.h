@@ -38,6 +38,8 @@
 @property(nonatomic, retain)    NSString *cancelButtonTitle;
 @property(nonatomic, assign)    id <OWFormDataSourceDelegate>delegate;
 
+- (void)addDataFromDictionary:(NSDictionary *)dict;
+- (NSDictionary *)fieldsDictionary;
 - (void)addField:(OWField *)aField;
 - (void)addField:(OWField *)aField atIndexPath:(NSIndexPath *)indexPath;
 - (void)removeFieldAtIndexPath:(NSIndexPath *)indexPath;

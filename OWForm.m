@@ -29,6 +29,26 @@ static NSMutableDictionary *_imageCache;
 @synthesize saveButtonTitle;
 @synthesize cancelButtonTitle;
 
+- (void)addDataFromDictionary:(NSDictionary *)dict {
+    NSEnumerator *enumerator = [dict keyEnumerator];
+    NSString *aLabel;
+    while((aLabel = [enumerator nextObject])) {
+        OWField *field = [self fieldForLabel:aLabel];
+        field.value = [dict objectForKey:aLabel];
+    }
+}
+
+- (NSDictionary *)fieldsDictionary {
+    NSMutableDictionary *fieldsDict = [NSMutableDictionary dictionary];
+    for (OWSection *aSection in self.sections) {
+        for (OWField *aField in aSection.fields) {
+            if (aField.value != nil)
+                [fieldsDict setObject:aField.value forKey:aField.label];
+        }
+    }
+    return fieldsDict;
+}
+
 + (NSMutableDictionary *)imageCache {
 	if (_imageCache == nil) _imageCache = [[NSMutableDictionary alloc] init];
 	return _imageCache;
