@@ -249,7 +249,7 @@ static NSMutableDictionary *_imageCache;
 		}
         else
         {
-            cell = [[[OWTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+            cell = [[[OWTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
 		}
     }
 		

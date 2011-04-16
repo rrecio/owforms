@@ -19,7 +19,7 @@
 - (OWTableViewCell *)customizedCell:(OWTableViewCell *)cell {
     cell = [super customizedCell:cell];
         
-    if ([self.value intValue] >= 0)
+    if (self.value != nil)
         cell.detailTextLabel.text = [self.list objectAtIndex:[self.value intValue]];
     else
         cell.detailTextLabel.text = @"Selecione";
