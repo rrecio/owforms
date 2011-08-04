@@ -22,7 +22,9 @@
 	self.navigationItem.title = NSLocalizedString(@"Editando", nil);
 	
 	// Done Button
-	UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"OK", nil)
+    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Cancelar" style:UIBarButtonItemStyleBordered target:self action:@selector(cancelar)] autorelease];
+    
+    doneButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"OK", nil)
 																   style:UIBarButtonItemStyleDone
 																  target:self
 																  action:@selector(doneAction:)];
@@ -33,6 +35,10 @@
 	self.navigationItem.hidesBackButton = YES;
 	
 	return self;
+}
+
+- (void)cancelar {
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)tf {
@@ -114,17 +120,31 @@
 }
 
 - (void)doneAction:(id)sender {
-	NSRange range = [textField.text rangeOfString:@","];
-	NSString *texto = textField.text;
+    
+    NSRange range = [textField.text rangeOfString:@","];
+    NSString *texto = textField.text;
+    
+    [texto stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    if (texto == nil || [texto isEqualToString:@""]) {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Campos nulos", nil)
+														message:NSLocalizedString(@"Você precisa preencher os campos para continuar.", nil)
+													   delegate:self
+											  cancelButtonTitle:nil
+											  otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
+		[alert show];
+		[alert release];
+    }else{
 	
-	if (range.location != NSNotFound)
-		texto = [texto stringByReplacingCharactersInRange:range withString:@"."];
+        if (range.location != NSNotFound)
+            texto = [texto stringByReplacingCharactersInRange:range withString:@"."];
 	
-	NSLog(@"Numero Valor: %0.3f", [texto floatValue]);
+        //NSLog(@"Numero Valor: %0.3f", [texto floatValue]);
 	
-	field.value = [NSNumber numberWithFloat:[texto floatValue]];
+        field.value = [NSNumber numberWithFloat:[texto floatValue]];
 
-	[self.navigationController popViewControllerAnimated:YES];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tv numberOfRowsInSection:(NSInteger)section {
@@ -165,6 +185,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.allowsSelection = NO;
 }
 
 - (void)didReceiveMemoryWarning {

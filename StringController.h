@@ -21,5 +21,6 @@
 @property (nonatomic, retain) IBOutlet UITableViewCell *tableViewCell;
 
 - (void)doneAction:(id)sender;
+- (void)cancelar;
 
 @end

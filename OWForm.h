@@ -40,6 +40,7 @@
 
 - (void)addDataFromDictionary:(NSDictionary *)dict;
 - (NSDictionary *)fieldsDictionary;
++ (NSArray *)keys;
 - (void)addField:(OWField *)aField;
 - (void)addField:(OWField *)aField atIndexPath:(NSIndexPath *)indexPath;
 - (void)removeFieldAtIndexPath:(NSIndexPath *)indexPath;

@@ -19,6 +19,8 @@
 @synthesize endDate;
 @synthesize list;
 @synthesize required;
+@synthesize keyboardType;
+@synthesize capitalizationType;
 
 + (id)fieldWithLabel:(NSString *)aLabel {
     return [self fieldWithLabel:aLabel andValue:nil];
@@ -34,13 +36,21 @@
         self.label = aLabel;
         self.value = aValue;
         self.required = NO;
+        self.keyboardType = UIKeyboardTypeDefault;
+        self.capitalizationType = UITextAutocapitalizationTypeWords;
+        
+        _actionController = nil;
     }
     return self;
 }
 
+- (void)setActionController:(UIViewController *)controller {
+    _actionController = [controller retain];
+}
+
 - (UIViewController *)actionController {
-    // subclass must implement this
-    return nil;
+    [_actionController performSelector:@selector(setField:) withObject:self];
+    return _actionController;
 }
 
 - (OWTableViewCell *)customizedCell:(OWTableViewCell *)cell {
@@ -62,6 +72,7 @@
 
 - (void)dealloc {
     [super dealloc];
+    [_actionController release];
 }
 
 

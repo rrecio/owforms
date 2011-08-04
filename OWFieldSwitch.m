@@ -10,6 +10,8 @@
 
 @implementation OWFieldSwitch
 
+@synthesize switchView;
+
 - (UIViewController *)actionController {
     return nil;
 }
@@ -22,16 +24,17 @@
 
     if (cell.switchView == nil)
     {
-        UISwitch *switchView = nil;
-        switchView = [[UISwitch alloc] initWithFrame:CGRectMake(208, 8, 95, 8)];
-        switchView.on = [self.value boolValue];
-        switchView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
-        [switchView addTarget:self action:@selector(changeSwitch:) forControlEvents:UIControlEventValueChanged];
+        UISwitch *aSwitch = nil;
+        aSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(200, 8, 95, 8)];
+        aSwitch.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin;
+        [aSwitch addTarget:self action:@selector(changeSwitch:) forControlEvents:UIControlEventValueChanged];
         
-        [cell setSwitchView:switchView];
-        [cell addSubview:switchView];
-        [switchView release];
+        [cell setSwitchView:aSwitch];
+        [cell.contentView addSubview:aSwitch];
+        [aSwitch release];
     }
+
+    cell.switchView.on = [self.value boolValue];
 
     return cell;
 }

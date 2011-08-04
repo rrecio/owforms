@@ -16,11 +16,17 @@
 #pragma mark Initialization
 
 - (id)initWithField:(OWField *)field {
-    if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
-		currentField = [field retain];
-		list = currentField.list;
-		selectedIndex = [(NSNumber *)currentField.value intValue];
-    }
+    self = [super initWithStyle:UITableViewStyleGrouped];
+
+    currentField = [field retain];
+    
+    list = currentField.list;
+
+    if (currentField.value == nil)
+        currentField.value = [NSNumber numberWithInt:-1];
+    
+    selectedIndex = [(NSNumber *)currentField.value intValue];
+
     return self;
 }
 
@@ -75,6 +81,8 @@
 	
 	if (indexPath.row == selectedIndex)
 		cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    else
+        cell.accessoryType = UITableViewCellAccessoryNone;
     
     return cell;
 }

@@ -13,7 +13,8 @@
 @interface NumberController : UITableViewController {
 	IBOutlet UITableViewCell *tableViewCell;
 	IBOutlet UITextField *textField;
-	
+	UIBarButtonItem *doneButton;
+    
 	int decimalPlaces;
 	
 	OWField *field;
@@ -25,5 +26,6 @@
 
 - (IBAction)valueChanged:(id)sender;
 - (void)doneAction:(id)sender;
+- (void)cancelar;
 
 @end

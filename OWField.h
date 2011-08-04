@@ -10,6 +10,8 @@
 #import "OWTableViewCell.h"
 
 @interface OWField : NSObject {
+    @private
+    UIViewController *_actionController;
 }
 
 @property(nonatomic, retain)    NSString *label;
@@ -20,11 +22,14 @@
 @property(nonatomic, retain)    NSDate *endDate;
 @property(nonatomic, retain)    NSArray *list;
 @property(nonatomic)            BOOL required;
+@property (nonatomic) UIKeyboardType keyboardType;
+@property (nonatomic) UITextAutocapitalizationType capitalizationType;
 
 + (id)fieldWithLabel:(NSString *)aLabel;
 + (id)fieldWithLabel:(NSString *)aLabel andValue:(NSObject *)aValue;
 - (id)initWithLabel:(NSString *)aLabel andValue:(NSObject *)numberValue;
 - (UIViewController *)actionController;
+- (void)setActionController:(UIViewController *)controller;
 - (OWTableViewCell *)customizedCell:(OWTableViewCell *)cell;
 - (BOOL)isEmpty;
 

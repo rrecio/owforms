@@ -19,6 +19,7 @@
 
 @property (nonatomic, retain) OWField *field;
 
+- (void)cancelar;
 - (void)valueChanged:(id)sender;
 - (void)doneAction:(id)sender;
 

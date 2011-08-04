@@ -16,33 +16,12 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
 	
-	tableView = [[UITableView alloc] initWithFrame:[self.view bounds] style:UITableViewStyleGrouped];
-	tableView.delegate = self;
-	tableView.dataSource = self;
-	[self.view addSubview:tableView];
-	
-	datePicker = [[UIDatePicker alloc] init];
-	datePicker.datePickerMode = UIDatePickerModeDate;
-	[datePicker addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
-
-	if ([field startDate] != nil)
-		datePicker.minimumDate = [field startDate];
-	
-	if ([field endDate] != nil)
-		datePicker.maximumDate = [field endDate];
-	
-	dateFormatter = [[NSDateFormatter alloc] init];
-	[dateFormatter setDateStyle:NSDateFormatterShortStyle];
-	[dateFormatter setTimeStyle:NSDateFormatterNoStyle];
-	
-	// Save Button
-	UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"OK", nil) style:UIBarButtonItemStyleDone target:self action:@selector(doneAction:)];
-	self.navigationItem.rightBarButtonItem = doneButton;
-	[doneButton release];
-	
-	self.navigationItem.hidesBackButton = YES;
 		
 	return self;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    return YES;
 }
 
 - (void)valueChanged:(id)sender {
@@ -96,43 +75,58 @@
 	NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
 	UITableViewCell *targetCell = [tableView cellForRowAtIndexPath:indexPath];
 	datePicker.date = [dateFormatter dateFromString:targetCell.detailTextLabel.text];
-	
-	// check if our date picker is already on screen
-	if (datePicker.superview == nil) {
-		[self.view addSubview: datePicker];
-		
-		// size up the picker view to our screen and compute the start/end frame origin for our slide up animation
-		// compute the start frame
-		CGRect screenRect = [self.view bounds];
-		CGSize pickerSize = [datePicker sizeThatFits:CGSizeZero];
-		CGRect startRect = CGRectMake(0.0,
-									  screenRect.origin.y + screenRect.size.height,
-									  pickerSize.width, pickerSize.height);
-		datePicker.frame = startRect;
-		
-		// compute the end frame
-		CGRect pickerRect = CGRectMake(0.0,
-									   screenRect.origin.y + screenRect.size.height - pickerSize.height,
-									   pickerSize.width, pickerSize.height);
-		// start the slide up animation
-		[UIView beginAnimations:nil context:NULL];
-		[UIView setAnimationDuration:0.3];
-		
-		// we need to perform some post operations after the animation is complete
-		[UIView setAnimationDelegate:self];
-		
-		datePicker.frame = pickerRect;
-		
-		// shrink the table vertical size to make room for the date picker
-		//CGRect newFrame = tableView.frame;
-		//newFrame.size.height -= datePicker.frame.size.height;
-		//tableView.frame = newFrame;
-		[UIView commitAnimations];
-	}
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Cancelar" style:UIBarButtonItemStyleBordered target:self action:@selector(cancelar)] autorelease];
+    
+    CGRect screenRect = CGRectMake(0, 0, 768, 1024);
+    
+	tableView = [[UITableView alloc] initWithFrame:screenRect style:UITableViewStyleGrouped];
+	tableView.delegate = self;
+	tableView.dataSource = self;
+    tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+	[self.view addSubview:tableView];
+	
+	datePicker = [[UIDatePicker alloc] init];
+	datePicker.datePickerMode = UIDatePickerModeDate;
+    datePicker.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+	[datePicker addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
+    
+    if (field.value == nil)
+        if (field.startDate)
+            field.value = field.startDate;
+        else
+            field.value = [NSDate date];
+    
+	if ([field startDate] != nil)
+		datePicker.minimumDate = [field startDate];
+	
+	if ([field endDate] != nil)
+		datePicker.maximumDate = [field endDate];
+	
+	dateFormatter = [[NSDateFormatter alloc] init];
+	[dateFormatter setDateStyle:NSDateFormatterShortStyle];
+	[dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+    
+    //CGRect screenRect = CGRectMake(0, 0, 768, 768);
+    CGSize pickerSize = [datePicker sizeThatFits:CGSizeZero];
+    datePicker.frame = CGRectMake(0, screenRect.size.height - pickerSize.height, screenRect.size.width, pickerSize.height);
+    [self.view addSubview: datePicker];
+    
+	// Save Button
+	UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"OK", nil) style:UIBarButtonItemStyleDone target:self action:@selector(doneAction:)];
+	self.navigationItem.rightBarButtonItem = doneButton;
+	[doneButton release];
+	
+	self.navigationItem.hidesBackButton = YES;
+}
+
+- (void)cancelar {
+    field.value = nil;
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

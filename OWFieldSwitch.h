@@ -9,6 +9,9 @@
 #import "OWField.h"
 
 @interface OWFieldSwitch : OWField {
+    UISwitch *switchView;
 }
+
+@property (nonatomic, retain) UISwitch *switchView;
 
 @end

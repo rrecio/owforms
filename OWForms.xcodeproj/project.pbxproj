@@ -164,6 +164,7 @@
 				F3E61881124E80240034F236 /* OWSection.m */,
 				5B7B6B78125184CE0003EE50 /* OWTableViewCell.h */,
 				5B7B6B79125184CE0003EE50 /* OWTableViewCell.m */,
+				5B62B66012566B1A003764A2 /* ActionControllers */,
 				F33EB9611347BDC600CD4196 /* Fields */,
 			);
 			name = Sources;
@@ -267,7 +268,6 @@
 				F33EB96F1347BFFB00CD4196 /* OWFieldList.m */,
 				F33EB9711347D72C00CD4196 /* OWFieldSwitch.h */,
 				F33EB9721347D72C00CD4196 /* OWFieldSwitch.m */,
-				5B62B66012566B1A003764A2 /* ActionControllers */,
 			);
 			name = Fields;
 			sourceTree = "<group>";

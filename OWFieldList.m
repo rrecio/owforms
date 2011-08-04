@@ -20,9 +20,12 @@
     cell = [super customizedCell:cell];
         
     if (self.value != nil)
-        cell.detailTextLabel.text = [self.list objectAtIndex:[self.value intValue]];
+        if ([self.value intValue] < [self.list count])
+            cell.detailTextLabel.text = [self.list objectAtIndex:[self.value intValue]];
+        else
+            cell.detailTextLabel.text = nil;
     else
-        cell.detailTextLabel.text = @"Selecione";
+        cell.detailTextLabel.text = nil;
 
     return cell;
 }

@@ -30,9 +30,10 @@ static NSMutableDictionary *_imageCache;
 @synthesize cancelButtonTitle;
 
 - (void)addDataFromDictionary:(NSDictionary *)dict {
-    NSEnumerator *enumerator = [dict keyEnumerator];
-    NSString *aLabel;
-    while((aLabel = [enumerator nextObject])) {
+    NSArray *keys = [dict allKeys];
+
+    for (NSString *aLabel in keys)
+    {
         OWField *field = [self fieldForLabel:aLabel];
         field.value = [dict objectForKey:aLabel];
     }
@@ -40,13 +41,23 @@ static NSMutableDictionary *_imageCache;
 
 - (NSDictionary *)fieldsDictionary {
     NSMutableDictionary *fieldsDict = [NSMutableDictionary dictionary];
-    for (OWSection *aSection in self.sections) {
-        for (OWField *aField in aSection.fields) {
+    for (OWSection *aSection in self.sections)
+        for (OWField *aField in aSection.fields)
             if (aField.value != nil)
                 [fieldsDict setObject:aField.value forKey:aField.label];
-        }
-    }
     return fieldsDict;
+}
+
++ (NSArray *)keys {
+    NSMutableArray *arr = [[NSArray array] mutableCopy];
+    OWForm *form = [[self alloc] init];
+    
+    for (OWSection *aSection in form.sections)
+        for (OWField *aField in aSection.fields)
+            [arr addObject:[aField label]];
+    
+    [form release];
+    return arr;
 }
 
 + (NSMutableDictionary *)imageCache {
@@ -177,7 +188,7 @@ static NSMutableDictionary *_imageCache;
 	[super viewDidLoad];
 	
 	if (showSaveButton) {
-		if (!saveButtonTitle) saveButtonTitle = @"Save";
+		if (!saveButtonTitle) saveButtonTitle = @"Salvar";
 		UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:saveButtonTitle
 																	   style:UIBarButtonItemStyleDone
 																	  target:self
@@ -187,7 +198,7 @@ static NSMutableDictionary *_imageCache;
 	}
 
 	if (showCancelButton) {
-		if (!cancelButtonTitle) cancelButtonTitle = @"Cancel";
+		if (!cancelButtonTitle) cancelButtonTitle = @"Cancelar";
 		UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:cancelButtonTitle
 																	   style:UIBarButtonItemStyleBordered
 																	  target:self
@@ -205,6 +216,21 @@ static NSMutableDictionary *_imageCache;
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
     return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        OWSection *section = [self.sections objectAtIndex:indexPath.section];
+        currentField = [[section fields] objectAtIndex:indexPath.row];
+        currentField.value = nil;
+        
+        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return @"Apagar informação";
 }
 
 #pragma mark -
