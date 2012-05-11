@@ -28,6 +28,8 @@ static NSMutableDictionary *_imageCache;
 @synthesize showCancelButton;
 @synthesize saveButtonTitle;
 @synthesize cancelButtonTitle;
+@synthesize cellsBackgroundView;
+@synthesize tableViewStyle;
 
 - (void)addDataFromDictionary:(NSDictionary *)dict {
     NSArray *keys = [dict allKeys];
@@ -66,14 +68,33 @@ static NSMutableDictionary *_imageCache;
 }
 
 #pragma mark - 
-#pragma mark Fields management
+#pragma mark Fields and Sections management
+
+- (void)addSection:(OWSection *)section {
+    OWSection *lastSection = [self.sections lastObject];
+    [self addSection:section atIndexPath:[NSIndexPath indexPathForRow:[lastSection.fields count] inSection:[self.sections count]-1]];
+}
+
+- (void)addSection:(OWSection *)section 
+       atIndexPath:(NSIndexPath *)indexPath 
+{
+    if (self.sections == nil) {
+        self.sections = [[NSMutableArray alloc] init];
+        [self.sections addObject:section];
+    } else {
+        [self.sections addObject:section];
+    }
+    [self.tableView insertSections:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationRight];    
+}
 
 - (void)addField:(OWField *)aField {
     OWSection *lastSection = [self.sections lastObject];
     [self addField:aField atIndexPath:[NSIndexPath indexPathForRow:[lastSection.fields count] inSection:[self.sections count]-1]];
 }
 
-- (void)addField:(OWField *)aField atIndexPath:(NSIndexPath *)indexPath {
+- (void)addField:(OWField *)aField 
+     atIndexPath:(NSIndexPath *)indexPath 
+{
     if (self.sections == nil) {
         self.sections = [[NSMutableArray alloc] init];
         [self.sections addObject:[OWSection sectionWithField:aField]];
@@ -186,7 +207,7 @@ static NSMutableDictionary *_imageCache;
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	
+	    
 	if (showSaveButton) {
 		if (!saveButtonTitle) saveButtonTitle = @"Salvar";
 		UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:saveButtonTitle
@@ -206,7 +227,6 @@ static NSMutableDictionary *_imageCache;
 		self.navigationItem.leftBarButtonItem = cancelButton;
 		[cancelButton release];
 	}
-	
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -254,32 +274,19 @@ static NSMutableDictionary *_imageCache;
 	OWSection *section = (OWSection *)[self.sections objectAtIndex:indexPath.section];
 	OWField *field = (OWField *)[section.fields objectAtIndex:indexPath.row];	
 	
-    NSString *CellIdentifier;
+    OWTableViewCell *cell = (OWTableViewCell *)[tableView dequeueReusableCellWithIdentifier:field.cellIdentifier];
+
+    // Instantiate cell if needed, depending on the field type
+    if (cell == nil) cell = [field cellInstance];
     
-    if ([field isKindOfClass:[OWFieldNotes class]])
-        CellIdentifier = @"Notes";
-    else if ([field isKindOfClass:[OWFieldSwitch class]])
-        CellIdentifier = @"CellSwitch";
-    else
-        CellIdentifier = @"Cell";
-
-    OWTableViewCell *cell = (OWTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-
-    if (cell == nil)
-    {
-		if ([field isKindOfClass:[OWFieldNotes class]])
-        {
-			cell = [[[OWTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-			cell.textLabel.numberOfLines = 1000;
-			cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:16];
-		}
-        else
-        {
-            cell = [[[OWTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-		}
+    // Set up the cell's backgroundView
+    if (field.backgroundView) {
+        cell.backgroundView = field.backgroundView;
+    } else {
+        if (self.cellsBackgroundView) {
+            cell.backgroundView = self.cellsBackgroundView;
+        }
     }
-		
-    // Configure the cell...
 
     return [field customizedCell:cell];
 }
@@ -287,34 +294,14 @@ static NSMutableDictionary *_imageCache;
 #pragma mark -
 #pragma mark Helper methods
 
-- (CGFloat)specialRowHeightForString:(NSString *)aString {
-	CGSize maximumLabelSize = CGSizeMake(270, 1000);
-	UIFont *font = [UIFont fontWithName:@"Helvetica" size:16];
-	CGSize size = [aString sizeWithFont:font
-				   constrainedToSize:maximumLabelSize
-					   lineBreakMode:UILineBreakModeWordWrap];
-	return size.height;
-}
 
 #pragma mark -
 #pragma mark Table view delegate
 
 - (CGFloat)tableView:(UITableView *)aTableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	CGFloat height;
 	OWSection *section = [self.sections objectAtIndex:indexPath.section];
     currentField = [[section fields] objectAtIndex:indexPath.row];
-	
-    if ([currentField isKindOfClass:[OWFieldNotes class]]) {
-		height = [self specialRowHeightForString:(NSString *)currentField.value] + 20;
-    } else {
-        height = 44;
-    }
-	
-	if (height < 44) {
-		height = 44;
-	}
-	
-	return height;
+    return currentField.height;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

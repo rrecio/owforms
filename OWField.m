@@ -21,6 +21,9 @@
 @synthesize required;
 @synthesize keyboardType;
 @synthesize capitalizationType;
+@synthesize height;
+@synthesize backgroundView;
+@synthesize cellIdentifier;
 
 + (id)fieldWithLabel:(NSString *)aLabel {
     return [self fieldWithLabel:aLabel andValue:nil];
@@ -38,6 +41,8 @@
         self.required = NO;
         self.keyboardType = UIKeyboardTypeDefault;
         self.capitalizationType = UITextAutocapitalizationTypeWords;
+        self.height = 44;
+        self.cellIdentifier = NSStringFromClass([self class]);
         
         _actionController = nil;
     }
@@ -73,6 +78,11 @@
 - (void)dealloc {
     [super dealloc];
     [_actionController release];
+}
+
+- (OWTableViewCell *)cellInstance
+{
+    return [[[OWTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:self.cellIdentifier] autorelease];
 }
 
 

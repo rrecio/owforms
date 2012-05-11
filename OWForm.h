@@ -37,10 +37,14 @@
 @property(nonatomic, retain)    NSString *saveButtonTitle;
 @property(nonatomic, retain)    NSString *cancelButtonTitle;
 @property(nonatomic, assign)    id <OWFormDataSourceDelegate>delegate;
+@property(nonatomic, retain)    UIImageView *cellsBackgroundView;
+@property(assign)               UITableViewStyle tableViewStyle;
 
 - (void)addDataFromDictionary:(NSDictionary *)dict;
 - (NSDictionary *)fieldsDictionary;
 + (NSArray *)keys;
+- (void)addSection:(OWSection *)section;
+- (void)addSection:(OWSection *)section atIndexPath:(NSIndexPath *)indexPath;
 - (void)addField:(OWField *)aField;
 - (void)addField:(OWField *)aField atIndexPath:(NSIndexPath *)indexPath;
 - (void)removeFieldAtIndexPath:(NSIndexPath *)indexPath;
@@ -48,7 +52,6 @@
 - (id)initWithStyle:(UITableViewStyle)style andFields:(NSArray *)fieldsArray;
 - (id)initWithSections:(OWSection *)firstSection, ... NS_REQUIRES_NIL_TERMINATION;
 - (id)initWithStyle:(UITableViewStyle)style andSections:(OWSection *)firstSection, ... NS_REQUIRES_NIL_TERMINATION;
-- (CGFloat)specialRowHeightForString:(NSString *)aString;
 - (void)doSaveAction;
 - (void)doCancelAction;
 + (NSMutableDictionary *)imageCache;

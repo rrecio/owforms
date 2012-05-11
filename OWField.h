@@ -24,6 +24,9 @@
 @property(nonatomic)            BOOL required;
 @property (nonatomic) UIKeyboardType keyboardType;
 @property (nonatomic) UITextAutocapitalizationType capitalizationType;
+@property (nonatomic, assign)   CGFloat height;
+@property (nonatomic, retain)   UIImageView *backgroundView;
+@property (nonatomic, retain)   NSString *cellIdentifier;
 
 + (id)fieldWithLabel:(NSString *)aLabel;
 + (id)fieldWithLabel:(NSString *)aLabel andValue:(NSObject *)aValue;
@@ -32,5 +35,6 @@
 - (void)setActionController:(UIViewController *)controller;
 - (OWTableViewCell *)customizedCell:(OWTableViewCell *)cell;
 - (BOOL)isEmpty;
+- (OWTableViewCell *)cellInstance;
 
 @end
