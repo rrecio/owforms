@@ -12,8 +12,10 @@
 @implementation OWTableViewCell
 
 @synthesize switchView;
+@synthesize textField;
 
-- (void)showSwitch:(BOOL)show {
+- (void)showSwitch:(BOOL)show
+{
 	if (show) {
 		UISwitch *view = [[UISwitch alloc] initWithFrame:CGRectMake(195, 8, 95, 8)];
 		self.switchView = view;

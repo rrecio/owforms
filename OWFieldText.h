@@ -2,14 +2,13 @@
 //  OWFieldText.h
 //  OWForms
 //
-//  Created by Madson on 02/04/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Created by Rodrigo Recio on 3/6/13.
+//
 //
 
-#import "OWField.h"
+#import <OWForms/OWForms.h>
 
-@interface OWFieldText : OWField {
-}
+@interface OWFieldText : OWField
 
 @property (nonatomic) BOOL isPassword;
 

@@ -96,10 +96,16 @@
 	[datePicker addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
     
     if (field.value == nil)
+    {
         if (field.startDate)
+        {
             field.value = field.startDate;
+        }
         else
+        {
             field.value = [NSDate date];
+        }
+    }
     
 	if ([field startDate] != nil)
 		datePicker.minimumDate = [field startDate];

@@ -28,7 +28,7 @@ static NSMutableDictionary *_imageCache;
 @synthesize showCancelButton;
 @synthesize saveButtonTitle;
 @synthesize cancelButtonTitle;
-@synthesize cellsBackgroundView;
+@synthesize cellsBackgroundImage;
 @synthesize tableViewStyle;
 
 - (void)addDataFromDictionary:(NSDictionary *)dict {
@@ -37,7 +37,11 @@ static NSMutableDictionary *_imageCache;
     for (NSString *aLabel in keys)
     {
         OWField *field = [self fieldForLabel:aLabel];
-        field.value = [dict objectForKey:aLabel];
+        if (field == nil) {
+            NSLog(@"No field matching label '%@' in current form. Field value discharded: %@", aLabel, [dict objectForKey:aLabel]);
+        } else {
+            field.value = [dict objectForKey:aLabel];
+        }
     }
 }
 
@@ -72,7 +76,9 @@ static NSMutableDictionary *_imageCache;
 
 - (void)addSection:(OWSection *)section {
     OWSection *lastSection = [self.sections lastObject];
-    [self addSection:section atIndexPath:[NSIndexPath indexPathForRow:[lastSection.fields count] inSection:[self.sections count]-1]];
+    NSInteger sectionIndex = [self.sections count]-1;
+    if (sectionIndex < 0) sectionIndex = 0;
+    [self addSection:section atIndexPath:[NSIndexPath indexPathForRow:[lastSection.fields count] inSection:sectionIndex]];
 }
 
 - (void)addSection:(OWSection *)section 
@@ -84,7 +90,7 @@ static NSMutableDictionary *_imageCache;
     } else {
         [self.sections addObject:section];
     }
-    [self.tableView insertSections:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationRight];    
+    [self.tableView insertSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationRight];    
 }
 
 - (void)addField:(OWField *)aField {
@@ -280,11 +286,11 @@ static NSMutableDictionary *_imageCache;
     if (cell == nil) cell = [field cellInstance];
     
     // Set up the cell's backgroundView
-    if (field.backgroundView) {
-        cell.backgroundView = field.backgroundView;
+    if (field.backgroundImage) {
+        cell.backgroundView = [[[UIImageView alloc] initWithImage:field.backgroundImage] autorelease];
     } else {
-        if (self.cellsBackgroundView) {
-            cell.backgroundView = self.cellsBackgroundView;
+        if (self.cellsBackgroundImage) {
+            cell.backgroundView = [[[UIImageView alloc] initWithImage:self.cellsBackgroundImage] autorelease];
         }
     }
 
@@ -292,8 +298,13 @@ static NSMutableDictionary *_imageCache;
 }
 
 #pragma mark -
-#pragma mark Helper methods
+#pragma mark Field lifecycle
 
+- (BOOL)callActionControllerForField:(OWField *)selectedField selectedAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (selectedField.actionController == nil) return NO;
+    return YES;
+}
 
 #pragma mark -
 #pragma mark Table view delegate
@@ -307,9 +318,12 @@ static NSMutableDictionary *_imageCache;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	OWSection *section = [self.sections objectAtIndex:indexPath.section];
     currentField = [[section fields] objectAtIndex:indexPath.row];
-    UIViewController *controller = [currentField actionController];
-    if (controller != nil) {
-        [self.navigationController pushViewController:controller animated:YES];
+    BOOL canCallActionController = [self callActionControllerForField:currentField selectedAtIndexPath:indexPath];
+    if (canCallActionController) {
+        UIViewController *controller = [currentField actionController];
+        if (controller != nil) { 
+            [self.navigationController pushViewController:controller animated:YES];
+        }
     }
 }
 

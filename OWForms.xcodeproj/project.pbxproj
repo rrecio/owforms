@@ -3,10 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B09542F16E6EE5A00D880B0 /* OWFieldText.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B09542D16E6EE5A00D880B0 /* OWFieldText.h */; };
+		5B09543016E6EE5A00D880B0 /* OWFieldText.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B09542E16E6EE5A00D880B0 /* OWFieldText.m */; };
+		5B09543116E6FA3800D880B0 /* OWFieldText.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B09542E16E6EE5A00D880B0 /* OWFieldText.m */; };
 		5B1A5E0D155C68F400FBED48 /* MyForm.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B1A5E0B155C68F400FBED48 /* MyForm.h */; };
 		5B1A5E16155C6C4800FBED48 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		5B1A5E17155C6C4800FBED48 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -27,7 +30,7 @@
 		5B1A5E32155C6C7A00FBED48 /* OWField.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3ACCC3124B1FE7006B4BCC /* OWField.m */; };
 		5B1A5E33155C6C7A00FBED48 /* OWFieldNotes.m in Sources */ = {isa = PBXBuildFile; fileRef = F33EB95F1347BB6300CD4196 /* OWFieldNotes.m */; };
 		5B1A5E34155C6C7A00FBED48 /* OWFieldNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = F33EB95C1347B23D00CD4196 /* OWFieldNumber.m */; };
-		5B1A5E35155C6C7A00FBED48 /* OWFieldText.m in Sources */ = {isa = PBXBuildFile; fileRef = F33EB9591347A30B00CD4196 /* OWFieldText.m */; };
+		5B1A5E35155C6C7A00FBED48 /* OWFieldTextDedicated.m in Sources */ = {isa = PBXBuildFile; fileRef = F33EB9591347A30B00CD4196 /* OWFieldTextDedicated.m */; };
 		5B1A5E36155C6C7A00FBED48 /* OWFieldDate.m in Sources */ = {isa = PBXBuildFile; fileRef = F33EB9631347BE1D00CD4196 /* OWFieldDate.m */; };
 		5B1A5E37155C6C7A00FBED48 /* OWFieldDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = F33EB9661347BEA600CD4196 /* OWFieldDateTime.m */; };
 		5B1A5E38155C6C7A00FBED48 /* OWFieldImage.m in Sources */ = {isa = PBXBuildFile; fileRef = F33EB9691347BF2200CD4196 /* OWFieldImage.m */; };
@@ -51,7 +54,7 @@
 		5B93E59D134AD6DB00601601 /* OWField.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3ACCC3124B1FE7006B4BCC /* OWField.m */; };
 		5B93E59E134AD6DB00601601 /* OWFieldNotes.m in Sources */ = {isa = PBXBuildFile; fileRef = F33EB95F1347BB6300CD4196 /* OWFieldNotes.m */; };
 		5B93E59F134AD6DB00601601 /* OWFieldNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = F33EB95C1347B23D00CD4196 /* OWFieldNumber.m */; };
-		5B93E5A0134AD6DB00601601 /* OWFieldText.m in Sources */ = {isa = PBXBuildFile; fileRef = F33EB9591347A30B00CD4196 /* OWFieldText.m */; };
+		5B93E5A0134AD6DB00601601 /* OWFieldTextDedicated.m in Sources */ = {isa = PBXBuildFile; fileRef = F33EB9591347A30B00CD4196 /* OWFieldTextDedicated.m */; };
 		5B93E5A1134AD6DB00601601 /* OWFieldDate.m in Sources */ = {isa = PBXBuildFile; fileRef = F33EB9631347BE1D00CD4196 /* OWFieldDate.m */; };
 		5B93E5A2134AD6DB00601601 /* OWFieldDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = F33EB9661347BEA600CD4196 /* OWFieldDateTime.m */; };
 		5B93E5A3134AD6DB00601601 /* OWFieldImage.m in Sources */ = {isa = PBXBuildFile; fileRef = F33EB9691347BF2200CD4196 /* OWFieldImage.m */; };
@@ -71,7 +74,7 @@
 		5B93E5B3134AD72300601601 /* OWField.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B3ACCC2124B1FE7006B4BCC /* OWField.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5B93E5B4134AD72300601601 /* OWFieldNotes.h in Headers */ = {isa = PBXBuildFile; fileRef = F33EB95E1347BB6300CD4196 /* OWFieldNotes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5B93E5B5134AD72300601601 /* OWFieldNumber.h in Headers */ = {isa = PBXBuildFile; fileRef = F33EB95B1347B23D00CD4196 /* OWFieldNumber.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5B93E5B6134AD72300601601 /* OWFieldText.h in Headers */ = {isa = PBXBuildFile; fileRef = F33EB9581347A30B00CD4196 /* OWFieldText.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5B93E5B6134AD72300601601 /* OWFieldTextDedicated.h in Headers */ = {isa = PBXBuildFile; fileRef = F33EB9581347A30B00CD4196 /* OWFieldTextDedicated.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5B93E5B7134AD72300601601 /* OWFieldDate.h in Headers */ = {isa = PBXBuildFile; fileRef = F33EB9621347BE1D00CD4196 /* OWFieldDate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5B93E5B8134AD72300601601 /* OWFieldDateTime.h in Headers */ = {isa = PBXBuildFile; fileRef = F33EB9651347BEA600CD4196 /* OWFieldDateTime.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5B93E5B9134AD72300601601 /* OWFieldImage.h in Headers */ = {isa = PBXBuildFile; fileRef = F33EB9681347BF2200CD4196 /* OWFieldImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -87,6 +90,11 @@
 		5B93E5C3134AD72300601601 /* ListController.h in Headers */ = {isa = PBXBuildFile; fileRef = F31C275C129C61C4009705D2 /* ListController.h */; };
 		5BAB317D155D883F00DC6907 /* NotesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BAB317C155D883F00DC6907 /* NotesController.xib */; };
 		5BAB317F155D884A00DC6907 /* NotesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BAB317C155D883F00DC6907 /* NotesController.xib */; };
+		5BB922C31685FD3F000C36CA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BB922C21685FD3F000C36CA /* Default-568h@2x.png */; };
+		5BDA7ACF155DADAF003429CE /* cell_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BDA7ACE155DADAF003429CE /* cell_bg.png */; };
+		5BDA7AD0155DADC1003429CE /* cell_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BDA7ACE155DADAF003429CE /* cell_bg.png */; };
+		5BDA7AD2155DBA3C003429CE /* blue_cell_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BDA7AD1155DBA3C003429CE /* blue_cell_bg.png */; };
+		5BDA7AD3155DBA3C003429CE /* blue_cell_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BDA7AD1155DBA3C003429CE /* blue_cell_bg.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +111,8 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		5B09542D16E6EE5A00D880B0 /* OWFieldText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWFieldText.h; sourceTree = "<group>"; };
+		5B09542E16E6EE5A00D880B0 /* OWFieldText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWFieldText.m; sourceTree = "<group>"; };
 		5B1A5E0B155C68F400FBED48 /* MyForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyForm.h; path = ../OWFormsTests/MyForm.h; sourceTree = "<group>"; };
 		5B1A5E0C155C68F400FBED48 /* MyForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyForm.m; path = ../OWFormsTests/MyForm.m; sourceTree = "<group>"; };
 		5B1A5E14155C6C4800FBED48 /* OWFormExampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OWFormExampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,13 +138,16 @@
 		5B93E58E134AD54600601601 /* OWFormsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OWFormsTests.m; sourceTree = "<group>"; };
 		5B93E598134AD61300601601 /* OWForms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWForms.h; sourceTree = "<group>"; };
 		5BAB317C155D883F00DC6907 /* NotesController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotesController.xib; sourceTree = "<group>"; };
+		5BB922C21685FD3F000C36CA /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		5BDA7ACE155DADAF003429CE /* cell_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cell_bg.png; sourceTree = "<group>"; };
+		5BDA7AD1155DBA3C003429CE /* blue_cell_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_cell_bg.png; sourceTree = "<group>"; };
 		F31C275C129C61C4009705D2 /* ListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListController.h; sourceTree = "<group>"; };
 		F31C275D129C61C4009705D2 /* ListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListController.m; sourceTree = "<group>"; };
 		F31E04D3125BCB1100A96758 /* ImageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageController.h; sourceTree = "<group>"; };
 		F31E04D4125BCB1100A96758 /* ImageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageController.m; sourceTree = "<group>"; };
 		F327C95B124EA5EF0097B24B /* NumberController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NumberController.xib; sourceTree = "<group>"; };
-		F33EB9581347A30B00CD4196 /* OWFieldText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWFieldText.h; sourceTree = "<group>"; };
-		F33EB9591347A30B00CD4196 /* OWFieldText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWFieldText.m; sourceTree = "<group>"; };
+		F33EB9581347A30B00CD4196 /* OWFieldTextDedicated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWFieldTextDedicated.h; sourceTree = "<group>"; };
+		F33EB9591347A30B00CD4196 /* OWFieldTextDedicated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWFieldTextDedicated.m; sourceTree = "<group>"; };
 		F33EB95B1347B23D00CD4196 /* OWFieldNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWFieldNumber.h; sourceTree = "<group>"; };
 		F33EB95C1347B23D00CD4196 /* OWFieldNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWFieldNumber.m; sourceTree = "<group>"; };
 		F33EB95E1347BB6300CD4196 /* OWFieldNotes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWFieldNotes.h; sourceTree = "<group>"; };
@@ -226,6 +239,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				5BB922C21685FD3F000C36CA /* Default-568h@2x.png */,
 				5B93E598134AD61300601601 /* OWForms.h */,
 				5B93E578134AD54600601601 /* OWForms-Prefix.pch */,
 				28EEBF621118D79A00187D67 /* Sources */,
@@ -308,6 +322,8 @@
 		5B93E586134AD54600601601 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5BDA7ACE155DADAF003429CE /* cell_bg.png */,
+				5BDA7AD1155DBA3C003429CE /* blue_cell_bg.png */,
 				5B93E587134AD54600601601 /* OWFormsTests-Info.plist */,
 				5B93E588134AD54600601601 /* InfoPlist.strings */,
 				5B93E58B134AD54600601601 /* OWFormsTests-Prefix.pch */,
@@ -324,8 +340,8 @@
 				F33EB95F1347BB6300CD4196 /* OWFieldNotes.m */,
 				F33EB95B1347B23D00CD4196 /* OWFieldNumber.h */,
 				F33EB95C1347B23D00CD4196 /* OWFieldNumber.m */,
-				F33EB9581347A30B00CD4196 /* OWFieldText.h */,
-				F33EB9591347A30B00CD4196 /* OWFieldText.m */,
+				F33EB9581347A30B00CD4196 /* OWFieldTextDedicated.h */,
+				F33EB9591347A30B00CD4196 /* OWFieldTextDedicated.m */,
 				F33EB9621347BE1D00CD4196 /* OWFieldDate.h */,
 				F33EB9631347BE1D00CD4196 /* OWFieldDate.m */,
 				F33EB9651347BEA600CD4196 /* OWFieldDateTime.h */,
@@ -338,6 +354,8 @@
 				F33EB96F1347BFFB00CD4196 /* OWFieldList.m */,
 				F33EB9711347D72C00CD4196 /* OWFieldSwitch.h */,
 				F33EB9721347D72C00CD4196 /* OWFieldSwitch.m */,
+				5B09542D16E6EE5A00D880B0 /* OWFieldText.h */,
+				5B09542E16E6EE5A00D880B0 /* OWFieldText.m */,
 			);
 			name = Fields;
 			sourceTree = "<group>";
@@ -355,7 +373,7 @@
 				5B93E5B3134AD72300601601 /* OWField.h in Headers */,
 				5B93E5B4134AD72300601601 /* OWFieldNotes.h in Headers */,
 				5B93E5B5134AD72300601601 /* OWFieldNumber.h in Headers */,
-				5B93E5B6134AD72300601601 /* OWFieldText.h in Headers */,
+				5B93E5B6134AD72300601601 /* OWFieldTextDedicated.h in Headers */,
 				5B93E5B7134AD72300601601 /* OWFieldDate.h in Headers */,
 				5B93E5B8134AD72300601601 /* OWFieldDateTime.h in Headers */,
 				5B93E5B9134AD72300601601 /* OWFieldImage.h in Headers */,
@@ -371,6 +389,7 @@
 				5B93E5C2134AD72300601601 /* ImageController.h in Headers */,
 				5B93E5C3134AD72300601601 /* ListController.h in Headers */,
 				5B1A5E0D155C68F400FBED48 /* MyForm.h in Headers */,
+				5B09542F16E6EE5A00D880B0 /* OWFieldText.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,8 +454,11 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "OWForms" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -462,10 +484,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BDA7AD0155DADC1003429CE /* cell_bg.png in Resources */,
 				5BAB317F155D884A00DC6907 /* NotesController.xib in Resources */,
 				5B1A5E3D155C725100FBED48 /* StringController.xib in Resources */,
 				5B1A5E3E155C725100FBED48 /* NumberController.xib in Resources */,
 				5B1A5E1E155C6C4800FBED48 /* InfoPlist.strings in Resources */,
+				5BDA7AD3155DBA3C003429CE /* blue_cell_bg.png in Resources */,
+				5BB922C31685FD3F000C36CA /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,6 +501,8 @@
 				5B93E58A134AD54600601601 /* InfoPlist.strings in Resources */,
 				5B93E58D134AD54600601601 /* OWFormsTests.h in Resources */,
 				5BAB317D155D883F00DC6907 /* NotesController.xib in Resources */,
+				5BDA7ACF155DADAF003429CE /* cell_bg.png in Resources */,
+				5BDA7AD2155DBA3C003429CE /* blue_cell_bg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,12 +543,13 @@
 				5B1A5E32155C6C7A00FBED48 /* OWField.m in Sources */,
 				5B1A5E33155C6C7A00FBED48 /* OWFieldNotes.m in Sources */,
 				5B1A5E34155C6C7A00FBED48 /* OWFieldNumber.m in Sources */,
-				5B1A5E35155C6C7A00FBED48 /* OWFieldText.m in Sources */,
+				5B1A5E35155C6C7A00FBED48 /* OWFieldTextDedicated.m in Sources */,
 				5B1A5E36155C6C7A00FBED48 /* OWFieldDate.m in Sources */,
 				5B1A5E37155C6C7A00FBED48 /* OWFieldDateTime.m in Sources */,
 				5B1A5E38155C6C7A00FBED48 /* OWFieldImage.m in Sources */,
 				5B1A5E39155C6C7A00FBED48 /* OWFieldForm.m in Sources */,
 				5B1A5E3A155C6C7A00FBED48 /* OWFieldList.m in Sources */,
+				5B09543116E6FA3800D880B0 /* OWFieldText.m in Sources */,
 				5B1A5E3B155C6C7A00FBED48 /* OWFieldSwitch.m in Sources */,
 				5B1A5E20155C6C4800FBED48 /* main.m in Sources */,
 				5B1A5E24155C6C4800FBED48 /* AppDelegate.m in Sources */,
@@ -538,7 +566,7 @@
 				5B93E59D134AD6DB00601601 /* OWField.m in Sources */,
 				5B93E59E134AD6DB00601601 /* OWFieldNotes.m in Sources */,
 				5B93E59F134AD6DB00601601 /* OWFieldNumber.m in Sources */,
-				5B93E5A0134AD6DB00601601 /* OWFieldText.m in Sources */,
+				5B93E5A0134AD6DB00601601 /* OWFieldTextDedicated.m in Sources */,
 				5B93E5A1134AD6DB00601601 /* OWFieldDate.m in Sources */,
 				5B93E5A2134AD6DB00601601 /* OWFieldDateTime.m in Sources */,
 				5B93E5A3134AD6DB00601601 /* OWFieldImage.m in Sources */,
@@ -549,6 +577,7 @@
 				5B93E5A8134AD6DB00601601 /* NumberController.m in Sources */,
 				5B93E5A9134AD6DB00601601 /* DateController.m in Sources */,
 				5B93E5AA134AD6DB00601601 /* DatetimeController.m in Sources */,
+				5B09543016E6EE5A00D880B0 /* OWFieldText.m in Sources */,
 				5B93E5AB134AD6DB00601601 /* NotesController.m in Sources */,
 				5B93E5AC134AD6DB00601601 /* ImageController.m in Sources */,
 				5B93E5AD134AD6DB00601601 /* ListController.m in Sources */,
@@ -651,7 +680,7 @@
 				GCC_PREFIX_HEADER = "OWForms/OWForms-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADERS_FOLDER_PATH = /../owforms/;
 				HEADER_SEARCH_PATHS = (
 					/usr/include,
@@ -675,7 +704,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OWForms/OWForms-Prefix.pch";
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADERS_FOLDER_PATH = /../owforms/;
 				HEADER_SEARCH_PATHS = (
 					/usr/include,
@@ -704,7 +733,7 @@
 				GCC_PREFIX_HEADER = "OWFormsTests/OWFormsTests-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "OWFormsTests/OWFormsTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_LDFLAGS = (
@@ -728,7 +757,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OWFormsTests/OWFormsTests-Prefix.pch";
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "OWFormsTests/OWFormsTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_LDFLAGS = (
@@ -750,8 +779,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
-				PREBINDING = NO;
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -766,8 +794,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PREBINDING = NO;
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

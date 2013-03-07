@@ -14,6 +14,7 @@
 }
 
 @property (nonatomic, retain) UISwitch *switchView;
+@property (nonatomic, retain) UITextField *textField;
 
 - (void)showSwitch:(BOOL)show;
 

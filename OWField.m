@@ -22,8 +22,13 @@
 @synthesize keyboardType;
 @synthesize capitalizationType;
 @synthesize height;
-@synthesize backgroundView;
+@synthesize backgroundImage;
 @synthesize cellIdentifier;
+@synthesize textLabelColor;
+@synthesize detailLabelColor;
+@synthesize textLabelBackgroundColor;
+@synthesize detailLabelBackgroundColor;
+@synthesize textField;
 
 + (id)fieldWithLabel:(NSString *)aLabel {
     return [self fieldWithLabel:aLabel andValue:nil];
@@ -43,6 +48,10 @@
         self.capitalizationType = UITextAutocapitalizationTypeWords;
         self.height = 44;
         self.cellIdentifier = NSStringFromClass([self class]);
+        self.textLabelBackgroundColor = [UIColor clearColor];
+        self.detailLabelBackgroundColor = [UIColor clearColor];
+        self.textLabelColor = [UIColor blackColor];
+        self.detailLabelColor = [UIColor grayColor];
         
         _actionController = nil;
     }
@@ -59,11 +68,13 @@
 }
 
 - (OWTableViewCell *)customizedCell:(OWTableViewCell *)cell {
+    cell.textLabel.textColor = self.textLabelColor;
+    cell.textLabel.backgroundColor = self.textLabelBackgroundColor;
+    cell.detailTextLabel.textColor = self.detailLabelColor;
+    cell.detailTextLabel.backgroundColor = self.detailLabelBackgroundColor;
     cell.textLabel.text = self.label;
-
     cell.accessoryType = (self.accessoryType) ? self.accessoryType : UITableViewCellAccessoryDisclosureIndicator;
     cell.accessoryView = self.accessoryView;
-
     return cell;
 }
 

@@ -8,7 +8,7 @@
 
 #import "OWField.h"
 #import "OWSection.h"
-#import "OWFieldText.h"
+#import "OWFieldTextDedicated.h"
 #import "OWFieldNumber.h"
 #import "OWFieldDate.h"
 #import "OWFieldDateTime.h"
@@ -17,6 +17,7 @@
 #import "OWFieldForm.h"
 #import "OWFieldNotes.h"
 #import "OWFieldSwitch.h"
+#import "OWFieldText.h"
 
 @protocol OWFormDataSourceDelegate;
 
@@ -37,7 +38,7 @@
 @property(nonatomic, retain)    NSString *saveButtonTitle;
 @property(nonatomic, retain)    NSString *cancelButtonTitle;
 @property(nonatomic, assign)    id <OWFormDataSourceDelegate>delegate;
-@property(nonatomic, retain)    UIImageView *cellsBackgroundView;
+@property(nonatomic, retain)    UIImage *cellsBackgroundImage;
 @property(assign)               UITableViewStyle tableViewStyle;
 
 - (void)addDataFromDictionary:(NSDictionary *)dict;
@@ -56,6 +57,8 @@
 - (void)doCancelAction;
 + (NSMutableDictionary *)imageCache;
 - (OWField *)fieldForLabel:(NSString *)aLabel;
+
+- (BOOL)callActionControllerForField:(OWField *)selectedField selectedAtIndexPath:(NSIndexPath *)indexPath;
 @end
 
 
