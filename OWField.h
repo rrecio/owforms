@@ -31,7 +31,7 @@
 @property (nonatomic, retain)   UIColor *detailLabelColor;
 @property (nonatomic, retain)   UIColor *textLabelBackgroundColor;
 @property (nonatomic, retain)   UIColor *detailLabelBackgroundColor;
-@property (nonatomic, retain)   UITextField *textField;
+@property (nonatomic, retain)   UIView *backgroundView;
 
 + (id)fieldWithLabel:(NSString *)aLabel;
 + (id)fieldWithLabel:(NSString *)aLabel andValue:(NSObject *)aValue;

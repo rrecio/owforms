@@ -56,6 +56,7 @@
 + (NSMutableDictionary *)imageCache;
 - (OWField *)fieldForLabel:(NSString *)aLabel;
 - (void)loadForm;
+- (UITableViewCell *)cellForField:(OWField *)field;
 
 @end
 
@@ -66,5 +67,5 @@
 - (void)formDidCancel:(OWForm *)form;
 - (BOOL)formShouldCancel:(OWForm *)form;
 - (BOOL)formShouldEndWithSuccess:(OWForm *)form;
-
+- (BOOL)form:(OWForm *)form shouldEditField:(OWField *)field;
 @end

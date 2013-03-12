@@ -11,5 +11,6 @@
 @interface OWFieldText : OWField
 
 @property (nonatomic) BOOL isPassword;
+@property (nonatomic, retain) UITextField *textField;
 
 @end

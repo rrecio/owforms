@@ -9,13 +9,23 @@
 #import "MyForm.h"
 
 @interface MyForm ()
-
+{
+}
 @end
 
 @implementation MyForm
 
 - (void)loadForm
 {
+    self.tableView.backgroundColor = [UIColor grayColor];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    OWFieldText *userName = [OWFieldText fieldWithLabel:@"User Name"];
+    userName.textField.background = [UIImage imageNamed:@"form-field-bg@2x.png"];
+
+    [self addField:userName];
+    [self addField:[OWFieldText fieldWithLabel:@"E-mail"]];
+    [self addField:[OWFieldText fieldWithLabel:@"Password"]];
 }
 
 @end

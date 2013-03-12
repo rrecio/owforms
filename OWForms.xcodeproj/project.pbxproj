@@ -37,6 +37,12 @@
 		5B1A5E3C155C6CE900FBED48 /* MyForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1A5E0C155C68F400FBED48 /* MyForm.m */; };
 		5B1A5E3D155C725100FBED48 /* StringController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3E61A82124EA15D0034F236 /* StringController.xib */; };
 		5B1A5E3E155C725100FBED48 /* NumberController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F327C95B124EA5EF0097B24B /* NumberController.xib */; };
+		5B730E1216EEF7E600F6B2A0 /* form-field-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B730E1116EEF7E600F6B2A0 /* form-field-bg@2x.png */; };
+		5B730E1316EEF7E600F6B2A0 /* form-field-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B730E1116EEF7E600F6B2A0 /* form-field-bg@2x.png */; };
+		5B730E1616EEFE2B00F6B2A0 /* OWTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B730E1416EEFE2B00F6B2A0 /* OWTextField.h */; };
+		5B730E1716EEFE2B00F6B2A0 /* OWTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B730E1516EEFE2B00F6B2A0 /* OWTextField.m */; };
+		5B730E1816EEFE2B00F6B2A0 /* OWTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B730E1516EEFE2B00F6B2A0 /* OWTextField.m */; };
+		5B730E1916EEFE2B00F6B2A0 /* OWTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B730E1516EEFE2B00F6B2A0 /* OWTextField.m */; };
 		5B93E57F134AD54600601601 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		5B93E580134AD54600601601 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		5B93E581134AD54600601601 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
@@ -90,6 +96,10 @@
 		5BE1838716EED5C500B2D4AF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE1838616EED5C500B2D4AF /* Default-568h@2x.png */; };
 		5BE1838A16EEE0B300B2D4AF /* OWFormViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BE1838816EEE0B300B2D4AF /* OWFormViewController.h */; };
 		5BE1838B16EEE0B300B2D4AF /* OWFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE1838916EEE0B300B2D4AF /* OWFormViewController.m */; };
+		5BE1838E16EEE52F00B2D4AF /* OWFieldTextDedicated.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BE1838C16EEE52F00B2D4AF /* OWFieldTextDedicated.h */; };
+		5BE1838F16EEE52F00B2D4AF /* OWFieldTextDedicated.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE1838D16EEE52F00B2D4AF /* OWFieldTextDedicated.m */; };
+		5BE1839016EEE52F00B2D4AF /* OWFieldTextDedicated.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE1838D16EEE52F00B2D4AF /* OWFieldTextDedicated.m */; };
+		5BE1839116EEE6F600B2D4AF /* OWFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE1838916EEE0B300B2D4AF /* OWFormViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +129,9 @@
 		5B3ACCC0124B1AF0006B4BCC /* OWForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWForm.m; sourceTree = "<group>"; };
 		5B3ACCC2124B1FE7006B4BCC /* OWField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWField.h; sourceTree = "<group>"; };
 		5B3ACCC3124B1FE7006B4BCC /* OWField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWField.m; sourceTree = "<group>"; };
+		5B730E1116EEF7E600F6B2A0 /* form-field-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "form-field-bg@2x.png"; sourceTree = "<group>"; };
+		5B730E1416EEFE2B00F6B2A0 /* OWTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWTextField.h; sourceTree = "<group>"; };
+		5B730E1516EEFE2B00F6B2A0 /* OWTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWTextField.m; sourceTree = "<group>"; };
 		5B7B6B78125184CE0003EE50 /* OWTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWTableViewCell.h; sourceTree = "<group>"; };
 		5B7B6B79125184CE0003EE50 /* OWTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWTableViewCell.m; sourceTree = "<group>"; };
 		5B93E574134AD54500601601 /* libOWForms.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libOWForms.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,6 +147,8 @@
 		5BE1838616EED5C500B2D4AF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		5BE1838816EEE0B300B2D4AF /* OWFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWFormViewController.h; sourceTree = "<group>"; };
 		5BE1838916EEE0B300B2D4AF /* OWFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWFormViewController.m; sourceTree = "<group>"; };
+		5BE1838C16EEE52F00B2D4AF /* OWFieldTextDedicated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWFieldTextDedicated.h; sourceTree = "<group>"; };
+		5BE1838D16EEE52F00B2D4AF /* OWFieldTextDedicated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWFieldTextDedicated.m; sourceTree = "<group>"; };
 		F31C275C129C61C4009705D2 /* ListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListController.h; sourceTree = "<group>"; };
 		F31C275D129C61C4009705D2 /* ListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListController.m; sourceTree = "<group>"; };
 		F31E04D3125BCB1100A96758 /* ImageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageController.h; sourceTree = "<group>"; };
@@ -227,6 +242,8 @@
 				F33EB9611347BDC600CD4196 /* Fields */,
 				5BE1838816EEE0B300B2D4AF /* OWFormViewController.h */,
 				5BE1838916EEE0B300B2D4AF /* OWFormViewController.m */,
+				5B730E1416EEFE2B00F6B2A0 /* OWTextField.h */,
+				5B730E1516EEFE2B00F6B2A0 /* OWTextField.m */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -335,6 +352,8 @@
 				F33EB95C1347B23D00CD4196 /* OWFieldNumber.m */,
 				F33EB9581347A30B00CD4196 /* OWFieldText.h */,
 				F33EB9591347A30B00CD4196 /* OWFieldText.m */,
+				5BE1838C16EEE52F00B2D4AF /* OWFieldTextDedicated.h */,
+				5BE1838D16EEE52F00B2D4AF /* OWFieldTextDedicated.m */,
 				F33EB9621347BE1D00CD4196 /* OWFieldDate.h */,
 				F33EB9631347BE1D00CD4196 /* OWFieldDate.m */,
 				F33EB9651347BEA600CD4196 /* OWFieldDateTime.h */,
@@ -347,6 +366,7 @@
 				F33EB96F1347BFFB00CD4196 /* OWFieldList.m */,
 				F33EB9711347D72C00CD4196 /* OWFieldSwitch.h */,
 				F33EB9721347D72C00CD4196 /* OWFieldSwitch.m */,
+				5B730E1116EEF7E600F6B2A0 /* form-field-bg@2x.png */,
 			);
 			name = Fields;
 			sourceTree = "<group>";
@@ -381,6 +401,8 @@
 				5B93E5C3134AD72300601601 /* ListController.h in Headers */,
 				5B1A5E0D155C68F400FBED48 /* MyForm.h in Headers */,
 				5BE1838A16EEE0B300B2D4AF /* OWFormViewController.h in Headers */,
+				5BE1838E16EEE52F00B2D4AF /* OWFieldTextDedicated.h in Headers */,
+				5B730E1616EEFE2B00F6B2A0 /* OWTextField.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,6 +502,7 @@
 				5B1A5E3E155C725100FBED48 /* NumberController.xib in Resources */,
 				5B1A5E1E155C6C4800FBED48 /* InfoPlist.strings in Resources */,
 				5BE1838716EED5C500B2D4AF /* Default-568h@2x.png in Resources */,
+				5B730E1316EEF7E600F6B2A0 /* form-field-bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,6 +513,7 @@
 				5B93E58A134AD54600601601 /* InfoPlist.strings in Resources */,
 				5B93E58D134AD54600601601 /* OWFormsTests.h in Resources */,
 				5BAB317D155D883F00DC6907 /* NotesController.xib in Resources */,
+				5B730E1216EEF7E600F6B2A0 /* form-field-bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -537,8 +561,11 @@
 				5B1A5E39155C6C7A00FBED48 /* OWFieldForm.m in Sources */,
 				5B1A5E3A155C6C7A00FBED48 /* OWFieldList.m in Sources */,
 				5B1A5E3B155C6C7A00FBED48 /* OWFieldSwitch.m in Sources */,
+				5BE1839116EEE6F600B2D4AF /* OWFormViewController.m in Sources */,
 				5B1A5E20155C6C4800FBED48 /* main.m in Sources */,
 				5B1A5E24155C6C4800FBED48 /* AppDelegate.m in Sources */,
+				5BE1839016EEE52F00B2D4AF /* OWFieldTextDedicated.m in Sources */,
+				5B730E1916EEFE2B00F6B2A0 /* OWTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -567,6 +594,8 @@
 				5B93E5AC134AD6DB00601601 /* ImageController.m in Sources */,
 				5B93E5AD134AD6DB00601601 /* ListController.m in Sources */,
 				5BE1838B16EEE0B300B2D4AF /* OWFormViewController.m in Sources */,
+				5BE1838F16EEE52F00B2D4AF /* OWFieldTextDedicated.m in Sources */,
+				5B730E1716EEFE2B00F6B2A0 /* OWTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -575,6 +604,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B93E58F134AD54600601601 /* OWFormsTests.m in Sources */,
+				5B730E1816EEFE2B00F6B2A0 /* OWTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

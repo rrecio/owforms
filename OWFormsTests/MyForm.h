@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 Owera Software. All rights reserved.
 //
 
-#import "OWForm.h"
+#import "OWFormViewController.h"
 
-@interface MyForm : OWForm
+@interface MyForm : OWFormViewController
 
 @end

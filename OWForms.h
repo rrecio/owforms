@@ -19,3 +19,4 @@
 #import "OWFieldForm.h"
 #import "OWFieldNotes.h"
 #import "OWFieldSwitch.h"
+#import "OWFieldTextDedicated.h"

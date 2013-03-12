@@ -16,7 +16,6 @@
 #import "ListController.h"
 #import "NotesController.h"
 
-
 static NSMutableDictionary *_imageCache;
 
 @implementation OWForm
@@ -151,6 +150,26 @@ static NSMutableDictionary *_imageCache;
         }
     }
     return field;
+}
+
+- (UITableViewCell *)cellForField:(OWField *)field
+{
+    OWSection *foundSection;
+    OWField *foundField;
+    NSUInteger foundSectionIndex;
+    NSUInteger foundFieldIndex;
+    for (OWSection *aSection in self.sections) {
+        for (OWField *aField in aSection.fields) {
+            if (aField == field) {
+                foundSection = aSection;
+                foundField = aField;
+                break;
+            }
+        }
+    }
+    foundSectionIndex = [self.sections indexOfObject:foundSection];
+    foundFieldIndex = [foundSection.fields indexOfObject:foundField];
+    return [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:foundFieldIndex inSection:foundSectionIndex]];
 }
 
 #pragma mark -
@@ -327,9 +346,13 @@ static NSMutableDictionary *_imageCache;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	OWSection *section = [self.sections objectAtIndex:indexPath.section];
     currentField = [[section fields] objectAtIndex:indexPath.row];
-    UIViewController *controller = [currentField actionController];
-    if (controller != nil) {
-        [self.navigationController pushViewController:controller animated:YES];
+    
+    if ([delegate form:self shouldEditField:currentField])
+    {
+        UIViewController *controller = [currentField actionController];
+        if (controller != nil) {
+            [self.navigationController pushViewController:controller animated:YES];
+        }
     }
 }
 

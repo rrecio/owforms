@@ -6,7 +6,7 @@
 //
 //
 
-#import <OWForms/OWForms.h>
+#import "OWForms.h"
 
 @interface OWFormViewController : OWForm <OWFormDelegate>
 

@@ -28,7 +28,7 @@
 @synthesize detailLabelColor;
 @synthesize textLabelBackgroundColor;
 @synthesize detailLabelBackgroundColor;
-@synthesize textField;
+@synthesize backgroundView = _backgroundView;
 
 + (id)fieldWithLabel:(NSString *)aLabel {
     return [self fieldWithLabel:aLabel andValue:nil];
