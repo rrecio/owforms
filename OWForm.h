@@ -18,7 +18,7 @@
 #import "OWFieldNotes.h"
 #import "OWFieldSwitch.h"
 
-@protocol OWFormDataSourceDelegate;
+@protocol OWFormDelegate;
 
 @interface OWForm : UITableViewController  {
 	OWField *currentField;
@@ -27,7 +27,7 @@
 	NSString *saveButtonTitle;
 	NSString *cancelButtonTitle;
     UIPopoverController *currentPopover;
-	id <OWFormDataSourceDelegate>delegate;
+	id <OWFormDelegate>delegate;
 }
 
 @property(nonatomic, retain)    NSArray *formFields;
@@ -36,9 +36,8 @@
 @property(nonatomic)            BOOL showCancelButton;
 @property(nonatomic, retain)    NSString *saveButtonTitle;
 @property(nonatomic, retain)    NSString *cancelButtonTitle;
-@property(nonatomic, assign)    id <OWFormDataSourceDelegate>delegate;
+@property(nonatomic, assign)    id <OWFormDelegate>delegate;
 @property(nonatomic, retain)    UIImageView *cellsBackgroundView;
-@property(assign)               UITableViewStyle tableViewStyle;
 
 - (void)addDataFromDictionary:(NSDictionary *)dict;
 - (NSDictionary *)fieldsDictionary;
@@ -48,19 +47,24 @@
 - (void)addField:(OWField *)aField;
 - (void)addField:(OWField *)aField atIndexPath:(NSIndexPath *)indexPath;
 - (void)removeFieldAtIndexPath:(NSIndexPath *)indexPath;
-- (id)initWithFields:(NSArray *)fieldsArray;
-- (id)initWithStyle:(UITableViewStyle)style andFields:(NSArray *)fieldsArray;
-- (id)initWithSections:(OWSection *)firstSection, ... NS_REQUIRES_NIL_TERMINATION;
-- (id)initWithStyle:(UITableViewStyle)style andSections:(OWSection *)firstSection, ... NS_REQUIRES_NIL_TERMINATION;
+//- (id)initWithFields:(NSArray *)fieldsArray;
+//- (id)initWithStyle:(UITableViewStyle)style andFields:(NSArray *)fieldsArray;
+//- (id)initWithSections:(OWSection *)firstSection, ... NS_REQUIRES_NIL_TERMINATION;
+//- (id)initWithStyle:(UITableViewStyle)style andSections:(OWSection *)firstSection, ... NS_REQUIRES_NIL_TERMINATION;
 - (void)doSaveAction;
 - (void)doCancelAction;
 + (NSMutableDictionary *)imageCache;
 - (OWField *)fieldForLabel:(NSString *)aLabel;
+- (void)loadForm;
+
 @end
 
+@protocol OWFormDelegate
 
-@protocol OWFormDataSourceDelegate
 @required
-- (void)saveAction:(OWForm *)form;
-- (void)cancelAction;
+- (void)formDidEndWithSuccess:(OWForm *)form;
+- (void)formDidCancel:(OWForm *)form;
+- (BOOL)formShouldCancel:(OWForm *)form;
+- (BOOL)formShouldEndWithSuccess:(OWForm *)form;
+
 @end

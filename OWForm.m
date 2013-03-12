@@ -29,7 +29,23 @@ static NSMutableDictionary *_imageCache;
 @synthesize saveButtonTitle;
 @synthesize cancelButtonTitle;
 @synthesize cellsBackgroundView;
-@synthesize tableViewStyle;
+
+- (id)init
+{
+    return [self initWithStyle:UITableViewStylePlain];
+}
+
+- (id)initWithStyle:(UITableViewStyle)tableViewStyle {
+    self = [super initWithStyle:tableViewStyle];
+    if (self != nil) {
+        [self loadForm];
+    }
+    return self;
+}
+
+- (void)loadForm
+{
+}
 
 - (void)addDataFromDictionary:(NSDictionary *)dict {
     NSArray *keys = [dict allKeys];
@@ -141,66 +157,70 @@ static NSMutableDictionary *_imageCache;
 #pragma mark View actions
 
 - (void)doSaveAction {
-	[delegate saveAction:self];
+    if ([delegate formShouldEndWithSuccess:self])
+    {
+        [delegate formDidEndWithSuccess:self];
+    }
 }
 
 - (void)doCancelAction {
-	[delegate cancelAction];
+    if ([delegate formShouldCancel:self])
+    {
+        [delegate formDidCancel:self];
+    }
 }
 
 #pragma mark -
 #pragma mark Initializers
-
-- (id)initWithFields:(NSArray *)fieldsArray {
-	return [self initWithStyle:UITableViewStylePlain andFields:fieldsArray];
-}
-			
-- (id)initWithStyle:(UITableViewStyle)style andFields:(NSArray *)fieldsArray {
-	self = [self initWithStyle:style];					
-	if (self != nil) {
-		self.sections = [[NSMutableArray alloc] init];
-		[self.sections addObject:[OWSection sectionWithArrayOfFields:fieldsArray]];
-	}
-	return self;
-}
-
-- (id)initWithSections:(OWSection *)firstSection, ... {
-	va_list args;
-	va_start(args, firstSection);
-	
-	self = [super initWithStyle:UITableViewStylePlain];
-	
-	sections = [[NSMutableArray alloc] init];
-	[sections addObject:firstSection];
-	
-	OWSection *s = va_arg(args, OWSection *);
-	while (s) {
-		[sections addObject:s];
-		s = va_arg(args, OWSection *);
-	}
-	
-	va_end(args);
-	return self;
-}
-
-- (id)initWithStyle:(UITableViewStyle)style andSections:(OWSection *)firstSection, ... {
-	va_list args;
-	va_start(args, firstSection);
-	
-	self = [super initWithStyle:style];
-	
-	sections = [[NSMutableArray alloc] init];
-	[sections addObject:firstSection];
-	
-	OWSection *s = va_arg(args, OWSection *);
-	while (s) {
-		[sections addObject:s];
-		s = va_arg(args, OWSection *);
-	}
-	
-	va_end(args);
-	return self;
-}
+//
+//- (id)initWithFields:(NSArray *)fieldsArray {
+//	return [self initWithStyle:UITableViewStylePlain andFields:fieldsArray];
+//}
+//			
+//- (id)initWithStyle:(UITableViewStyle)style andFields:(NSArray *)fieldsArray {
+//	self = [self initWithStyle:style andSections:[OWSection sec], nil
+//	if (self != nil) {
+//	}
+//	return self;
+//}
+//
+//- (id)initWithSections:(OWSection *)firstSection, ... {
+//	va_list args;
+//	va_start(args, firstSection);
+//	
+//	self = [super initWithStyle:UITableViewStylePlain];
+//	
+//	sections = [[NSMutableArray alloc] init];
+//	[sections addObject:firstSection];
+//	
+//	OWSection *s = va_arg(args, OWSection *);
+//	while (s) {
+//		[sections addObject:s];
+//		s = va_arg(args, OWSection *);
+//	}
+//	
+//	va_end(args);
+//	return self;
+//}
+//
+//- (id)initWithStyle:(UITableViewStyle)style andSections:(OWSection *)firstSection, ... {
+//	va_list args;
+//	va_start(args, firstSection);
+//	
+//	self = [super initWithStyle:style];
+//	
+//	sections = [[NSMutableArray alloc] init];
+//	[sections addObject:firstSection];
+//	
+//	OWSection *s = va_arg(args, OWSection *);
+//	while (s) {
+//		[sections addObject:s];
+//		s = va_arg(args, OWSection *);
+//	}
+//	
+//	va_end(args);
+//	return self;
+//}
 
 #pragma mark -
 #pragma mark UIView lifecycle

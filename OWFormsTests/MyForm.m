@@ -14,15 +14,6 @@
 
 @implementation MyForm
 
-- (id)init
-{
-    self = [super initWithStyle:UITableViewStyleGrouped];
-    if (self) {
-        [self loadForm];
-    }
-    return self;
-}
-
 - (void)loadForm
 {
 }
