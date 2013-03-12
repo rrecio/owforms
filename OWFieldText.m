@@ -2,27 +2,29 @@
 //  OWFieldText.m
 //  OWForms
 //
-//  Created by Madson on 02/04/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Created by Rodrigo Recio on 3/6/13.
+//
 //
 
 #import "OWFieldText.h"
-#import "StringController.h"
 
 @implementation OWFieldText
 
-@synthesize isPassword;
+- (id)initWithLabel:(NSString *)aLabel andValue:(NSObject *)aValue
+{
+    self = [super initWithLabel:aLabel andValue:aValue];
+    
+    return self;
+}
 
 - (UIViewController *)actionController {
-    StringController *controller = [[StringController alloc] initWithNibName:@"StringController" bundle:nil];
-    controller.field = self;
-    return [controller autorelease];
+    return nil;
 }
 
 - (OWTableViewCell *)customizedCell:(OWTableViewCell *)cell {
     cell = [super customizedCell:cell];
-
     cell.detailTextLabel.text = self.value;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     return cell;
 }

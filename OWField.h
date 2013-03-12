@@ -25,8 +25,13 @@
 @property (nonatomic) UIKeyboardType keyboardType;
 @property (nonatomic) UITextAutocapitalizationType capitalizationType;
 @property (nonatomic, assign)   CGFloat height;
-@property (nonatomic, retain)   UIImageView *backgroundView;
+@property (nonatomic, retain)   UIImage *backgroundImage;
 @property (nonatomic, retain)   NSString *cellIdentifier;
+@property (nonatomic, retain)   UIColor *textLabelColor;
+@property (nonatomic, retain)   UIColor *detailLabelColor;
+@property (nonatomic, retain)   UIColor *textLabelBackgroundColor;
+@property (nonatomic, retain)   UIColor *detailLabelBackgroundColor;
+@property (nonatomic, retain)   UITextField *textField;
 
 + (id)fieldWithLabel:(NSString *)aLabel;
 + (id)fieldWithLabel:(NSString *)aLabel andValue:(NSObject *)aValue;

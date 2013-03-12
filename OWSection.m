@@ -55,7 +55,7 @@
 }
 
 - (void)addField:(OWField *)aField {
-    if (self.fields == nil) self.fields = [NSMutableArray array];
+    if (self.fields == nil) self.fields = [[NSMutableArray alloc] init];
     [self.fields addObject:aField];
 }
 

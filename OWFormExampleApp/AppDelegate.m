@@ -25,8 +25,7 @@
     
     MyForm *myForm = [[MyForm alloc] init];
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:myForm];
-    
-    [self.window addSubview:navController.view];
+    self.window.rootViewController = navController;
     [self.window makeKeyAndVisible];
     return YES;
 }

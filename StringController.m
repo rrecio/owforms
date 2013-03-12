@@ -7,7 +7,7 @@
 //
 
 #import "StringController.h"
-#import "OWFieldText.h"
+#import "OWFieldTextDedicated.h"
 
 @implementation StringController
 
